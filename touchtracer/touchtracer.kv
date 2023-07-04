@@ -1,0 +1,60 @@
+#:kivy 1.0
+#:import kivy kivy
+
+<PhytecBackground@AnchorLayout>:
+    anchor_x: 'center'
+    anchor_y: 'center'
+    padding: 13
+    canvas:
+        Rectangle:
+            source: 'images/background.jpg'
+            size: self.size
+
+<SmallerWhiteBackground@BoxLayout>:
+    orientation: 'vertical'
+    padding: 10 
+    spacing: 10
+    canvas:
+        Color:
+            rgba: 1,1,1,0.9
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<TextLabel@Label>:
+    color: (0,0,0,1)
+    markup: True
+    # To wrap the text with max width
+    size_hint_y: None
+    text_size: self.width, None
+    height: self.texture_size[1]
+
+<Touchtracer>:
+    canvas:
+        Color:
+            rgb: 0, 0, 0
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<TouchTracerScreen>:
+    PhytecBackground: 
+        SmallerWhiteBackground: 
+            id: template_background
+
+            BoxLayout:
+                orientation:"horizontal"
+                size_hint: 1,0.05
+
+                TextLabel: 
+                    id: title
+                    text: "[size=20sp]3D Rendering[/size]"
+                
+                Button:
+                    text: "Home"
+                    size_hint_x: 0.1
+                    on_release: root.manager.current='home'
+
+            Touchtracer:
+                id: touchTracer
+                # pos: self.pos

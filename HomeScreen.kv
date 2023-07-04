@@ -1,0 +1,71 @@
+#:kivy 1.0.9
+
+<HomeScreen>:
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
+        padding: 13
+
+        canvas:
+            Rectangle:
+                source: 'images/background.jpg'
+                size: self.size
+
+        BoxLayout:
+            orientation: 'vertical'
+            canvas:
+                Color:
+                    rgba: 1,1,1,0.9
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            padding: 10 
+            spacing: 10
+    
+            Label: 
+                id: home
+                text: "[size=20sp]Home Page[/size]"
+                markup: True
+                color: (0,0,0,1)
+                size_hint: None, None
+                size: self.texture_size
+
+            BoxLayout:
+                orientation: 'horizontal'
+
+                Button:
+                    text: "L"
+                    size_hint: (0.08,0.1)
+                    pos_hint: {'center_y':0.5}
+                    disabled: True # TODO: enable or disable depending on the page I am on 
+            
+                GridLayout:
+                    cols: 3
+                    rows: 3
+                    padding: 10
+                    spacing: 10
+
+                    Button: 
+                        text: "Infos Device and Phytec"
+                        on_release: root.manager.current = 'info'
+
+                    Button: 
+                        text: "Kivy Catalog"
+
+                    Button: 
+                        text: "Multitouch"
+                        on_release: root.manager.current = 'touch'
+
+                    Button: 
+                        text: "3D Rendering"
+                        on_release: root.manager.current = '3D'
+
+                    Button: 
+                        text: "Other"
+
+                Button:
+                    text: "R"
+                    size_hint: (0.08,0.1)
+                    pos_hint: {'center_y':0.5}
+
+                    
