@@ -13,7 +13,7 @@ class InfoScreen(Screen):
     device_description = StringProperty("")
 
     def __init__(self,*args, **kwargs):
-        Builder.load_file("infoScreen.kv")
+        Builder.load_file("info/infoScreen.kv")
         super().__init__(*args, **kwargs)
         self.device_description = self.get_device_description()
         # print(self.device_description)

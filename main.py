@@ -4,7 +4,7 @@ from kivy.lang.builder import Builder
 from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.uix.button import Button
-from infoScreen import InfoScreen
+from info.infoScreen import InfoScreen
 from monkeyRendering.render import Screen3DRendering
 from touchtracer.main import TouchTracerScreen
 

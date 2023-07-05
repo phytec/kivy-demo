@@ -23,10 +23,6 @@ Kivy Launcher Android application. For Android devices, you can
 copy/paste this directory into /sdcard/kivy/touchtracer on your Android device.
 
 '''
-__version__ = '1.0'
-
-import kivy
-kivy.require('1.0.6')
 
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.label import Label
@@ -65,7 +61,9 @@ class Touchtracer(FloatLayout):
         return dp(pressure * 10)
 
     def on_touch_down(self, touch):
-        win = self.get_parent_window()
+        if not self.collide_point(*touch.pos):
+            return 
+        
         ud = touch.ud
         ud['group'] = g = str(touch.uid)
         pointsize = 5
@@ -74,15 +72,13 @@ class Touchtracer(FloatLayout):
             ud['pressure'] = touch.pressure
             pointsize = self.normalize_pressure(touch.pressure)
         ud['color'] = random()
-
         with self.canvas:
             Color(ud['color'], 1, 1, mode='hsv', group=g)
             ud['lines'] = [
-                Rectangle(pos=(touch.x, 0), size=(1, win.height), group=g),
-                Rectangle(pos=(0, touch.y), size=(win.width, 1), group=g),
+                Rectangle(pos=(touch.x, 0), size=(1, self.height), group=g),
+                Rectangle(pos=(0, touch.y), size=(self.width, 1), group=g),
                 Point(points=(touch.x, touch.y), source='particle.png',
-                      pointsize=pointsize, group=g)]
-
+                    pointsize=pointsize, group=g)]
         ud['label'] = Label(size_hint=(None, None))
         self.update_touch_label(ud['label'], touch)
         self.add_widget(ud['label'])
@@ -90,8 +86,9 @@ class Touchtracer(FloatLayout):
         return True
 
     def on_touch_move(self, touch):
-        if touch.grab_current is not self:
+        if touch.grab_current is not self or not self.collide_point(*touch.pos) :
             return
+        
         ud = touch.ud
         ud['lines'][0].pos = touch.x, 0
         ud['lines'][1].pos = 0, touch.y

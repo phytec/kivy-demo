@@ -68,7 +68,7 @@ class ShowcaseApp(App):
         self.screen_names = self.available_screens
         curdir = dirname(__file__)
         self.available_screens = [join(curdir, 'data', 'screens',
-            '{}.kv'.format(fn).lower()) for fn in self.available_screens]
+                                       '{}.kv'.format(fn).lower()) for fn in self.available_screens]
         self.go_next_screen()
 
     def on_pause(self):
@@ -77,7 +77,7 @@ class ShowcaseApp(App):
     def on_resume(self):
         pass
 
-    # Fonction pass the value title to the Action Spinner 
+    # Fonction pass the value title to the Action Spinner
     def on_current_title(self, instance, value):
         self.root.ids.spnr.text = value
         # pass
@@ -133,7 +133,7 @@ class ShowcaseApp(App):
             height = 0
 
         Animation(height=height, d=.3, t='out_quart').start(
-                self.root.ids.sv)
+            self.root.ids.sv)
 
         self.update_sourcecode()
 
