@@ -32,9 +32,18 @@
 <HomeScreen>:
     PhytecBackground:
         SmallerWhiteBackground:
-            TextLabel: 
-                id: home
-                text: "[size=20sp]Home Page[/size]"
+            BoxLayout:
+                orientation:"horizontal"
+                size_hint: 1,0.05
+
+                TextLabel: 
+                    id: title
+                    text: "[size=20sp]Home Page[/size]"
+                
+                Button:
+                    text: "Exit"
+                    size_hint_x: 0.1
+                    on_release: app.stop()
 
             BoxLayout:
                 orientation: 'horizontal'
