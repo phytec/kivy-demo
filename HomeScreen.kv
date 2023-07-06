@@ -78,13 +78,16 @@
 
                     Button: 
                         text: "Camera"
+                        on_release: root.manager.current = 'camera'
 
                     Button: 
                         text: "Other"
+                        disabled: True
 
                 Button:
                     text: "R"
                     size_hint: (0.08,0.1)
                     pos_hint: {'center_y':0.5}
+                    disabled: False # TODO: enable or disable depending on the page I am on 
 
                     

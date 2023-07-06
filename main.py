@@ -4,10 +4,12 @@ from kivy.lang.builder import Builder
 from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.uix.button import Button
+
 from info.infoScreen import InfoScreen
 from monkeyRendering.render import Screen3DRendering
 from touchtracer.main import TouchTracerScreen
 from showcase.main import ShowcaseFullScreen
+from camera.camera_main import CameraScreen
 
 from kivy.properties import ListProperty, StringProperty, NumericProperty
 
@@ -69,6 +71,7 @@ class DemoApp(App):
         threeDScreen = Screen3DRendering(name="3D")
         touchtracerScreen = TouchTracerScreen(name="touch")
         showcaseScreen = ShowcaseFullScreen(name="showcase")
+        cameraScreen = CameraScreen(name="camera")
 
         sm.add_widget(startScreen)
         sm.add_widget(homeScreen)
@@ -76,6 +79,7 @@ class DemoApp(App):
         sm.add_widget(threeDScreen)
         sm.add_widget(touchtracerScreen)
         sm.add_widget(showcaseScreen)
+        sm.add_widget(cameraScreen)
 
         # Animation of the first page
         startScreen.startFadeOutAnimation()
