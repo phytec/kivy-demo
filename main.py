@@ -1,5 +1,5 @@
 from kivy.app import App
-from kivy.uix.screenmanager import  Screen, ScreenManager, FadeTransition
+from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.lang.builder import Builder
 from kivy.animation import Animation
 from kivy.clock import Clock
@@ -7,53 +7,57 @@ from kivy.uix.button import Button
 from info.infoScreen import InfoScreen
 from monkeyRendering.render import Screen3DRendering
 from touchtracer.main import TouchTracerScreen
+from showcase.main import ShowcaseFullScreen
 
-from kivy.properties import ListProperty, StringProperty
- 
+from kivy.properties import ListProperty, StringProperty, NumericProperty
+
+from time import time
 from functools import partial
 
 
 class StartScreen(Screen):
 
-    def __init__(self,*args, **kwargs):
+    def __init__(self, *args, **kwargs):
         Builder.load_file("startScreen.kv")
         super().__init__(*args, **kwargs)
-    
+
     def startFadeOutAnimation(self):
-        animation = Animation(duration=3,opacity=0)
+        animation = Animation(duration=3, opacity=0)
         animation.start(self.ids.welcome)
     pass
 
+
 class HomeScreen(Screen):
 
-    def __init__(self,*args, **kwargs):
+    def __init__(self, *args, **kwargs):
         Builder.load_file("HomeScreen.kv")
         super().__init__(*args, **kwargs)
-    
+
     def switchToHome(self, sm, dt):
-        sm.current = 'home' # ok, far from cool way to do that because only the sreen manager know this information !
+        # ok, far from cool way to do that because only the sreen manager know this information !
+        sm.current = 'home'
         # change that !
 
-    ## TODO: Check import Image ! 
-
+    # TODO: Check import Image !
 
 
 class ExampleDemo(Button):
-    
+
     title = StringProperty()
     icon = StringProperty()
     description = StringProperty()
 
-    # I can put all of the element in a json or some kind of appropriate files with the name of the method and code to call and all of that 
+    # I can put all of the element in a json or some kind of appropriate files with the name of the method and code to call and all of that
     # App example is an interface !
     # I need to know which part of the code I am using, not simple !
-    def __init__(self,*args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 
 class DemoApp(App):
 
     demos = ListProperty([])
+    time = NumericProperty(0)
 
     def build(self):
         sm = ScreenManager()
@@ -64,19 +68,23 @@ class DemoApp(App):
         infoScreen = InfoScreen(name="info")
         threeDScreen = Screen3DRendering(name="3D")
         touchtracerScreen = TouchTracerScreen(name="touch")
+        showcaseScreen = ShowcaseFullScreen(name="showcase")
 
-        
         sm.add_widget(startScreen)
         sm.add_widget(homeScreen)
         sm.add_widget(infoScreen)
         sm.add_widget(threeDScreen)
         sm.add_widget(touchtracerScreen)
+        sm.add_widget(showcaseScreen)
 
-        # Animation of the first page 
+        # Animation of the first page
         startScreen.startFadeOutAnimation()
-        Clock.schedule_once(partial(homeScreen.switchToHome, sm),3.5)
+        Clock.schedule_once(partial(homeScreen.switchToHome, sm), 3.5)
 
         return sm
+
+    def _update_clock(self, dt):
+        self.time = time()
 
 
 if __name__ == '__main__':

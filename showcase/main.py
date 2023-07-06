@@ -26,7 +26,6 @@ copy/paste this directory into /sdcard/kivy/showcase on your Android device.
 '''
 
 from time import time
-from kivy.app import App
 from os.path import dirname, join
 from kivy.lang import Builder
 from kivy.properties import NumericProperty, StringProperty, BooleanProperty,\
@@ -44,108 +43,7 @@ class ShowcaseScreen(Screen):
             return self.ids.content.add_widget(*args, **kwargs)
         return super(ShowcaseScreen, self).add_widget(*args, **kwargs)
 
-
-class ShowcaseApp(App):
-
-    index = NumericProperty(-1)
-    current_title = StringProperty()
-    time = NumericProperty(0)
-    show_sourcecode = BooleanProperty(False)
-    sourcecode = StringProperty()
-    screen_names = ListProperty([])
-    hierarchy = ListProperty([])
-
-    def build(self):
-        self.title = 'hello world'
-        Clock.schedule_interval(self._update_clock, 1 / 60.)
-        self.screens = {}
-        self.available_screens = sorted([
-            'Buttons', 'ToggleButton', 'Sliders', 'ProgressBar', 'Switches',
-            'CheckBoxes', 'TextInputs', 'Accordions', 'FileChoosers',
-            'Carousel', 'Bubbles', 'CodeInput', 'DropDown', 'Spinner',
-            'Scatter', 'Splitter', 'TabbedPanel + Layouts', 'RstDocument',
-            'Popups', 'ScreenManager'])
-        self.screen_names = self.available_screens
-        curdir = dirname(__file__)
-        self.available_screens = [join(curdir, 'data', 'screens',
-                                       '{}.kv'.format(fn).lower()) for fn in self.available_screens]
-        self.go_next_screen()
-
-    def on_pause(self):
-        return True
-
-    def on_resume(self):
-        pass
-
-    # Fonction pass the value title to the Action Spinner
-    def on_current_title(self, instance, value):
-        self.root.ids.spnr.text = value
-        # pass
-
-    def go_previous_screen(self):
-        self.index = (self.index - 1) % len(self.available_screens)
-        screen = self.load_screen(self.index)
-        sm = self.root.ids.sm
-        sm.switch_to(screen, direction='right')
-        self.current_title = screen.name
-        self.update_sourcecode()
-
-    def go_next_screen(self):
-        self.index = (self.index + 1) % len(self.available_screens)
-        screen = self.load_screen(self.index)
-        sm = self.root.ids.sm
-        sm.switch_to(screen, direction='left')
-        self.current_title = screen.name
-        self.update_sourcecode()
-
-    def go_screen(self, idx):
-        self.index = idx
-        self.root.ids.sm.switch_to(self.load_screen(idx), direction='left')
-        self.update_sourcecode()
-
-    def go_hierarchy_previous(self):
-        ahr = self.hierarchy
-        if len(ahr) == 1:
-            return
-        if ahr:
-            ahr.pop()
-        if ahr:
-            idx = ahr.pop()
-            self.go_screen(idx)
-
-    def load_screen(self, index):
-        if index in self.screens:
-            return self.screens[index]
-        screen = Builder.load_file(self.available_screens[index])
-        self.screens[index] = screen
-        return screen
-
-    def read_sourcecode(self):
-        fn = self.available_screens[self.index]
-        with open(fn) as fd:
-            return fd.read()
-
-    def toggle_source_code(self):
-        self.show_sourcecode = not self.show_sourcecode
-        if self.show_sourcecode:
-            height = self.root.height * .3
-        else:
-            height = 0
-
-        Animation(height=height, d=.3, t='out_quart').start(
-            self.root.ids.sv)
-
-        self.update_sourcecode()
-
-    def update_sourcecode(self):
-        if not self.show_sourcecode:
-            self.root.ids.sourcecode.focus = False
-            return
-        self.root.ids.sourcecode.text = self.read_sourcecode()
-        self.root.ids.sv.scroll_y = 1
-
     def showcase_floatlayout(self, layout):
-
         def add_button(*t):
             if not layout.get_parent_window():
                 return
@@ -233,9 +131,108 @@ Button:
             Clock.schedule_once(change_anchor, 1)
         Clock.schedule_once(change_anchor, 1)
 
+
+class ShowcaseFullScreen(Screen):
+
+    index = NumericProperty(-1)
+    current_title = StringProperty()
+    time = NumericProperty(0)
+    show_sourcecode = BooleanProperty(False)
+    sourcecode = StringProperty()
+    screen_names = ListProperty([])
+    hierarchy = ListProperty([])
+
+    # def build(self):
+    def __init__(self, *args, **kwargs):
+        Builder.load_file("showcase/showcase.kv")
+        super().__init__(*args, **kwargs)
+        # self.title = 'hello world'
+        Clock.schedule_interval(self._update_clock, 1 / 60.)
+        self.screens = {}
+        self.available_screens = sorted([
+            'Buttons', 'ToggleButton', 'Sliders', 'ProgressBar', 'Switches',
+            'CheckBoxes', 'TextInputs', 'Accordions', 'FileChoosers',
+            'Carousel', 'Bubbles', 'CodeInput', 'DropDown', 'Spinner',
+            'Scatter', 'Splitter', 'TabbedPanel + Layouts', 'RstDocument',
+            'Popups', 'ScreenManager'])
+        self.screen_names = self.available_screens
+        curdir = dirname(__file__)
+        self.available_screens = [join(curdir, 'data', 'screens',
+                                       '{}.kv'.format(fn).lower()) for fn in self.available_screens]
+        self.go_next_screen()
+
+    def on_pause(self):
+        return True
+
+    def on_resume(self):
+        pass
+
+    # Fonction pass the value title to the Action Spinner
+    def on_current_title(self, instance, value):
+        self.ids.spnr.text = value
+        # pass
+
+    def go_previous_screen(self):
+        self.index = (self.index - 1) % len(self.available_screens)
+        screen = self.load_screen(self.index)
+        sm = self.ids.sm
+        sm.switch_to(screen, direction='right')
+        self.current_title = screen.name
+        self.update_sourcecode()
+
+    def go_next_screen(self):
+        self.index = (self.index + 1) % len(self.available_screens)
+        screen = self.load_screen(self.index)
+        sm = self.ids.sm
+        sm.switch_to(screen, direction='left')
+        self.current_title = screen.name
+        self.update_sourcecode()
+
+    def go_screen(self, idx):
+        self.index = idx
+        self.ids.sm.switch_to(self.load_screen(idx), direction='left')
+        self.update_sourcecode()
+
+    def go_hierarchy_previous(self):
+        ahr = self.hierarchy
+        if len(ahr) == 1:
+            return
+        if ahr:
+            ahr.pop()
+        if ahr:
+            idx = ahr.pop()
+            self.go_screen(idx)
+
+    def load_screen(self, index):
+        if index in self.screens:
+            return self.screens[index]
+        screen = Builder.load_file(self.available_screens[index])
+        self.screens[index] = screen
+        return screen
+
+    def read_sourcecode(self):
+        fn = self.available_screens[self.index]
+        with open(fn) as fd:
+            return fd.read()
+
+    def toggle_source_code(self):
+        self.show_sourcecode = not self.show_sourcecode
+        if self.show_sourcecode:
+            height = self.height * .3
+        else:
+            height = 0
+
+        Animation(height=height, d=.3, t='out_quart').start(
+            self.ids.sv)
+
+        self.update_sourcecode()
+
+    def update_sourcecode(self):
+        if not self.show_sourcecode:
+            self.ids.sourcecode.focus = False
+            return
+        self.ids.sourcecode.text = self.read_sourcecode()
+        self.ids.sv.scroll_y = 1
+
     def _update_clock(self, dt):
         self.time = time()
-
-
-if __name__ == '__main__':
-    ShowcaseApp().run()

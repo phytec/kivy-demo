@@ -3,7 +3,8 @@
 ShowcaseScreen:
     name: 'TabbedPanel + Layouts'
     fullscreen: True
-    on_parent: if args[1] and tp.current_tab == tab_fl: app.showcase_floatlayout(fl)
+    # on_parent: if args[1] and tp.current_tab == tab_fl: root.parent.parent.parent.parent.parent.showcase_floatlayout(fl)
+    on_parent: if args[1] and tp.current_tab == tab_fl: root.showcase_floatlayout(fl)
 
     TabbedPanel:
         id: tp
@@ -12,32 +13,32 @@ ShowcaseScreen:
         TabbedPanelItem:
             id: tab_fl
             text: 'FloatLayout'
-            on_release: app.showcase_floatlayout(fl)
+            on_release: root.showcase_floatlayout(fl)
             FloatLayout:
                 CFloatLayout:
                     id: fl
         TabbedPanelItem:
             text: 'BoxLayout'
-            on_release: app.showcase_boxlayout(box)
+            on_release: root.showcase_boxlayout(box)
             FloatLayout
                 CBoxLayout:
                     id: box
         TabbedPanelItem:
             text: 'GridLayout'
-            on_release: app.showcase_gridlayout(grid)
+            on_release: root.showcase_gridlayout(grid)
             FloatLayout
                 CGridLayout:
                     id: grid
                     rows: 3
         TabbedPanelItem:
-            on_release: app.showcase_stacklayout(stack)
+            on_release: root.showcase_stacklayout(stack)
             text: 'StackLayout'
             FloatLayout
                 CStackLayout:
                     id: stack
         TabbedPanelItem:
             text: 'AnchorLayout'
-            on_release: app.showcase_anchorlayout(anchor)
+            on_release: root.showcase_anchorlayout(anchor)
             FloatLayout
                 CAnchorLayout:
                     id: anchor
