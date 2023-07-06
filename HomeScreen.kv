@@ -1,34 +1,40 @@
 #:kivy 1.0.9
 
+<PhytecBackground@AnchorLayout>:
+    anchor_x: 'center'
+    anchor_y: 'center'
+    padding: 13
+    canvas:
+        Rectangle:
+            source: 'images/background.jpg'
+            size: self.size
+
+<SmallerWhiteBackground@BoxLayout>:
+    orientation: 'vertical'
+    padding: 10 
+    spacing: 10
+    canvas:
+        Color:
+            rgba: 1,1,1,0.9
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<TextLabel@Label>:
+    color: (0,0,0,1)
+    markup: True
+    # To wrap the text with max width
+    size_hint_y: None
+    text_size: self.width, None
+    height: self.texture_size[1]
+
+
 <HomeScreen>:
-    AnchorLayout:
-        anchor_x: 'center'
-        anchor_y: 'center'
-        padding: 13
-
-        canvas:
-            Rectangle:
-                source: 'images/background.jpg'
-                size: self.size
-
-        BoxLayout:
-            orientation: 'vertical'
-            canvas:
-                Color:
-                    rgba: 1,1,1,0.9
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
-            padding: 10 
-            spacing: 10
-    
-            Label: 
+    PhytecBackground:
+        SmallerWhiteBackground:
+            TextLabel: 
                 id: home
                 text: "[size=20sp]Home Page[/size]"
-                markup: True
-                color: (0,0,0,1)
-                size_hint: None, None
-                size: self.texture_size
 
             BoxLayout:
                 orientation: 'horizontal'

@@ -1,33 +1,3 @@
-#:kivy 1.0.9
-
-<PhytecBackground@AnchorLayout>:
-    anchor_x: 'center'
-    anchor_y: 'center'
-    padding: 13
-    canvas:
-        Rectangle:
-            source: 'images/background.jpg'
-            size: self.size
-
-
-<SmallerWhiteBackground@BoxLayout>:
-    orientation: 'vertical'
-    padding: 10 
-    spacing: 10
-    canvas:
-        Color:
-            rgba: 1,1,1,0.9
-        Rectangle:
-            pos: self.pos
-            size: self.size
-
-<TextLabel@Label>:
-    color: (0,0,0,1)
-    markup: True
-    # To wrap the text with max width
-    size_hint_y: None
-    text_size: self.width, None
-    height: self.texture_size[1]
 
 <Subtitle@TextLabel>:
     canvas: 
@@ -36,7 +6,6 @@
         Rectangle: 
             size: self.width, 0.9
             pos: self.pos
-
 
 <InfoScreen>:
     PhytecBackground: 
