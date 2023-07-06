@@ -28,6 +28,22 @@
     text_size: self.width, None
     height: self.texture_size[1]
 
+<RoundedButton@Button>:
+    background_color: (0,0,0,0)
+    # background_normal:''
+    up_color: (0.5,0.5,0.5,1)
+    down_color: (0.5,0.5,0.5,0.6)
+    final_color: (0.5,0.5,0.5,1)
+    canvas.before:
+        Color:
+            rgba: self.final_color
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [50, 50, 50, 50]
+    on_press: self.change_to_down_color()
+    on_release: self.change_to_up_color()
+
 
 <HomeScreen>:
     PhytecBackground:
@@ -60,29 +76,31 @@
                     padding: 10
                     spacing: 10
 
-                    Button: 
+                    RoundedButton: 
                         text: "Infos Device and Phytec"
                         on_release: root.manager.current = 'info'
 
-                    Button: 
+                    RoundedButton: 
                         text: "Kivy Catalog"
                         on_release: root.manager.current = 'showcase'
 
-                    Button: 
+                    RoundedButton: 
                         text: "Multitouch"
                         on_release: root.manager.current = 'touch'
 
-                    Button: 
+                    RoundedButton: 
                         text: "3D Rendering"
                         on_release: root.manager.current = '3D'
 
-                    Button: 
+                    RoundedButton: 
                         text: "Camera"
                         on_release: root.manager.current = 'camera'
 
-                    Button: 
+                    RoundedButton: 
                         text: "Other"
                         disabled: True
+                        up_color: self.down_color
+                        final_color: self.down_color
 
                 Button:
                     text: "R"

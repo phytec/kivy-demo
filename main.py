@@ -11,7 +11,7 @@ from touchtracer.main import TouchTracerScreen
 from showcase.main import ShowcaseFullScreen
 from camera.camera_main import CameraScreen
 
-from kivy.properties import ListProperty, StringProperty, NumericProperty
+from kivy.properties import ListProperty, NumericProperty, ColorProperty
 
 from time import time
 from functools import partial
@@ -42,18 +42,22 @@ class HomeScreen(Screen):
 
     # TODO: Check import Image !
 
+class RoundedButton(Button):
 
-class ExampleDemo(Button):
-
-    title = StringProperty()
-    icon = StringProperty()
-    description = StringProperty()
-
-    # I can put all of the element in a json or some kind of appropriate files with the name of the method and code to call and all of that
-    # App example is an interface !
-    # I need to know which part of the code I am using, not simple !
+    # color = ColorProperty([0.5,0.5,0.5,1])
+    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+    def change_to_down_color(self):
+        self.final_color = self.down_color;
+        return super().on_press()
+    
+    def change_to_up_color(self):
+        self.final_color = self.up_color;
+        return super().on_release()
+
+
 
 
 class DemoApp(App):
@@ -90,7 +94,6 @@ class DemoApp(App):
 
     def _update_clock(self, dt):
         self.time = time()
-
 
 if __name__ == '__main__':
     DemoApp().run()
