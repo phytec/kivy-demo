@@ -146,8 +146,6 @@ class ShowcaseFullScreen(Screen):
     def __init__(self, *args, **kwargs):
         Builder.load_file("showcase/showcase.kv")
         super().__init__(*args, **kwargs)
-        # self.title = 'hello world'
-        Clock.schedule_interval(self._update_clock, 1 / 60.)
         self.screens = {}
         self.available_screens = sorted([
             'Buttons', 'ToggleButton', 'Sliders', 'ProgressBar', 'Switches',

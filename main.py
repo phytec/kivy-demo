@@ -80,7 +80,8 @@ class DemoApp(App):
         # Animation of the first page
         startScreen.startFadeOutAnimation()
         Clock.schedule_once(partial(homeScreen.switchToHome, sm), 3.5)
-
+        # This line is for the progress bar (not the most efficient solution)
+        Clock.schedule_interval(self._update_clock, 1 / 60.)
         return sm
 
     def _update_clock(self, dt):
