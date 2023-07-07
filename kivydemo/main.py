@@ -5,22 +5,25 @@ from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.uix.button import Button
 
-from info.infoScreen import InfoScreen
-from monkeyRendering.render import Screen3DRendering
-from touchtracer.main import TouchTracerScreen
-from showcase.main import ShowcaseFullScreen
-from camera.camera_main import CameraScreen
+from .info.infoScreen import InfoScreen
+from .monkeyRendering.render import Screen3DRendering
+from .touchtracer.main import TouchTracerScreen
+from .showcase.main import ShowcaseFullScreen
+# from .camera.camera_main import CameraScreen
 
-from kivy.properties import ListProperty, NumericProperty, ColorProperty
+from kivy.properties import ListProperty, NumericProperty
 
 from time import time
 from functools import partial
+
+from kivydemo import path_demo
+from os import path
 
 
 class StartScreen(Screen):
 
     def __init__(self, *args, **kwargs):
-        Builder.load_file("startScreen.kv")
+        Builder.load_file(path.join(path_demo, "startScreen.kv"))
         super().__init__(*args, **kwargs)
 
     def startFadeOutAnimation(self):
@@ -32,7 +35,7 @@ class StartScreen(Screen):
 class HomeScreen(Screen):
 
     def __init__(self, *args, **kwargs):
-        Builder.load_file("HomeScreen.kv")
+        Builder.load_file(path.join(path_demo, "HomeScreen.kv"))
         super().__init__(*args, **kwargs)
 
     def switchToHome(self, sm, dt):
@@ -42,22 +45,21 @@ class HomeScreen(Screen):
 
     # TODO: Check import Image !
 
+
 class RoundedButton(Button):
 
     # color = ColorProperty([0.5,0.5,0.5,1])
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
     def change_to_down_color(self):
-        self.final_color = self.down_color;
+        self.final_color = self.down_color
         return super().on_press()
-    
+
     def change_to_up_color(self):
-        self.final_color = self.up_color;
+        self.final_color = self.up_color
         return super().on_release()
-
-
 
 
 class DemoApp(App):
@@ -75,7 +77,7 @@ class DemoApp(App):
         threeDScreen = Screen3DRendering(name="3D")
         touchtracerScreen = TouchTracerScreen(name="touch")
         showcaseScreen = ShowcaseFullScreen(name="showcase")
-        cameraScreen = CameraScreen(name="camera")
+        # cameraScreen = CameraScreen(name="camera")
 
         sm.add_widget(startScreen)
         sm.add_widget(homeScreen)
@@ -83,7 +85,7 @@ class DemoApp(App):
         sm.add_widget(threeDScreen)
         sm.add_widget(touchtracerScreen)
         sm.add_widget(showcaseScreen)
-        sm.add_widget(cameraScreen)
+        # sm.add_widget(cameraScreen)
 
         # Animation of the first page
         startScreen.startFadeOutAnimation()
@@ -95,5 +97,11 @@ class DemoApp(App):
     def _update_clock(self, dt):
         self.time = time()
 
-if __name__ == '__main__':
+
+def runMainFunction():
     DemoApp().run()
+
+
+if __name__ == '__main__':
+    # DemoApp().run()
+    runMainFunction()

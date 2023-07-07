@@ -20,15 +20,20 @@ from kivy.graphics.opengl import glEnable, glDisable, GL_DEPTH_TEST
 from kivy.graphics import RenderContext, Callback, PushMatrix, PopMatrix, \
     Color, Translate, Rotate, Mesh, UpdateNormalMatrix
 from kivy.uix.screenmanager import Screen
-from monkeyRendering.objloader import ObjFile
 from kivy.lang.builder import Builder
+from kivydemo.monkeyRendering.objloader import ObjFile
+
+from os import path
+from kivydemo import path_demo
 
 
 class Renderer(Widget):
     def __init__(self, **kwargs):
         self.canvas = RenderContext(compute_normal_mat=True)
-        self.canvas.shader.source = resource_find('monkeyRendering/simple.glsl')
-        self.scene = ObjFile(resource_find("monkeyRendering/monkey.obj"))
+        self.canvas.shader.source = resource_find(path.join(path_demo,
+                                                            'monkeyRendering/simple.glsl'))
+        self.scene = ObjFile(resource_find(
+            path.join(path_demo, "monkeyRendering/monkey.obj")))
         super(Renderer, self).__init__(**kwargs)
         with self.canvas:
             self.cb = Callback(self.setup_gl_context)
@@ -70,8 +75,7 @@ class Renderer(Widget):
 
 class Screen3DRendering(Screen):
 
-    def __init__(self,*args, **kwargs):
-        Builder.load_file("monkeyRendering/renderScreen.kv")
+    def __init__(self, *args, **kwargs):
+        Builder.load_file(
+            path.join(path_demo, "monkeyRendering/renderScreen.kv"))
         super().__init__(*args, **kwargs)
-
-

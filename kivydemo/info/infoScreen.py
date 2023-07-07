@@ -2,7 +2,8 @@ from kivy.uix.screenmanager import Screen
 from kivy.lang.builder import Builder
 
 from subprocess import check_output
-from os import uname
+from os import uname, path
+from kivydemo import path_demo
 
 from kivy.properties import StringProperty
 
@@ -13,7 +14,7 @@ class InfoScreen(Screen):
     device_description = StringProperty("")
 
     def __init__(self, *args, **kwargs):
-        Builder.load_file("info/infoScreen.kv")
+        Builder.load_file(path.join(path_demo, "info/infoScreen.kv"))
         super().__init__(*args, **kwargs)
         self.device_description = self.get_device_description()
 

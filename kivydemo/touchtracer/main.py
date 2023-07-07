@@ -32,6 +32,8 @@ from random import random
 from math import sqrt
 from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import Screen
+from os import path
+from kivydemo import path_demo
 
 
 def calculate_points(x1, y1, x2, y2, steps=5):
@@ -62,8 +64,8 @@ class Touchtracer(FloatLayout):
 
     def on_touch_down(self, touch):
         if not self.collide_point(*touch.pos):
-            return 
-        
+            return
+
         ud = touch.ud
         ud['group'] = g = str(touch.uid)
         pointsize = 5
@@ -78,7 +80,7 @@ class Touchtracer(FloatLayout):
                 Rectangle(pos=(touch.x, 0), size=(1, self.height), group=g),
                 Rectangle(pos=(0, touch.y), size=(self.width, 1), group=g),
                 Point(points=(touch.x, touch.y), source='particle.png',
-                    pointsize=pointsize, group=g)]
+                      pointsize=pointsize, group=g)]
         ud['label'] = Label(size_hint=(None, None))
         self.update_touch_label(ud['label'], touch)
         self.add_widget(ud['label'])
@@ -86,9 +88,9 @@ class Touchtracer(FloatLayout):
         return True
 
     def on_touch_move(self, touch):
-        if touch.grab_current is not self or not self.collide_point(*touch.pos) :
+        if touch.grab_current is not self or not self.collide_point(*touch.pos):
             return
-        
+
         ud = touch.ud
         ud['lines'][0].pos = touch.x, 0
         ud['lines'][1].pos = 0, touch.y
@@ -155,6 +157,6 @@ class Touchtracer(FloatLayout):
 
 class TouchTracerScreen(Screen):
 
-    def __init__(self,*args, **kwargs):
-        Builder.load_file("touchtracer/touchtracer.kv")
+    def __init__(self, *args, **kwargs):
+        Builder.load_file(path.join(path_demo, "touchtracer/touchtracer.kv"))
         super().__init__(*args, **kwargs)

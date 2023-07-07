@@ -18,7 +18,8 @@ from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
 import time
-
+from os import path
+from kivydemo import path_demo
 
 
 class CameraClick(BoxLayout):
@@ -32,9 +33,8 @@ class CameraClick(BoxLayout):
         camera.export_to_png("IMG_{}.png".format(timestr))
         print("Captured")
 
-class CameraScreen(Screen):    
-    def __init__(self,*args, **kwargs):
-        Builder.load_file("camera/camera.kv")
+
+class CameraScreen(Screen):
+    def __init__(self, *args, **kwargs):
+        Builder.load_file(path.join(path_demo, "camera/camera.kv"))
         super().__init__(*args, **kwargs)
-
-

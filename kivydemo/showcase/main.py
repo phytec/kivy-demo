@@ -34,6 +34,9 @@ from kivy.clock import Clock
 from kivy.animation import Animation
 from kivy.uix.screenmanager import Screen
 
+from kivydemo import path_demo
+from os import path
+
 
 class ShowcaseScreen(Screen):
     fullscreen = BooleanProperty(False)
@@ -144,7 +147,7 @@ class ShowcaseFullScreen(Screen):
 
     # def build(self):
     def __init__(self, *args, **kwargs):
-        Builder.load_file("showcase/showcase.kv")
+        Builder.load_file(path.join(path_demo, "showcase/showcase.kv"))
         super().__init__(*args, **kwargs)
         self.screens = {}
         self.available_screens = sorted([

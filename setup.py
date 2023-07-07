@@ -6,10 +6,10 @@ setup(
     description='Kivy demo for Phytec Products',
     author='Marine Vovard',
     author_email='m.vovard@phytec.de',
-    packages=find_packages(include=['kivydemo', 'kivydemo.*']),
+    packages=find_packages(include=['kivydemo*']),
     install_requires=['kivy'],
     entry_points={
-        'console_scripts': ['kivydemo=kivydemo.main:main']
+        'console_scripts': ['kivydemo=kivydemo.main:runMainFunction']
     },
     package_data={'': ['*.kv', '*.jpg', '*.png']}
 )
