@@ -1,4 +1,6 @@
 #:kivy 1.0.9
+#:import path os.path
+#:import path_demo kivydemo.path_demo
 
 <PhytecBackground@AnchorLayout>:
     anchor_x: 'center'
@@ -6,7 +8,7 @@
     padding: 13
     canvas:
         Rectangle:
-            source: 'images/background.jpg'
+            source: path.join(path_demo,'images/background.jpg')
             size: self.size
 
 <SmallerWhiteBackground@BoxLayout>:

@@ -1,6 +1,8 @@
 #:kivy 1.8.0
 #:import KivyLexer kivy.extras.highlight.KivyLexer
 #:import Factory kivy.factory.Factory
+#:import path os.path
+#:import path_demo kivydemo.path_demo
 
 <ShowcaseFullScreen>:
     PhytecBackground: 
@@ -25,7 +27,7 @@
                         rgb: .6, .6, .6
                     Rectangle:
                         size: self.size
-                        source: 'showcase/data/background.png'
+                        source: path.join(path_demo,'showcase/data/background.png')
                         pos: self.pos
 
                 ActionBar:
@@ -47,15 +49,15 @@
                                 root.go_screen(idx)
                         ActionToggleButton:
                             text: 'Toggle sourcecode'
-                            icon: 'showcase/data/icons/bug.png'
+                            icon: path.join(path_demo,'showcase/data/icons/bug.png')
                             on_release: root.toggle_source_code()
                         ActionButton:
                             text: 'Previous screen'
-                            icon: 'showcase/data/icons/chevron-left.png'
+                            icon: path.join(path_demo,'showcase/data/icons/chevron-left.png')
                             on_release: root.go_previous_screen()
                         ActionButton:
                             text: 'Next screen'
-                            icon: 'showcase/data/icons/chevron-right.png'
+                            icon: path.join(path_demo,'showcase/data/icons/chevron-right.png')
                             on_release: root.go_next_screen()
                             important: True
                 ScrollView:
