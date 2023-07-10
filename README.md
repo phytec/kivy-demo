@@ -2,32 +2,34 @@
 
 ## Description
 
-The goal of this program is to show the possibilities of kivy for embedded system developped by PHYTEC. 
-This program was tested after installing kivy using this documentation: ... 
+The goal of this program is to show the possibilities of kivy on embedded systems developped by PHYTEC. 
+This program was tested after installing kivy using this documentation: [link to the documentation with title]
 
 
 ## Installation 
 
-You need to have: 
-- kivy 2.1
-- opencv
+Dependencies: 
+- kivy 2.1dev0
+- gstreamer 
 
-To launch the program, go in the main directory and do: 
-`python3 main.py`
+To install and launch the program : 
+1. Go inside the project folder
+1.1. [OPTIONAL] Install and start a virtual environnement: `python -m venv .venv` and ` source .venv/bin/activate`
+2. Install the package: `pip install --editable .`
+3. Launch the program with: `kivydemo`
 
-You are now ready to try it.
+If you use the the image with meta-phykivy, you just have to follow the last step. 
 
 ## Credits
 
 To make the program, we used the following examples available on the kivy repository or visible on the documentation: 
-- touchtracer: link 
-- showcase: link
-- 3D rendering (renamed MonkeyRendering): link 
-
-Thank you for the people developping those examples.
+- [touchtracer](https://github.com/kivy/kivy/tree/2.1.0.dev0/examples/demo/touchtracer) 
+- [showcase](https://github.com/kivy/kivy/tree/2.1.0.dev0/examples/demo/showcase)
+- [3D rendering (renamed MonkeyRendering)](https://github.com/kivy/kivy/tree/2.1.0.dev0/examples/3Drendering) 
+- [camera](https://github.com/kivy/kivy/tree/2.1.0.dev0/examples/camera)
 
 ## LICENSE 
 
-This code is under the MIT license. 
+This code is under the MIT license. See `LICENSE` for the full terms and conditions.
 
-The license for the images and videos are available here : TODO
+Images, videos and fonts can have a different license. See the different license in the folder for each resources. 
