@@ -7,9 +7,18 @@ setup(
     author='Marine Vovard',
     author_email='m.vovard@phytec.de',
     packages=find_packages(include=['kivydemo*']),
+    package_dir={"kivydemo": "kivydemo"},
     install_requires=['kivy'],
     entry_points={
         'console_scripts': ['kivydemo=kivydemo.main:runMainFunction']
     },
-    package_data={'': ['*.kv', '*.jpg', '*.png']}
+    package_data={'': ['*.kv', '*.jpg', '*.png', '*.obj', '*.glsl'],
+                  "kivydemo": ["images/*"],
+                  "kivydemo.showcase": [
+                      "data/*.png"
+                      "data/*.jpg",
+                      "data/icons/*.png",
+                      "data/screens/*.kv"
+    ]},
+    include_package_data=True
 )
