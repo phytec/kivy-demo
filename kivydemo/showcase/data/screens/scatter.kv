@@ -1,3 +1,6 @@
+#:import path os.path
+#:import path_demo kivydemo.path_demo
+
 ShowcaseScreen:
     name: 'Scatter'
 
@@ -10,5 +13,5 @@ ShowcaseScreen:
 
             Image:
                 id: image
-                source: 'showcase/data/faust_github.jpg'
+                source: path.join(path_demo,'showcase/data/images/faust_github.jpg')
                 size: self.texture_size
