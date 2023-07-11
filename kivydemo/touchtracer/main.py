@@ -55,7 +55,6 @@ def calculate_points(x1, y1, x2, y2, steps=5):
 class Touchtracer(FloatLayout):
 
     def normalize_pressure(self, pressure):
-        print(pressure)
         # this might mean we are on a device whose pressure value is
         # incorrectly reported by SDL2, like recent iOS devices.
         if pressure == 0.0:
@@ -79,7 +78,7 @@ class Touchtracer(FloatLayout):
             ud['lines'] = [
                 Rectangle(pos=(touch.x, 0), size=(1, self.height), group=g),
                 Rectangle(pos=(0, touch.y), size=(self.width, 1), group=g),
-                Point(points=(touch.x, touch.y), source='particle.png',
+                Point(points=(touch.x, touch.y), source=path.join(path_demo, 'touchtracer/particle.png'),
                       pointsize=pointsize, group=g)]
         ud['label'] = Label(size_hint=(None, None))
         self.update_touch_label(ud['label'], touch)
@@ -119,7 +118,7 @@ class Touchtracer(FloatLayout):
                 with self.canvas:
                     Color(ud['color'], 1, 1, mode='hsv', group=g)
                     ud['lines'].append(
-                        Point(points=(), source='particle.png',
+                        Point(points=(), source=path.join(path_demo, 'touchtracer/particle.png'),
                               pointsize=pointsize, group=g))
 
         if points:
