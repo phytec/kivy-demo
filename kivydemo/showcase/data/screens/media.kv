@@ -1,0 +1,14 @@
+#:import path os.path
+#:import path_demo kivydemo.path_demo
+
+ShowcaseScreen:
+    name: 'Media'
+    fullscreen: True
+
+    BoxLayout:
+        orientation: "vertical"
+        Image:
+            source: path.join(path_demo,'showcase/data/images/cityCC0.png')
+        Video:
+            source: path.join(path_demo,'showcase/data/images/cityCC0.mpg')
+            state: "play"

@@ -68,7 +68,7 @@ class Touchtracer(FloatLayout):
         ud = touch.ud
         ud['group'] = g = str(touch.uid)
         pointsize = 5
-        print(touch.profile)
+        # print(touch.profile)
         if 'pressure' in touch.profile:
             ud['pressure'] = touch.pressure
             pointsize = self.normalize_pressure(touch.pressure)

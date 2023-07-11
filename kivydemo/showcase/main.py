@@ -155,7 +155,7 @@ class ShowcaseFullScreen(Screen):
             'CheckBoxes', 'TextInputs', 'Accordions', 'FileChoosers',
             'Carousel', 'Bubbles', 'CodeInput', 'DropDown', 'Spinner',
             'Scatter', 'Splitter', 'TabbedPanel + Layouts', 'RstDocument',
-            'Popups', 'ScreenManager'])
+            'Popups', 'ScreenManager', 'Media'])
         self.screen_names = self.available_screens
         curdir = dirname(__file__)
         self.available_screens = [join(curdir, 'data', 'screens',
