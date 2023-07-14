@@ -2,31 +2,29 @@
 
 ## Description
 
-The goal of this program is to show the possibilities of kivy on embedded systems developped by PHYTEC. 
-This program was tested after installing kivy using this documentation: [link to the documentation with title]
-
+This program demonstrates the capabilities of Kivy on embedded systems developed by [PHYTEC](https://www.phytec.eu/en/startseite/). It serves as a showcase for Kivy's features and functionalities. Please refer to the [documentation](link to the documentation for later) for instructions on installing Kivy on PHYTEC products before running this program.
 
 ## Installation 
 
 Dependencies: 
 - kivy[full]==2.1dev0
 
-To install and launch the program : 
-1. Go inside the project folder
-1.1. [OPTIONAL] Install and start a virtual environnement: `python3 -m venv .venv` and `source .venv/bin/activate`
-1. Install the package: `pip install --editable .`
-2. Launch the program with: `kivydemo`
+Follow these steps to install and launch the program:
+1. Go to the project folder
+2. Set up and activate a virtual environment:: `python3 -m venv .venv` and `source .venv/bin/activate`
+3. Install the package: `pip install --editable .`
+4. Launch the program with the following command: `kivydemo`
 
-If you use the the image with the meta-phykivy layer, you just have to follow the last step.
+If you are using the `meta-phykivy` layer, you can skip to the last step.
 
-> NOTES: if you want to test the camera on your virtual environment, you need to have at least one of the provider for the camera available. If that's not the case, you can can do the following 
+> NOTE: If you want to test the camera in your virtual environment, make sure you have at least one camera provider available. If not, you can install OpenCV by running the following command
 > ```(myenv)$ pip install opencv-python``` 
 
-> NOTES: if you want to exit the virtual environment, you can use `deactivate`. For more information on the suject,  follow [this link](https://docs.python.org/3/library/venv.html)
+> NOTE: To exit the virtual environment, you can use the `deactivate` command. For more information, refer to [this link](https://docs.python.org/3/library/venv.html)
 
 ## Credits
 
-To make the program, we used the following examples available on the kivy repository or visible on the documentation: 
+This program was developed using the following examples from the Kivy repository and documentation:
 - [touchtracer](https://github.com/kivy/kivy/tree/2.1.0.dev0/examples/demo/touchtracer) 
 - [showcase](https://github.com/kivy/kivy/tree/2.1.0.dev0/examples/demo/showcase)
 - [3D rendering (renamed MonkeyRendering)](https://github.com/kivy/kivy/tree/2.1.0.dev0/examples/3Drendering) 
