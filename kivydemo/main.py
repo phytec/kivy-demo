@@ -48,11 +48,6 @@ class HomeScreen(Screen):
 
 class RoundedButton(Button):
 
-    # color = ColorProperty([0.5,0.5,0.5,1])
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
     def change_to_down_color(self):
         self.final_color = self.down_color
         return super().on_press()
