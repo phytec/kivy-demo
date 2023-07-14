@@ -8,7 +8,7 @@ setup(
     author_email='m.vovard@phytec.de',
     packages=find_packages(include=['kivydemo*']),
     package_dir={"kivydemo": "kivydemo"},
-    install_requires=['kivy'],
+    install_requires=['kivy[full]==2.1.0.dev0'],
     entry_points={
         'console_scripts': ['kivydemo=kivydemo.main:runMainFunction']
     },

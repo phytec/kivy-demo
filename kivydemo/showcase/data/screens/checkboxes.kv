@@ -1,3 +1,7 @@
+<MyCheckBox@CheckBox>:
+    size_hint_y: None
+    height: '48dp'
+
 ShowcaseScreen:
     name: 'CheckBoxes'
 
@@ -11,23 +15,15 @@ ShowcaseScreen:
         Label:
             text: 'Checkbox'
 
-        CheckBox:
-            size_hint_y: None
-            height: '48dp'
+        MyCheckBox:
 
-        CheckBox:
-            size_hint_y: None
-            height: '48dp'
+        MyCheckBox:
 
         Label:
             text: 'CheckBox with group'
 
-        CheckBox:
-            size_hint_y: None
-            height: '48dp'
+        MyCheckBox:
             group: 'g2'
 
-        CheckBox:
-            size_hint_y: None
-            height: '48dp'
+        MyCheckBox:
             group: 'g2'

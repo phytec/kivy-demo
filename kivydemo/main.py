@@ -9,7 +9,7 @@ from .info.infoScreen import InfoScreen
 from .monkeyRendering.render import Screen3DRendering
 from .touchtracer.main import TouchTracerScreen
 from .showcase.main import ShowcaseFullScreen
-# from .camera.camera_main import CameraScreen
+from .camera.camera_main import CameraScreen
 
 from kivy.properties import ListProperty, NumericProperty
 
@@ -77,7 +77,7 @@ class DemoApp(App):
         threeDScreen = Screen3DRendering(name="3D")
         touchtracerScreen = TouchTracerScreen(name="touch")
         showcaseScreen = ShowcaseFullScreen(name="showcase")
-        # cameraScreen = CameraScreen(name="camera")
+        cameraScreen = CameraScreen(name="camera")
 
         sm.add_widget(startScreen)
         sm.add_widget(homeScreen)
@@ -85,7 +85,7 @@ class DemoApp(App):
         sm.add_widget(threeDScreen)
         sm.add_widget(touchtracerScreen)
         sm.add_widget(showcaseScreen)
-        # sm.add_widget(cameraScreen)
+        sm.add_widget(cameraScreen)
 
         # Animation of the first page
         startScreen.startFadeOutAnimation()

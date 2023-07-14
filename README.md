@@ -9,21 +9,20 @@ This program was tested after installing kivy using this documentation: [link to
 ## Installation 
 
 Dependencies: 
-- kivy 2.1dev0
-- gstreamer 
+- kivy[full]==2.1dev0
 
 To install and launch the program : 
 1. Go inside the project folder
-1.1. [OPTIONAL] Install and start a virtual environnement: `python -m venv .venv` and ` source .venv/bin/activate`
-2. Install the package: `pip install --editable .`
-3. Launch the program with: `kivydemo`
+1.1. [OPTIONAL] Install and start a virtual environnement: `python3 -m venv .venv` and `source .venv/bin/activate`
+1. Install the package: `pip install --editable .`
+2. Launch the program with: `kivydemo`
 
-If you use the the image with meta-phykivy, you just have to follow the last step.
+If you use the the image with the meta-phykivy layer, you just have to follow the last step.
 
-> NOTES: if you want to test the video player on your virtual environment, you need to have at least one of the provider for video available. If that's not the case, you can can do the following 
-> ```(myenv)$ pip install ffpyplayer```
+> NOTES: if you want to test the camera on your virtual environment, you need to have at least one of the provider for the camera available. If that's not the case, you can can do the following 
+> ```(myenv)$ pip install opencv-python``` 
 
-For the camera, no idea how to make it work in the virtual environment for the moment. 
+> NOTES: if you want to exit the virtual environment, you can use `deactivate`. For more information on the suject,  follow [this link](https://docs.python.org/3/library/venv.html)
 
 ## Credits
 
