@@ -9,11 +9,6 @@ throw an exception during the kv language processing.
 
 '''
 
-# Uncomment these lines to see all the messages
-# from kivy.logger import Logger
-# import logging
-# Logger.setLevel(logging.TRACE)
-
 from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout

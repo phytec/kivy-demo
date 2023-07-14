@@ -46,17 +46,6 @@ class HomeScreen(Screen):
     # TODO: Check import Image !
 
 
-class RoundedButton(Button):
-
-    def change_to_down_color(self):
-        self.final_color = self.down_color
-        return super().on_press()
-
-    def change_to_up_color(self):
-        self.final_color = self.up_color
-        return super().on_release()
-
-
 class DemoApp(App):
 
     demos = ListProperty([])

@@ -42,8 +42,8 @@
             size: self.size
             pos: self.pos
             radius: [50, 50, 50, 50]
-    on_press: self.change_to_down_color()
-    on_release: self.change_to_up_color()
+    on_press: self.final_color = self.down_color
+    on_release: self.final_color = self.up_color
     font_size: '20sp'
 
 
