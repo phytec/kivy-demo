@@ -44,6 +44,7 @@
             radius: [50, 50, 50, 50]
     on_press: self.change_to_down_color()
     on_release: self.change_to_up_color()
+    font_size: '20sp'
 
 
 <HomeScreen>:
@@ -78,7 +79,7 @@
                     spacing: 10
 
                     RoundedButton: 
-                        text: "Infos Device and Phytec"
+                        text: "Infos"
                         on_release: root.manager.current = 'info'
 
                     RoundedButton: 

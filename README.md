@@ -18,7 +18,12 @@ To install and launch the program :
 2. Install the package: `pip install --editable .`
 3. Launch the program with: `kivydemo`
 
-If you use the the image with meta-phykivy, you just have to follow the last step. 
+If you use the the image with meta-phykivy, you just have to follow the last step.
+
+> NOTES: if you want to test the video player on your virtual environment, you need to have at least one of the provider for video available. If that's not the case, you can can do the following 
+> ```(myenv)$ pip install ffpyplayer```
+
+For the camera, no idea how to make it work in the virtual environment for the moment. 
 
 ## Credits
 
