@@ -96,7 +96,7 @@
 
                     RoundedButton: 
                         text: "Camera"
-                        on_release: root.manager.current = 'camera'
+                        on_release: root.manager.current = 'camera' if root.manager.has_screen('camera') else print("No camera screen")
 
                     RoundedButton: 
                         text: "Other"

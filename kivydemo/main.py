@@ -27,7 +27,7 @@ class StartScreen(Screen):
         super().__init__(*args, **kwargs)
 
     def startFadeOutAnimation(self):
-        animation = Animation(duration=3, opacity=0)
+        animation = Animation(duration=5, opacity=0)
         animation.start(self.ids.welcome)
     pass
 
@@ -61,7 +61,6 @@ class DemoApp(App):
         threeDScreen = Screen3DRendering(name="3D")
         touchtracerScreen = TouchTracerScreen(name="touch")
         showcaseScreen = ShowcaseFullScreen(name="showcase")
-        cameraScreen = CameraScreen(name="camera")
 
         sm.add_widget(startScreen)
         sm.add_widget(homeScreen)
@@ -69,11 +68,15 @@ class DemoApp(App):
         sm.add_widget(threeDScreen)
         sm.add_widget(touchtracerScreen)
         sm.add_widget(showcaseScreen)
-        sm.add_widget(cameraScreen)
+
+        is_basic = True
+        if not is_basic:
+            cameraScreen = CameraScreen(name="camera")
+            sm.add_widget(cameraScreen)
 
         # Animation of the first page
         startScreen.startFadeOutAnimation()
-        Clock.schedule_once(partial(homeScreen.switchToHome, sm), 3.5)
+        Clock.schedule_once(partial(homeScreen.switchToHome, sm), 5.5)
         # This line is for the progress bar (not the most efficient solution)
         Clock.schedule_interval(self._update_clock, 1 / 60.)
         return sm
@@ -87,5 +90,4 @@ def runMainFunction():
 
 
 if __name__ == '__main__':
-    # DemoApp().run()
     runMainFunction()
