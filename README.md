@@ -1,6 +1,6 @@
 # Demo Kivy 
 
-![Test kivydemo](https://github.com/MarineVovard/kivy-demo/actions/workflows/python-package.yml/badge.svg)
+![Test kivydemo](https://github.com/MarineVovard/kivy-demo/actions/workflows/kivydemo-workflow.yml/badge.svg)
 
 ## Description
 
