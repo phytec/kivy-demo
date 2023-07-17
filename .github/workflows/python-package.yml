@@ -38,7 +38,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Install dependencies for Ubuntu
       env:
-        KIVY_VERSION: 2.1.0.dev0
+        KIVY_VERSION: 2.1.0
       run: .ci/ubuntu_dependencies.sh
     - name: Install kivy demo
       run: python -m pip install -e .
