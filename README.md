@@ -1,5 +1,7 @@
 # Demo Kivy 
 
+![Test kivydemo](https://github.com/MarineVovard/kivy-demo/actions/workflows/python-package.yml/badge.svg)
+
 ## Description
 
 This program demonstrates the capabilities of Kivy on embedded systems developed by [PHYTEC](https://www.phytec.eu/en/startseite/). It serves as a showcase for Kivy's features and functionalities. Please refer to the [documentation](link to the documentation for later) for instructions on installing Kivy on PHYTEC products before running this program.
