@@ -55,7 +55,9 @@ class Renderer(Widget):
         self.canvas['projection_mat'] = proj
         self.canvas['diffuse_light'] = (1.0, 1.0, 0.8)
         self.canvas['ambient_light'] = (0.1, 0.1, 0.1)
-        self.rot.angle += delta * 100
+
+    def on_touch_move(self, touch):
+        self.rot.angle += touch.dx
 
     def setup_scene(self):
         Color(1, 1, 1, 1)

@@ -27,7 +27,7 @@ class StartScreen(Screen):
         super().__init__(*args, **kwargs)
 
     def startFadeOutAnimation(self):
-        animation = Animation(duration=5, opacity=0)
+        animation = Animation(duration=1, opacity=0)
         animation.start(self.ids.welcome)
     pass
 
@@ -76,7 +76,7 @@ class DemoApp(App):
 
         # Animation of the first page
         startScreen.startFadeOutAnimation()
-        Clock.schedule_once(partial(homeScreen.switchToHome, sm), 5.5)
+        Clock.schedule_once(partial(homeScreen.switchToHome, sm), 1.5)
         # This line is for the progress bar (not the most efficient solution)
         Clock.schedule_interval(self._update_clock, 1 / 60.)
         return sm
