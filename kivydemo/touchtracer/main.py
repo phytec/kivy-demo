@@ -76,8 +76,10 @@ class Touchtracer(FloatLayout):
         with self.canvas:
             Color(ud['color'], 1, 1, mode='hsv', group=g)
             ud['lines'] = [
-                Rectangle(pos=(touch.x, 0), size=(1, self.height), group=g),
-                Rectangle(pos=(0, touch.y), size=(self.width, 1), group=g),
+                Rectangle(pos=(touch.x, self.pos[1]), size=(
+                    1, self.height), group=g),
+                Rectangle(pos=(self.pos[0], touch.y),
+                          size=(self.width, 1), group=g),
                 Point(points=(touch.x, touch.y), source=path.join(path_demo, 'touchtracer/particle.png'),
                       pointsize=pointsize, group=g)]
         ud['label'] = Label(size_hint=(None, None))
@@ -91,8 +93,8 @@ class Touchtracer(FloatLayout):
             return
 
         ud = touch.ud
-        ud['lines'][0].pos = touch.x, 0
-        ud['lines'][1].pos = 0, touch.y
+        ud['lines'][0].pos = touch.x, self.pos[1]
+        ud['lines'][1].pos = self.pos[0], touch.y
 
         index = -1
 
