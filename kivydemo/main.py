@@ -17,6 +17,7 @@ from functools import partial
 
 from kivydemo import path_demo
 from os import path
+import argparse
 
 
 class StartScreen(Screen):
@@ -49,6 +50,11 @@ class DemoApp(App):
 
     demos = ListProperty([])
     time = NumericProperty(0)
+    parser = argparse.ArgumentParser(
+        description='Run demo for kivy for PHYTEC products.')
+    parser.add_argument('--camera', action='store_true',
+                        help="Allow camera in demo")
+    args = parser.parse_args()
 
     def build(self):
         sm = ScreenManager()
@@ -68,8 +74,7 @@ class DemoApp(App):
         sm.add_widget(touchtracerScreen)
         sm.add_widget(showcaseScreen)
 
-        is_basic = True
-        if not is_basic:
+        if self.args.camera:
             cameraScreen = CameraScreen(name="camera")
             sm.add_widget(cameraScreen)
 
@@ -82,6 +87,9 @@ class DemoApp(App):
 
     def _update_clock(self, dt):
         self.time = time()
+
+    def has_no_camera(self):
+        return self.args.camera
 
 
 def runMainFunction():

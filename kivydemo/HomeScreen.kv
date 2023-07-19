@@ -37,7 +37,7 @@
     final_color: (0.5,0.5,0.5,1)
     canvas.before:
         Color:
-            rgba: self.final_color
+            rgba: self.final_color if not self.disabled else self.down_color
         RoundedRectangle:
             size: self.size
             pos: self.pos
@@ -97,12 +97,11 @@
                     RoundedButton: 
                         text: "Camera"
                         on_release: root.manager.current = 'camera' if root.manager.has_screen('camera') else print("No camera screen")
+                        disabled: not app.has_no_camera()
 
                     RoundedButton: 
                         text: "Other"
                         disabled: True
-                        up_color: self.down_color
-                        final_color: self.down_color
 
                 Button:
                     text: "R"
