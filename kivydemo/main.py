@@ -4,10 +4,10 @@ from kivy.lang.builder import Builder
 from kivy.animation import Animation
 from kivy.clock import Clock
 
-from .info.infoScreen import InfoScreen
+from .info.info_main import InfoScreen
 from .monkeyRendering.render import Screen3DRendering
-from .touchtracer.main import TouchTracerScreen
-from .showcase.main import ShowcaseFullScreen
+from .touchtracer.touchtracer_main import TouchTracerScreen
+from .showcase.showcase_main import ShowcaseFullScreen
 from .camera.camera_main import CameraScreen
 
 from kivy.properties import ListProperty, NumericProperty
