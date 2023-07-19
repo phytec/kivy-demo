@@ -81,12 +81,12 @@ class ObjFile:
         self.faces = []
 
         self._current_object = None
+        self.parse_obj(filename, swapyz)
 
+    def parse_obj(self, filename, swapyz):
         material = None
         for line in open(filename, "r"):
-            if line.startswith('#'):
-                continue
-            if line.startswith('s'):
+            if line.startswith('#') or line.startswith('s'):
                 continue
             values = line.split()
             if not values:
@@ -94,10 +94,6 @@ class ObjFile:
             if values[0] == 'o':
                 self.finish_object()
                 self._current_object = values[1]
-            # elif values[0] == 'mtllib':
-            #    self.mtl = MTL(values[1])
-            # elif values[0] in ('usemtl', 'usemat'):
-            #    material = values[1]
             if values[0] == 'v':
                 v = list(map(float, values[1:4]))
                 if swapyz:
@@ -127,21 +123,3 @@ class ObjFile:
                         norms.append(-1)
                 self.faces.append((face, norms, texcoords, material))
         self.finish_object()
-
-
-def MTL(filename):
-    contents = {}
-    mtl = None
-    return
-    for line in open(filename, "r"):
-        if line.startswith('#'):
-            continue
-        values = line.split()
-        if not values:
-            continue
-        if values[0] == 'newmtl':
-            mtl = contents[values[1]] = {}
-        elif mtl is None:
-            raise ValueError("mtl file doesn't start with newmtl stmt")
-        mtl[values[0]] = values[1:]
-    return contents

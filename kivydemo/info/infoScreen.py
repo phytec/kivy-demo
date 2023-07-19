@@ -10,7 +10,13 @@ from kivy.properties import StringProperty
 
 class InfoScreen(Screen):
 
-    phytec_description = StringProperty("We have been developping and manufacturing embedded components for reliable electronic series product for more than 30 years.\n\nOur products and services shorten your time to market, reduce your developpement costs and your risk int the developpement and production of industrial embedded. \n\nFor more information, check our website at ... !")
+    phytec_description = StringProperty("We have been developping and manufacturing "
+                                        "embedded components for reliable electronic series "
+                                        "product for more than 30 years.\n\n"
+                                        "Our products and services shorten your time to market, "
+                                        "reduce your developpement costs and your risk int the "
+                                        "developpement and production of industrial embedded.\n\n"
+                                        "For more information, check our website at ... !")
     device_description = StringProperty("")
 
     def __init__(self, *args, **kwargs):
@@ -27,13 +33,10 @@ class InfoScreen(Screen):
         infos.append(['architecture', info_uname[-1]])
         cmd1 = "cat /proc/cpuinfo | grep processor | wc -l"
         cmd2 = "cat /proc/meminfo | grep MemTotal | cut -d\":\" -f 2"
-        try:
-            infos.append(['CPU', check_output(
-                cmd1, shell=True).strip().decode("utf-8")])
-            infos.append(['RAM', check_output(
-                cmd2, shell=True).strip().decode("utf-8")])
-        except:
-            print("ERROR: commands cat /proc/cpuinfo or/and cat /proc/meminfo not valid")
+        infos.append(['CPU', check_output(
+            cmd1, shell=True).strip().decode("utf-8")])
+        infos.append(['RAM', check_output(
+            cmd2, shell=True).strip().decode("utf-8")])
 
         return infos
 

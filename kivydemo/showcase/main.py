@@ -122,7 +122,7 @@ Button:
 
     def showcase_anchorlayout(self, layout):
 
-        def change_anchor(self, *l):
+        def change_anchor(self, *la):
             if not layout.get_parent_window():
                 return
             anchor_x = ('left', 'center', 'right')

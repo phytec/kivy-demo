@@ -28,7 +28,7 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.label import Label
 from kivy.graphics import Color, Rectangle, Point, GraphicException
 from kivy.metrics import dp
-from random import random
+from random import uniform
 from math import sqrt
 from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import Screen
@@ -72,7 +72,8 @@ class Touchtracer(FloatLayout):
         if 'pressure' in touch.profile:
             ud['pressure'] = touch.pressure
             pointsize = self.normalize_pressure(touch.pressure)
-        ud['color'] = random()
+        # color close to blue or green (PHYTEC colors)
+        ud['color'] = uniform(1/6, 5/6)
         with self.canvas:
             Color(ud['color'], 1, 1, mode='hsv', group=g)
             ud['lines'] = [
@@ -87,6 +88,20 @@ class Touchtracer(FloatLayout):
         self.add_widget(ud['label'])
         touch.grab(self)
         return True
+
+    def new_point_instruction(self, ud, touch):
+        old_pressure = ud['pressure']
+        if (
+            not old_pressure
+            or not .99 < (touch.pressure / old_pressure) < 1.01
+        ):
+            g = ud['group']
+            pointsize = self.normalize_pressure(touch.pressure)
+            with self.canvas:
+                Color(ud['color'], 1, 1, mode='hsv', group=g)
+                ud['lines'].append(
+                    Point(points=(), source=path.join(path_demo, 'touchtracer/particle.png'),
+                          pointsize=pointsize, group=g))
 
     def on_touch_move(self, touch):
         if touch.grab_current is not self or not self.collide_point(*touch.pos):
@@ -110,18 +125,7 @@ class Touchtracer(FloatLayout):
 
         # if pressure changed create a new point instruction
         if 'pressure' in ud:
-            old_pressure = ud['pressure']
-            if (
-                not old_pressure
-                or not .99 < (touch.pressure / old_pressure) < 1.01
-            ):
-                g = ud['group']
-                pointsize = self.normalize_pressure(touch.pressure)
-                with self.canvas:
-                    Color(ud['color'], 1, 1, mode='hsv', group=g)
-                    ud['lines'].append(
-                        Point(points=(), source=path.join(path_demo, 'touchtracer/particle.png'),
-                              pointsize=pointsize, group=g))
+            self.new_point_instruction(ud, touch)
 
         if points:
             try:
