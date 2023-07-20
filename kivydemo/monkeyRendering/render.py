@@ -57,13 +57,16 @@ class Renderer(Widget):
         self.canvas['ambient_light'] = (0.1, 0.1, 0.1)
 
     def on_touch_move(self, touch):
-        self.rot.angle += touch.dx
+        self.yaw.angle += (touch.dx / 2)
+        self.pitch.angle += (touch.dy / 2)
 
     def setup_scene(self):
         Color(1, 1, 1, 1)
         PushMatrix()
         Translate(0, 0, -3)
-        self.rot = Rotate(1, 0, 1, 0)
+        # self.rot = Rotate(1, 0, 1, 0)
+        self.pitch = Rotate(1, -1, 0, 0)
+        self.yaw = Rotate(1, 0, 1, 0)
         m = list(self.scene.objects.values())[0]
         UpdateNormalMatrix()
         self.mesh = Mesh(
