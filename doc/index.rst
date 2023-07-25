@@ -10,17 +10,25 @@ Welcome to kivydemo's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: First Steps
+   :caption: 🚀 Tutorials
    :numbered:
    
-   installation
-   first-steps-kivy
+   tutorials/installation
+   tutorials/first-steps-kivy
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 💡 Advanced topics
+   :numbered:
+
+   advanced/first-steps-yocto
+   advanced/yocto-pip
    faq
 
 
-Indices and tables
-==================
+.. Indices and tables
+.. ==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. * :ref:`genindex`
+.. * :ref:`modindex`
+.. * :ref:`search`
