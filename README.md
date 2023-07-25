@@ -13,7 +13,7 @@ Dependencies:
 
 Follow these steps to install and launch the program:
 1. Go to the project folder
-2. Set up and activate a virtual environment:: `python3 -m venv .venv` and `source .venv/bin/activate`
+2. Set up and activate a virtual environment: `python3 -m venv .venv` and `source .venv/bin/activate`
 3. Install the package: `pip install --editable .`
 4. Launch the program with the following command: `kivydemo`
 
