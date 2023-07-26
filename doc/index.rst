@@ -15,6 +15,7 @@ Welcome to kivydemo's documentation!
    
    tutorials/installation
    tutorials/first-steps-kivy
+   tutorials/installing-kivy-layer
 
 .. toctree::
    :maxdepth: 2

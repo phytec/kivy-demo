@@ -19,9 +19,17 @@ For the display, you have two choices:
 
 To setup the board, do the following :
 
+The first step is to check that the Boot Mode DIP Switch (S3) is set to "SD Card" as follow:
+
+.. image:: ../images/SD_Card_Boot.png
+  :width: 100
+  :alt: board-front
+  :align: center
+
+Once it's done, you can continue with the following steps: 
+
 #. Connect the USB cable to your host PC and the Debug FTDI (X1).
-#. Set the Boot Mode DIP Switch (S3) to "SD Card" (Figure 1).
-#. Insert the USB drive into the host PC.
+#. Insert the Micro SD Card inside the board (X7).
 #. Power up the phyCORE-i.MX 8M Plus.
 #. Connect the power adapter (+24 V DC) to the power supply connector (X23).
 #. Turn your power supply on.
@@ -31,13 +39,13 @@ To setup the board, do the following :
   :alt: board-front
   :align: center
 
-For more information on how to connect the cables, please refer to `this document for the i.MX8MP product <https://www.phytec.de/fileadmin/phytec_base/images/01-Produkte/Component-Placement/L1025e.A0-phyBOARD-Pollux_iMX8M-Plus_web.pdf>`_.
+For more information on how to setup the board, please refer to `this document for the i.MX8MP product <https://www.phytec.de/fileadmin/phytec_base/images/01-Produkte/Component-Placement/L1025e.A0-phyBOARD-Pollux_iMX8M-Plus_web.pdf>`_.
 
 
 Downloading a bootable image in the sd card 
 --------------------------------------------
 
-The first step is to download the image. To do that use the following command: 
+The first step is to download the new image and copy it on the SD card. To do that use the following command: 
 
 .. code-block:: bash
 
@@ -46,28 +54,31 @@ The first step is to download the image. To do that use the following command:
 You should have in your folder a file named :code:`my_image_url`. 
 
 Everything you need for this tutorial is installed on this image already. 
-If you want to personalize the image or add new package using yocto, you see how to do it with First steps with Yocto (link).
+If you want to personalize the image or add new package using yocto, you can see how to do it with the First steps with Yocto (link).
 
-Once the file download on your computer, you need to copy it on the sd card. 
+Once the file is downloaded on your computer, you need to copy it on the sd card. 
 To do that, you first need to find the name of your sd card.
 
-On linux, you have two ways to find the name of your sd card: :code:`dmseg` or :code:`other method`.
+On linux, you have two ways to find the name of your sd card: :code:`dmseg` or comparing the :code:`/dev` folder on linux before and after pluging the SD Card to the computer.
 
-Once you have the name of your sd card, you need to unmount the partitions. The name of partitions is as follow `/dev/mysdcard0p1` with `p1` indicating the first partition. 
+
+Once you have the name of your sd card (for example :code:`mmcblk0`), you need to unmount the partitions. The name of partitions is as follow `/dev/mmcblk0p1` with `p1` indicating the first partition. 
 To unmount a partition use the following command: 
 
 .. code-block:: bash
 
-    unmount /dev/mysdcard0p1
+    unmount /dev/mmcblk0p1
 
-Once **ALL** you partitons are removed, you can copy the image, you can copy it using the dd command:
+Once **ALL** you partitons are removed, you can copy the image using the dd command:
 
 .. code-block:: bash
 
-    dd command 
+    sudo dd if=my_image_url.wic of=/dev/mmcblk0 bs=1M conv=fsync status=progress
 
-.. warning:: the warning in the documentation 
-
+.. warning:: 
+    Be very careful when selecting the right drive for the sd card ! 
+    
+    Selecting the wrong drive can erase your hard drive! The parameter conv=fsync forces a data buffer to write to the device before dd returns.
 
 Your SD Card is now ready to be used !
 
