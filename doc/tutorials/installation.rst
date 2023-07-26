@@ -75,10 +75,21 @@ Once **ALL** you partitons are removed, you can copy the image using the dd comm
 
     sudo dd if=my_image_url.wic of=/dev/mmcblk0 bs=1M conv=fsync status=progress
 
-.. warning:: 
-    Be very careful when selecting the right drive for the sd card ! 
-    
-    Selecting the wrong drive can erase your hard drive! The parameter conv=fsync forces a data buffer to write to the device before dd returns.
+
+..     Be very careful when selecting the right drive for the sd card ! 
+
+..     Selecting the wrong drive can erase your hard drive! The parameter conv=fsync forces a data buffer to write to the device before dd returns.
+
+.. note::
+   This is note text. Use a note for information you want the user to
+   pay particular attention to.
+
+   If note text runs over a line, make sure the lines wrap and are indented to
+   the same level as the note tag. If formatting is incorrect, part of the note
+   might not render in the HTML output.
+
+   Notes can have more than one paragraph. Successive paragraphs must
+   indent to the same level as the rest of the note.
 
 Your SD Card is now ready to be used !
 
