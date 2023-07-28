@@ -1,3 +1,7 @@
+from os import path
+from kivydemo import path_demo
+
+
 class MeshData(object):
     def __init__(self, **kwargs):
         self.name = kwargs.get("name")
@@ -9,7 +13,7 @@ class MeshData(object):
         self.indices = []
 
     def calculate_normals(self):
-        for i in range(len(self.indices) / (3)):
+        for i in range(int(len(self.indices) / (3))):
             fi = i * 3
             v1i = self.indices[fi]
             v2i = self.indices[fi + 1]
@@ -61,7 +65,8 @@ class ObjFile:
                 # get vertex components
                 v = self.vertices[verts[i] - 1]
 
-                data = [v[0], v[1], v[2], n[0], n[1], n[2], t[0], t[1]]
+                data = [v[0] / 8, v[1] / 8, v[2] /
+                        8, n[0], n[1], n[2], t[0], t[1]]
                 mesh.vertices.extend(data)
 
             tri = [idx, idx + 1, idx + 2]
@@ -94,6 +99,8 @@ class ObjFile:
             if values[0] == 'o':
                 self.finish_object()
                 self._current_object = values[1]
+            # elif values[0] == 'mtllib':
+            #     self.mtl = MTL(values[1])
             if values[0] == 'v':
                 v = list(map(float, values[1:4]))
                 if swapyz:
@@ -123,3 +130,22 @@ class ObjFile:
                         norms.append(-1)
                 self.faces.append((face, norms, texcoords, material))
         self.finish_object()
+
+
+# def MTL(filename):
+#     contents = {}
+#     mtl = None
+#     if len(filename) == 0:
+#         return
+#     for line in open(path.join(path_demo, 'monkeyRendering/'+filename), "r"):
+#         if line.startswith('#'):
+#             continue
+#         values = line.split()
+#         if not values:
+#             continue
+#         if values[0] == 'newmtl':
+#             mtl = contents[values[1]] = {}
+#         elif mtl is None:
+#             raise ValueError("mtl file doesn't start with newmtl stmt")
+#         mtl[values[0]] = values[1:]
+#     return contents

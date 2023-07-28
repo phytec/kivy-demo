@@ -75,21 +75,11 @@ Once **ALL** you partitons are removed, you can copy the image using the dd comm
 
     sudo dd if=my_image_url.wic of=/dev/mmcblk0 bs=1M conv=fsync status=progress
 
+.. warning:: 
+    Be very careful when selecting the right drive for the sd card ! 
 
-..     Be very careful when selecting the right drive for the sd card ! 
+    Selecting the wrong drive can erase your hard drive! The parameter conv=fsync forces a data buffer to write to the device before dd returns.
 
-..     Selecting the wrong drive can erase your hard drive! The parameter conv=fsync forces a data buffer to write to the device before dd returns.
-
-.. note::
-   This is note text. Use a note for information you want the user to
-   pay particular attention to.
-
-   If note text runs over a line, make sure the lines wrap and are indented to
-   the same level as the note tag. If formatting is incorrect, part of the note
-   might not render in the HTML output.
-
-   Notes can have more than one paragraph. Successive paragraphs must
-   indent to the same level as the rest of the note.
 
 Your SD Card is now ready to be used !
 
@@ -119,8 +109,11 @@ Then launch:
 
 You need to replace the <num> part by the good USB number. 
 
-You should then access the board and be able to the the following line 
-    First line on the board 
+You should then access the board and be able to the the following line.
+
+.. code-block:: bash
+    
+    First line that appear on the board
 
 The password is `root` when developping. 
 
@@ -130,25 +123,32 @@ Ethernet connection
 *******************
 
 We recommend disconnecting your host-PC from any other network, because a peer to-peer
-connection from your PC to the phyCORE-i.MX 8M Mini Plus will be established.
-1. Connect your preferred Ethernet interface on your PC with RJ45 connector X8 (ETH1)
+connection from your PC to the phyCORE-i.MX 8M will be established.
+
+Connect your preferred Ethernet interface on your PC with RJ45 connector X8 (ETH1)
 on the phyCORE-i.MX 8M Plus using the included Ethernet cable.
-2. Configure the IP-settings on your host platform in Ubuntu:
-• In the Unity-panel (left side of your desktop) click on the Ubuntu logo (topmost icon).
-• The Ubuntu dashboard will open; enter System Settings in the search field (you will
-see the corresponding icon showing up already during typing of the search string).
-• Open System Settings and click on the Network icon.
-• Select the physical interface to which you have connected the Ethernet cable
-(if you have more than one network in the list) and click on Options.
-• Select the IPv4Settings (E) tab and choose Manual (F) in the Method drop down box.
-• Click Add (G) and enter the IP address 192.168.3.10 (H) and 255.255.255.0
-as subnet mask (I) and 192.168.3.10 as gateway (J).
-• Last, click on Save (K) to save these connection settings and close the windows.
+
+Configure the IP-settings on your host platform in Ubuntu:
+
+#. In the Unity-panel (left side of your desktop) click on the Ubuntu logo (topmost icon).
+#. The Ubuntu dashboard will open; enter System Settings in the search field (you will see the corresponding icon showing up already during typing of the search string).
+#. Open System Settings and click on the Network icon.
+#.  Select the physical interface to which you have connected the Ethernet cable (if you have more than one network in the list) and click on Options.
+#. Select the IPv4Settings (E) tab and choose Manual (F) in the Method drop down box.
+#. Click Add (G) and enter the IP address 192.168.3.10 (H) and 255.255.255.0 as subnet mask (I) and 192.168.3.10 as gateway (J).
+#. Last, click on Save (K) to save these connection settings and close the windows.
+
 You are now ready to test the Ethernet network connection.
-3. Click on the SSH for Target icon (L) on your desktop. A console window will open and
-you will see an authentication question. Type yes and press Enter.
-You are now connected to the target
-(M). Congratulations!
+
+To test the connection, do 
+.. code-block:: bash
+
+    ping 192.168.3.10
+
+You can then use scp or ssh to connect to the target. For example do:
+- ssh target
+
+Congratulations, you are now connected to the target !
 
 If you do not see the user login, check the Ethernet connection between the target
 and the host. Be sure that you have configured the network adapter in the virtual

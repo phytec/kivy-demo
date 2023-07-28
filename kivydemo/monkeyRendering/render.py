@@ -33,7 +33,7 @@ class Renderer(Widget):
         self.canvas.shader.source = resource_find(path.join(path_demo,
                                                             'monkeyRendering/simple.glsl'))
         self.scene = ObjFile(resource_find(
-            path.join(path_demo, "monkeyRendering/monkey.obj")))
+            path.join(path_demo, "monkeyRendering/phytec_logo_3Dv3.obj")))
         super(Renderer, self).__init__(**kwargs)
         with self.canvas:
             self.cb = Callback(self.setup_gl_context)
@@ -63,7 +63,7 @@ class Renderer(Widget):
     def setup_scene(self):
         Color(1, 1, 1, 1)
         PushMatrix()
-        Translate(0, 0, -3)
+        Translate(0, -0.30, -4)
         # self.rot = Rotate(1, 0, 1, 0)
         self.pitch = Rotate(1, -1, 0, 0)
         self.yaw = Rotate(1, 0, 1, 0)

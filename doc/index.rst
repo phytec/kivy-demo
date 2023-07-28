@@ -25,11 +25,3 @@ Welcome to kivydemo's documentation!
    advanced/first-steps-yocto
    advanced/yocto-pip
    faq
-
-
-.. Indices and tables
-.. ==================
-
-.. * :ref:`genindex`
-.. * :ref:`modindex`
-.. * :ref:`search`

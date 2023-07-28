@@ -13,10 +13,15 @@ class InfoScreen(Screen):
     phytec_description = StringProperty("We have been developping and manufacturing "
                                         "embedded components for reliable electronic series "
                                         "product for more than 30 years.\n\n"
+                                        "For many decades, our products have proven themselves "
+                                        "under the most demanding conditions, including in medical technology"
+                                        ", traffic and transport, the energy industry, avionics, building "
+                                        "automation, drive technology, agricultural technology "
+                                        "and the automotive industry.\n\n"
                                         "Our products and services shorten your time to market, "
                                         "reduce your developpement costs and your risk int the "
                                         "developpement and production of industrial embedded.\n\n"
-                                        "For more information, check our website at ... !")
+                                        "For more information, check our website at[u]https://www.phytec.eu/[/u]!")
     device_description = StringProperty("")
 
     def __init__(self, *args, **kwargs):
