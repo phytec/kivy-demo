@@ -19,9 +19,20 @@ Welcome to kivydemo's documentation!
 
 .. toctree::
    :maxdepth: 2
+   :caption: 💡 Info on kivydemo
+   :numbered:
+
+   demo/main-info
+   demo/camera
+   demo/media
+   demo/threeD-rendering
+
+.. toctree::
+   :maxdepth: 2
    :caption: 💡 Advanced topics
    :numbered:
 
    advanced/first-steps-yocto
    advanced/yocto-pip
+   advanced/phykivy-layer
    faq

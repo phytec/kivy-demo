@@ -99,6 +99,12 @@
                         on_release: root.manager.current = 'camera' if root.manager.has_screen('camera') else print("No camera screen")
                         disabled: not app.has_no_camera()
 
+                    RoundedButton: 
+                        text: "Audio"
+                        on_release: root.manager.current = 'audio' if root.manager.has_screen('audio') else print("No audio support")
+                        disabled: not app.has_no_audio()
+                        # on_release: root.manager.current = 'audio'
+
                     # RoundedButton: 
                     #     text: "Other"
                     #     disabled: True

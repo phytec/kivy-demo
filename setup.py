@@ -14,6 +14,7 @@ setup(
     },
     package_data={'': ['*.kv', '*.jpg', '*.png', '*.obj', '*.glsl'],
                   "kivydemo": ["images/*"],
+                  "kivydemo.audio": ["*.wav"],
                   "kivydemo.showcase": [
                       "data/images/*",
                       "data/icons/*.png",

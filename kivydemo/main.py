@@ -9,6 +9,8 @@ from .monkeyRendering.render import Screen3DRendering
 from .touchtracer.touchtracer_main import TouchTracerScreen
 from .showcase.showcase_main import ShowcaseFullScreen
 from .camera.camera_main import CameraScreen
+from .audio.audio_main import AudioScreen
+
 
 from kivy.properties import ListProperty, NumericProperty
 
@@ -54,6 +56,8 @@ class DemoApp(App):
         description='Run demo for kivy for PHYTEC products.')
     parser.add_argument('--camera', action='store_true',
                         help="Allow camera in demo")
+    parser.add_argument('--audio', action='store_true',
+                        help="Allow audio in demo")
     args = parser.parse_args()
 
     def build(self):
@@ -78,6 +82,10 @@ class DemoApp(App):
             cameraScreen = CameraScreen(name="camera")
             sm.add_widget(cameraScreen)
 
+        if self.args.audio:
+            audioScreen = AudioScreen(name="audio")
+            sm.add_widget(audioScreen)
+
         # Animation of the first page
         startScreen.startFadeOutAnimation()
         Clock.schedule_once(partial(homeScreen.switchToHome, sm), 1.5)
@@ -90,6 +98,9 @@ class DemoApp(App):
 
     def has_no_camera(self):
         return self.args.camera
+
+    def has_no_audio(self):
+        return self.args.audio
 
 
 def runMainFunction():

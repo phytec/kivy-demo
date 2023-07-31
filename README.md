@@ -19,7 +19,8 @@ Follow these steps to install and launch the program:
 
 If you are using the `meta-phykivy` layer, you can skip to the last step.
 
-If you want to try the demo with the camera, use the following command: `kivydemo -- --camera`
+If you want to try the demo with the camera, use the following command: `kivydemo -- --camera`. 
+To use the audio, do: `kivydemo -- --audio`
 
 > NOTE: If you want to test the camera in your virtual environment, make sure you have at least one camera provider available. If not, you can install OpenCV by running the following command
 > ```(myenv)$ pip install opencv-python``` 
