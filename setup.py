@@ -1,4 +1,29 @@
 from setuptools import setup, find_packages
+import urllib.request
+import os
+
+# Import images
+# scatter, background and logo images
+files = [["IMG_7942.JPG", "image_scatter.jpg"], ["PHYTEC_Produkte.jpg", "background.jpg"],
+         ["logo-PHYTEC.svg", "PHYTEC.svg"], ["COPYING", "COPYING"], ["COPYING.utf8", "COPYING.utf8"]]
+url = "https://download.phytec.de/Software/Linux/Applications/Media/"
+
+
+def download_file(url, file_path, file_name, new_name):
+    full_path = file_path + new_name
+    full_url = url + file_name
+    try:
+        urllib.request.urlretrieve(full_url, full_path)
+    except:
+        raise Exception(
+            "Problem while downloading the file for the demo with the following url: " + full_url)
+
+
+path_demo = os.path.dirname(__file__)
+path_to_images = path_demo + '/kivydemo/images/'
+for f, new_name in files:
+    download_file(url, path_to_images, f, new_name)
+
 
 setup(
     name='kivydemo',

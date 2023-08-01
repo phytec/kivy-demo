@@ -1,6 +1,9 @@
 # Blender 3.6.0
 # www.blender.org
 # mtllib phytec_logo_3Dv3.mtl
+# This work is licensed under the Creative Commons Attribution 4.0 International License. 
+# To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.
+# Made by Manon Girard
 o PHYTEC
 v -10.032412 3.804944 1.127978
 v -10.023903 3.783067 1.153514

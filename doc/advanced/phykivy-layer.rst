@@ -23,3 +23,5 @@ My goal was to add the package kivy that is normaly installed with pip (package 
 On recipe was already available in openembedded directory. 
 However, the graphics installed on my target were not compatible with kivy, each time I had a windows abort error with all kind of error message. 
 In the kivy documentation, it was written that kivy could work with the following setup: ... . 
+
+To disable the service in the layer, do : ```SYSTEMD_AUTO_ENABLE:kivyphy-service = "disable"```
