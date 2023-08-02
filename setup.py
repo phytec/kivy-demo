@@ -12,11 +12,7 @@ url = "https://download.phytec.de/Software/Linux/Applications/Media/"
 def download_file(url, file_path, file_name, new_name):
     full_path = file_path + new_name
     full_url = url + file_name
-    try:
-        urllib.request.urlretrieve(full_url, full_path)
-    except:
-        raise Exception(
-            "Problem while downloading the file for the demo with the following url: " + full_url)
+    urllib.request.urlretrieve(full_url, full_path)
 
 
 path_demo = os.path.dirname(__file__)
