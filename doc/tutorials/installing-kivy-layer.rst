@@ -1,78 +1,56 @@
-Installing Kivy layer
-=====================
+Installing the Kivy layer in Yocto
+==================================
 
-First, you need to setup Yocto following the first steps with Yocto. 
+Before proceeding, make sure you have set up Yocto following the first steps with Yocto.
 
-The goal of this tutorial is to understand what is available in the ```meta-phykivy``` layer. 
+Installing the Layer
+---------------------
 
-What is available in this layer:
+To install the `meta-phykivy` layer and understand what is available in it, follow these steps:
 
-* kivy bbappend 
-* sdl correction
-* patches for kivy 
-* kivy md + patches 
-* weston for LVSD0 display by default
-* image for kivydemo 
+1. Install the Qt6 demo (also called `qtphy`) by running:
 
-Installing the layer
---------------------
+.. code-block:: bash
 
-First install the qt6 demo (also called qtphy). To do that do the following 
+   ./phyLinux init
+   Choose your distro, …
 
-Init with phyLinux init 
-Choose you distro, ... 
+2. Accept the FSL EULA in the :code:`local.conf` file.
+3. Git clone the :code:`meta-phykivy` layer and add it to your `bblayer.conf` file.
+4. Build the recipe by using the `bitbake kivyphy-image ...` command
 
-Accept FSL EULA in the local.conf file. 
-Git clone the layer and add it to your bblayer.conf file. 
+That's it, you should then have the exact same image as the one you download during the first tutorial (link).
 
-Bake the recipe and tada, it should work !
-
-Understanding the layer 
------------------------ 
+Understanding the Layer
+------------------------
 
 The minimal files necessary to run Kivy are:
 
-* sdl2 bbappend 
-* kivy bbappend
-* patch for the cameras for kivy 
-* the image 
+* :code:`sdl2.bbappend`
+* :code:`kivy.bbappend`
+* Patch for the cameras for Kivy
+* The image recipe 
 
-Kivy recipe and minimal version 
-*******************************
+Kivy Recipe and Minimal Version
+--------------------------------
 
-Kivy is using sdl2 to work. However, sdl2 do not work out of the box for this product. 
-You need first to force it to use wayland instead of X11. To do that, you need to add the bbappend. 
+Kivy uses sdl2 to work, but sdl2 does not work out of the box for this product. To use wayland instead of X11, you need to add the `sdl2.bbappend`.
 
-Th same for the patch, the cameras in kivy does not work as it should on the product. 
+Similarly, the cameras in Kivy do not work as expected on the product, so you need a patch to fix this.
 
-Disabling Kivy Demo 
--------------------
+Disabling Kivy Demo
+--------------------
 
-TMP 
----
+To disable the Kivy demo inside the image, add the following line inside the :code:`local.conf` file:
 
-You can build a layer using the following instructions : (cf notes)
+.. code-block:: bash
 
-Once the layer created, you can see the following structure in your layer: (show the layer with tree)
+    SYSTEMD_AUTO_ENABLE:kivyphy-service = "disable"
 
-You can configure you layer using the ```layer.conf``` file. 
-Inside, you can find the files you want to add to the final product using regex, you can also give a priority to your layer. 
-It is possible for the layer to overlap and override some part. 
-Therefore, the how with the highest priority is the one who cannot be overwritten. 
+You can also disable the service on the board with:
 
-The recipes are separate in 4 folders: 
+.. code-block:: bash
 
-* devtools: contain the python dependencies such as kivy and kivymd. 
-* examples: example programs for the target 
-* graphics:  graphics dependencies such as sdl2 and wayland/weston 
-* image: the image for the target, which means the recipe that is going to build my final image. 
+    My code here 
 
-With this recipe, I end up with a file with a .wic extensions and the rootfiles are build to have a full bootable image that I can copy on a sd card.
-
-My goal was to add the package kivy that is normaly installed with pip (package management tools for Python) with yocto. 
-On recipe was already available in openembedded directory. 
-However, the graphics installed on my target were not compatible with kivy, each time I had a windows abort error with all kind of error message. 
-In the kivy documentation, it was written that kivy could work with the following setup: ... . 
-
-To disable the service in the layer, do : ```SYSTEMD_AUTO_ENABLE:kivyphy-service = "disable"```
-
+That way, you can avoid to have the demo each time you boot the board. 

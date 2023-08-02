@@ -25,13 +25,13 @@ Welcome to kivydemo's documentation!
    :numbered:
 
    demo/info-kivydemo
-   demo/camera
    demo/media
+   demo/camera
    demo/threeD-rendering
 
 .. toctree::
    :maxdepth: 2
-   :caption: 💡 Other
+   :caption: 📚 Other
    :numbered:
 
    faq
