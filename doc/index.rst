@@ -15,24 +15,23 @@ Welcome to kivydemo's documentation!
    
    tutorials/installation
    tutorials/first-steps-kivy
+   tutorials/first-steps-yocto
    tutorials/installing-kivy-layer
+   tutorials/yocto-pip
 
 .. toctree::
    :maxdepth: 2
    :caption: 💡 Info on kivydemo
    :numbered:
 
-   demo/main-info
+   demo/info-kivydemo
    demo/camera
    demo/media
    demo/threeD-rendering
 
 .. toctree::
    :maxdepth: 2
-   :caption: 💡 Advanced topics
+   :caption: 💡 Other
    :numbered:
 
-   advanced/first-steps-yocto
-   advanced/yocto-pip
-   advanced/phykivy-layer
    faq

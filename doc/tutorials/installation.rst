@@ -54,9 +54,9 @@ The first step is to download the new image and copy it on the SD card. To do th
 You should have in your folder a file named :code:`my_image_url`. 
 
 Everything you need for this tutorial is installed on this image already. 
-If you want to personalize the image or add new package using yocto, you can see how to do it with the First steps with Yocto (link).
+If you want to personalize the image or add new package using yocto, you can see how to do it with the :doc:`/tutorials/first-steps-yocto` or `check the PHYTEC documentation <https://www.phytec.de/cdocuments/?doc=UIHsG>`_ .
 
-Once the file is downloaded on your computer, you need to copy it on the sd card. 
+Once the file is downloaded on your computer, you need to copy it on the SD card. 
 To do that, you first need to find the name of your sd card.
 
 On linux, you have two ways to find the name of your sd card: :code:`dmseg` or comparing the :code:`/dev` folder on linux before and after pluging the SD Card to the computer.
@@ -82,19 +82,24 @@ Once **ALL** you partitons are removed, you can copy the image using the dd comm
 
 
 Your SD Card is now ready to be used !
+To test your image, add you SD card, power the board. You should see the Linux Logo and then a demo for kivy starting.
 
 Getting connected to the target
 -------------------------------
 
+There are two ways to connect to the board:
+
+- `Serial connection`_
+- `Ethernet connection`_
+
+
 Serial connection
 *****************
 
-Add the sd card to the board and power it. 
-You should see the Linux Logo and then the kivy demo starting. 
-
 If you want to connect to the target (the board) you can do that via the serial connection. 
+First check that your computer is link to the board via the serial connector (X1: USB debug).
 
-First, install tio with the following command: 
+Then install tio with the following command if it's not already present on you computer: 
 
 .. code-block:: bash
 
@@ -107,15 +112,15 @@ Then launch:
 
     tio /dev/ttyUSB<num>
 
-You need to replace the <num> part by the good USB number. 
-
-You should then access the board and be able to the the following line.
+You need to replace the <num> part by the good USB number. If you have any doubt check the number available with the following command:
 
 .. code-block:: bash
-    
-    First line that appear on the board
 
-The password is `root` when developping. 
+    cd /dev
+    find -name ttyUSB*
+
+After connecting to the board with tio. You should then access the board and be able to see a line asking for a password.
+The password is `root` when developping. Once you enter this password, you should be connected as root.  
 
 You can then play with your device ! 
 
@@ -125,8 +130,7 @@ Ethernet connection
 We recommend disconnecting your host-PC from any other network, because a peer to-peer
 connection from your PC to the phyCORE-i.MX 8M will be established.
 
-Connect your preferred Ethernet interface on your PC with RJ45 connector X8 (ETH1)
-on the phyCORE-i.MX 8M Plus using the included Ethernet cable.
+Connect your preferred Ethernet interface on your PC with RJ45 connector X8 (ETH1) on the phyCORE-i.MX 8M Plus using an Ethernet cable.
 
 Configure the IP-settings on your host platform in Ubuntu:
 
@@ -140,31 +144,20 @@ Configure the IP-settings on your host platform in Ubuntu:
 
 You are now ready to test the Ethernet network connection.
 
-To test the connection, do 
+To test the connection, do on you computer (or target, I need to check !):
+
 .. code-block:: bash
 
     ping 192.168.3.10
 
-You can then use scp or ssh to connect to the target. For example do:
-- ssh target
+If you receive the package, you are connected. You can then use scp or ssh to connect to the target. 
 
 Congratulations, you are now connected to the target !
 
 If you do not see the user login, check the Ethernet connection between the target
-and the host. Be sure that you have configured the network adapter in the virtual
-machine configuration correct.
+and the host with ifconfig or via the network panel on ubuntu. 
 
-Maybe try to ping to be sure everything is working fine !
+Sources
+-------
 
-Next steps
-----------
-
-You can for example try: python3, import kivy. 
-And follow how to download the image with kivy and play with it.
-
-.. Support
-.. --------
-
-.. If you have any question or something is not working, please contact us at the email adresse 
-.. We would also very much appreciate your feedback on this documentation. You can give it to us using the following link: 
-
+If you want to learn more on how to install the image on the board or how to configure the display, please check the `phyCORE-i.MX 8M Plus BSP Manual <https://www.phytec.de/cdocuments/?doc=mwDRJw&__hstc=12841640.7b3cea865c20ac90f4f0261768fbccc3.1685517610384.1685602240432.1685687289043.7&__hssc=12841640.1.1685687289043&__hsfp=2239254415&_ga=2.132368782.1467000783.1685517610-576238176.1685517609#L1017e-A5phyCOREi-MX8MPlusBSPManual-phyBOARD-PolluxComponentsphyBOARD-PolluxComponents>`_.

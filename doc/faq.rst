@@ -1,95 +1,80 @@
 Frequently Asked Questions
 ==========================
 
+Yocto - How to import files from a git repository ?
+----------------------------------------------------
 
-To solve the problem with the touch 
------------------------------------
+Three steps to make it work:
 
-Add that to the ```.kivy/config.ini``` file part input:
-```
-mouse = mouse,disable_on_activity
-```
+#. Get the url of your repo and remove the https part.
+#. Add the new source to your recipe (you can precise the protocol and the branch): :code:`SRC_URI = "git://github.com/MarineVovard/kivy-demo;protocol=https;branch=main"`
+#. Add `SRCREV` with the commit number you want to use: :code:`SRCREV = "a1d631d82f761ce78bfb4bdaeed9f673f4a3bed4"`
 
-To make everything work: 
+Bake your recipe and voilà !
+Now, you just need to update the `SRCREV` to have a new version of code !
 
-- KIVY_FULL_SCREEN=auto
-- KIVY_GLES_LIMITS=1 
-
-
-Import repo from git - yocto 
-----------------------------
-
-In the recipe, I tried https and ssh protocol but was able to do something only with https. 
+For more information check the Yocto Manual.
 
 .. warning:: The repo needs to be public
 
-Two steps to make it work (well 3 in fact):
+How to use Vim (and vi) commands ?
+----------------------------------
 
-1. Get the url of your repo and remove the https part : 
-2. Add the new source (you can precise the protocol and the branch): :code:`SRC_URI = "git://github.com/MarineVovard/kivy-demo;protocol=https;branch=main"`
-3. Add `SRCREV`, ie le numero du commit que tu veux récupérer: `SRCREV = "a1d631d82f761ce78bfb4bdaeed9f673f4a3bed4"`
+Each time you want to use a command, do first ESC. 
 
-Bake your recipe and tada !
-Now, just need to update the `SRCREV` to have a new version of code !
+* to exit: :code:`:q!`
+* to modify (insert): :code:`i`
+* to save: :code:`:w`
+* to save and exit: :code:`:wq`
 
-Vim (and vi) commands 
----------------------
+If you want to learn more commands check this link: https://www.redhat.com/sysadmin/introduction-vi-editor
 
-- to exit: :code:`:q!`
-- to modify (insert): :code:`i`
-- to save: :code:`:w`
-- to save and exit: :code:`:wq`
+How to use :code:`scp` command ?
+--------------------------------
 
-Other commands: https://www.redhat.com/sysadmin/introduction-vi-editor
+Scp stand for secure copy protocol. It enables you to copy a file to or from an other machine. 
 
-scp command
--------------
+Here are some useful commands:
 
-- Copy file from remote host: :code:`scp user@remotehost:myfile.txt /my/local/directory`
-- Copy file to the remote host: :code:`scp myfile.txt user@remote:/remote/directory`
-- can use the option :code:`-r` fo recursive copy and :code:`-P` for the port
+* Copy file from remote host: :code:`scp user@remotehost:myfile.txt /my/local/directory`
+* Copy file to the remote host: :code:`scp myfile.txt user@remote:/remote/directory`
+* can use the option :code:`-r` fo recursive copy and :code:`-P` for the port
 
-https://www.hypexr.org/linux_scp_help.php
+If you want to learn more, you can check this tutorial https://www.hypexr.org/linux_scp_help.php or check in the man the command (with :code:`man scp`).
 
 
-Packaging Python programs 
--------------------------
+How to package Python programs on your computer ?
+-------------------------------------------------
 
-- launch virtual environnement: :code:`source .venv/bin/activate`
-- install my package: :code:`pip install --editable .`
-- uninstall my package: :code:`pip uninstall <mypackage>`
+#. launch virtual environnement: :code:`source .venv/bin/activate`
+#. install my package: :code:`pip install --editable .`
+#. uninstall my package: :code:`pip uninstall <mypackage>`
 
-Services
----------
+How to manage services in Linux ?
+---------------------------------
 
-- list of service: :code:`systemctl`
-- list of failed services: :code:`systemctl list-units --failed`
-- To see the log of a service: :code:`journalctl -u <mywonderful.service>`
-- restart service: :code:`systemctl daemon-reload`
-- start a service: :code:`systemctl start <mywonderful.service>`
+* list of service: :code:`systemctl`
+* list of failed services: :code:`systemctl list-units --failed`
+* To see the log of a service: :code:`journalctl -u <mywonderful.service>`
+* restart service: :code:`systemctl daemon-reload`
+* start a service: :code:`systemctl start <mywonderful.service>`
 
 
-Yocto - create layer and recipe 
--------------------------------
+Yocto - How to create a new layer ?
+-----------------------------------
 
-1. Start bitbake: :code:`source sources/poky/oe...-env`
-2. Create layer: :code:`bitbake-layers create-layer meta-sdltest`
-3. Move the repo in sources: :code:`mv meta-sdltest ../sources/`
-4. Add the new layer inside the config file: :code:`nano confi/bblayers.conf` and add at the end :code:`BBLAYERS += "${BSPDIR}/sources/meta-sdltest "`
+#. Start bitbake: :code:`source sources/poky/oe...-env`
+#. Create layer: :code:`bitbake-layers create-layer meta-sdltest`
+#. Move the repo in sources: :code:`mv meta-sdltest ../sources/`
+#. Add the new layer inside the config file: :code:`nano confi/bblayers.conf` and add at the end :code:`BBLAYERS += "${BSPDIR}/sources/meta-sdltest "`
+#. Check if layer added:  :code:`bitbake-layers show-layers`
 
-.. note:: Tried with `bitbake-layers add-layer meta-sdltest` but didn't work well (not good directory). So just add it in the config file
+For more information, check this tutorial: https://community.nxp.com/t5/i-MX-Processors-Knowledge-Base/How-to-add-a-new-layer-and-a-new-recipe-in-Yocto/ta-p/1102230 
 
-5. Check if layer added:  :code:`bitbake-layers show-layers`
-
-https://community.nxp.com/t5/i-MX-Processors-Knowledge-Base/How-to-add-a-new-layer-and-a-new-recipe-in-Yocto/ta-p/1102230 
-
-Keyboard 
---------
+How to add a tactile keyboard to your kivy app ?
+------------------------------------------------
 
 To add the keyboard with kivy: :code:`systemanddock` or :code:`systemandmulti`
-(:code:`KCFG_KIVY_KEYBOARD_MODE` env variable)
+(:code:`KCFG_KIVY_KEYBOARD_MODE` env variable).
 
-Other
------
-
-- **Place where to change the display** : :code:`/etc/xdg/weston/weston.ini`
+Check the kivy documentation for more option: 
