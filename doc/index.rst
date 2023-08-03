@@ -17,6 +17,7 @@ Welcome to kivydemo's documentation!
    tutorials/first-steps-kivy
    tutorials/first-steps-yocto
    tutorials/installing-kivy-layer
+   tutorials/creating-my-layer
    tutorials/yocto-pip
 
 .. toctree::
@@ -32,6 +33,7 @@ Welcome to kivydemo's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: 📚 Other
-   :numbered:
 
    faq
+   contact 
+   resources

@@ -4,13 +4,93 @@ First steps with Yocto
 Installing the BSP
 ------------------
 
-Copy/Paste what's on the Yocto installation for the steps
+1. Create a new folder for your project in your host machine : 
 
-You need to choose which machine you are going to work on:
+.. code-block:: bash 
 
-* machine 
-* BSP version
-* image 
+    $ mkdir ~/yocto
+
+2. Install :code:`phyLinux` inside the new folder.
+
+   #. Download the file : :code:`wget https://download.phytec.de/Software/Linux/Yocto/Tools/phyLinux`
+   #. Change the access mode to be able to launch the program with :code:`chmod u+x phyLinux`
+   #. Link python2 to python3 temporarily: :code:`ln -s which python2 python && export PATH=pwd:$PATH` 
+
+
+3. Run phyLinux from the new folder with :code:`./phyLinux init`. If you do not want to use the selector, phyLinux also supports command-line arguments for the several settings:
+
+.. code-block:: bash 
+    
+    host$ MACHINE=phyboard-mira-imx6-3 ./phyLinux init -p imx6 -r BSP-Yocto-Ampliphy-i.MX6-PD21.1.0
+
+You need to choose 3 parameters for the BSP you are going to work on:
+
+* the machine 
+* the plateform
+* the release
+
+After the execution of the init command, :code:`phyLinux` will print a few important notes as well as information for the next steps in the build process.
+
+
+For more information on the :code:`phyLinux` file, you can check the `PHYTEC Yocto Reference Manual <https://www.phytec.de/cdocuments/?doc=UIHsG>`_.
+
+
+Start the Build
+----------------
+
+After you download all the metadata with :code:`phyLinux init`, you have to set up the shell environment variables. This needs to be done every time you open a new shell for starting builds. 
+We use the shell script provided by Poky in its default configuration. 
+
+From the root of your project directory type:
+
+.. code-block:: bash 
+
+    $ source sources/poky/oe-init-build-env
+
+The current working directory of the shell should change to :code:`build/`. 
+
+Before building for the first time, you should take a look at the main configuration file, your local modifications for the current build are stored here. 
+
+.. code-block:: bash 
+
+    $ nano conf/local.conf
+
+Depending on the SoC, you might need to accept license agreements. For some images using Freescale/NXP you have to uncomment the corresponding line.
+
+.. code-block:: bash 
+
+    # Uncomment to accept NXP EULA                                                   
+    # EULA can be found under ../sources/meta-freescale/EULA                         
+    ACCEPT_FSL_EULA = "1"
+
+Now you are ready to build your first image. We suggest starting with our smaller non-graphical image :code:`phytec-headless-image` to see if everything is working correctly:
+
+.. code-block:: bash
+    
+    $ bitbake phytec-headless-image
+
+The first compile process takes about 40 minutes on a modern Intel Core i7. All subsequent builds will use the filled caches and should take about 3 minutes.
+
+Installing the image on a SD card
+----------------------------------
+
+If everything worked previously, the images should be found under:
+
+.. code-block:: bash
+
+    cd yocto/build/deploy/images/<MACHINE>
+
+You can copy on the SD card the files with the extension :code:`.sdcard` or :code:`.wic`. To find them, you can use the command :code:`find` like that:
+
+.. code-block:: bash 
+
+    find -name "*.wic"
+
+Like in the :ref:`tutorials/installation:Downloading a bootable image in the sd card` documentation, you have to unmout the partitions and copy the image you found with:
+
+.. code-block:: bash 
+
+    sudo dd if=phytec-headless-image-<MACHINE>.sdcard of=/dev/<your_device> bs=1M conv=fsync
 
 Understanding the Yocto structure
 ----------------------------------
@@ -38,45 +118,3 @@ Here is the structure inside a yocto project:
 * recipe (files, patches, ... )
 
 You have multiple layers, and it's not because some recipes or layers are inside your source folder that bitebake is going to compile and package them. No you have to add them
-
-Creating a layer
-----------------
-
-#. Start bitbake: :code:`source sources/poky/oe...-env`
-#. Create layer: :code:`bitbake-layers create-layer meta-sdltest`
-#. Move the repo in sources: :code:`mv meta-sdltest ../sources/`
-#. Add the new layer inside the config file: :code:`nano confi/bblayers.conf` and add at the end :code:`BBLAYERS += "${BSPDIR}/sources/meta-sdltest "`
-#. Check if layer added:  :code:`bitbake-layers show-layers`
-
-
-Creating a recipe recette
---------------------------
-
-Changing an existing layer 
----------------------------
-
-Imagine you want to install Kivy and the recipe to install it already exist. Incredible right ? 
-Now imagine that you try the recipe, and it's not working. You need to change something. 
-However, if you directly modify a recipe in a layer you do not own (like openembedded), you then have a problem.
-That's what the bbappend do to the recipe file (ending by the extension bb). 
-
-To learn how to create and use bbappend, you can check the following links: 
-Yocto 
-PHYTEC 
-
-
-How to debug on Yocto ?
------------------------
-
-Note: a bit tricky but I think the main thing to understand with yocto is that it is kind of a mega parser. 
-It goes on, parse the update files and check what you have on your cache. 
-A lot of stuff are done implicilty, for example if you follow the structure of the recipe folder, you can easily add bbappend in another parent folder without any problem. 
-And some config are going to overlap over each other. It can be quite confusing sometimes. One of the best tools to use in yocto are : `find`, `grep` and `tree`. 
-They can show interesting informations about the structure of your code in the sources folder. 
-
-The pb with the cache is that sometimes, it does not reload something that changes and therefore, it is necessary to clean what is in the cache. 
-You also need tools to be able to know exactly what you build, yocto provides some and you need to know where to look for more informations (manifest, bitbake -e, ...)
-
-* find, grep, tree
-* bitebake -e  
-* manifest

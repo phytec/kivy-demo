@@ -1,29 +1,37 @@
 Media with Kivy
 ===============
 
-Providers used:
-- gstreamer
+The provider used on Kivy is the gstreamer. 
 
 Images
 ------
 
-Formats working: 
-- png 
-- jpeg 
+Valid format for images: 
 
-Formats not working:
-- svg
+* png 
+* jpeg 
+
+Invalid format for images:
+
+* svg
 
 Videos
 ------
 
-Formats working: 
-- mp4 
+Valid format for video: 
 
-Other 
+* mp4
+
+Audio
 ------
 
-Please feel free to add any specification in this part if you were able to make another type of format working for those media. 
+Comming soon !
+
+Contributing
+-------------
+
+Please feel free to add any test working for you in this part. 
+For example you can add valid format working on the board with kivy for each media.  
 
 
 

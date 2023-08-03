@@ -50,26 +50,28 @@ If the desired package's recipe is not available in OpenEmbedded, you can create
     SRC_URI[md5sum] = "1234567890abcdef1234567890abcdef"
     SRC_URI[sha256sum] = "abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
 
-    inherit pypi
+    inherit pypi setuptools3
 
-4. Replace the SRC_URI md5sum and sha256sum values with the actual checksums you obtained from the PyPI website.
+4. Replace the :code:`SRC_URI` :code:`md5sum` and :code:`sha256sum` values with the actual checksums you obtained from the PyPI website.
 5. Check the dependencies needed for your library and add them to your Yocto setup.
-6. Attempt to build the recipe using the bitbake command.
+6. Attempt to build the recipe using the bitbake command. For exampke, if your recipe is named :code:`mylib_1.2.3.bb` you need to do `bitbake mylib`.
 
 If everything is working fine, that's great! You have successfully created a recipe for your package.
 
 However, if you encounter issues, here are some possible solutions:
 
-#. If there's a problem with the setup file, you may need to apply a patch to resolve it.
+#. If there is a problem with the :code:`setup.py` file, you may need to apply a patch to solve the problem.
 #. Ensure that all dependencies are correctly specified in the recipe.
 
-The best way to learn more is to go check the recipes in the openembedded meta-python layer for recipe. 
+The best way to learn more is to go check the recipes in the openembedded :code:`meta-python` layer for recipe. 
 
 Conclusion
 -----------
 
-Installing the package library directly from Yocto can help save space that may not be available due to using pip. Remember, there are other methods to add Python packages in Yocto, such as using recipes from OpenEmbedded layers or creating custom recipes for packages not available in the default Yocto repositories. Be sure to explore those options as well.
+Installing the package library directly from Yocto can help save space that may not be available due to using pip. 
 
-.. _official pages: https://example.com/yocto-setup
-.. _check if a recipe: https://example.com/openembedded-recipes
-.. _official PyPI website: https://pypi.org/project/mylib/
+Remember, there are other methods to add Python packages in Yocto, such as using recipes from OpenEmbedded layers or creating custom recipes for packages not available in the default Yocto repositories. 
+Be sure to explore those options as well.
+
+* `official Yocto page <https://docs.yoctoproject.org/>`_
+* `official PyPI website <https://pypi.org/>`_
