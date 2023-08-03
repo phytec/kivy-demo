@@ -2,11 +2,11 @@
 
 ![Test kivydemo](https://github.com/MarineVovard/kivy-demo/actions/workflows/kivydemo-workflow.yml/badge.svg)
 
-## Description
+## ✨ Description
 
 This program demonstrates the capabilities of Kivy on embedded systems developed by [PHYTEC](https://www.phytec.eu/en/startseite/). It serves as a showcase for Kivy's features and functionalities. Please refer to the [documentation](link to the documentation for later) for instructions on installing Kivy on PHYTEC products before running this program.
 
-## Installation 
+## 🛠️ Installation 
 
 Dependencies: 
 - kivy[full]==2.1dev0
@@ -27,7 +27,7 @@ To use the audio, do: `kivydemo -- --audio`
 
 > NOTE: To exit the virtual environment, you can use the `deactivate` command. For more information, refer to [this link](https://docs.python.org/3/library/venv.html)
 
-## Credits
+## 👥 Credits
 
 This program was developed using the following examples from the Kivy repository and documentation:
 - [touchtracer](https://github.com/kivy/kivy/tree/2.1.0.dev0/examples/demo/touchtracer) 
@@ -35,7 +35,7 @@ This program was developed using the following examples from the Kivy repository
 - [3D rendering (renamed MonkeyRendering)](https://github.com/kivy/kivy/tree/2.1.0.dev0/examples/3Drendering) 
 - [camera](https://github.com/kivy/kivy/tree/2.1.0.dev0/examples/camera)
 
-## LICENSE 
+## 📜 LICENSE 
 
 This code is under the MIT license. See `LICENSE` for the full terms and conditions.
 
