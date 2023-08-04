@@ -5,7 +5,7 @@ import os
 # Import images
 # scatter, background and logo images
 files = [["IMG_7942.JPG", "image_scatter.jpg"], ["PHYTEC_Produkte.jpg", "background.jpg"],
-         ["logo-PHYTEC.svg", "PHYTEC.svg"], ["COPYING", "COPYING"], ["COPYING.utf8", "COPYING.utf8"]]
+         ["phytec_logo_medium.png", "PHYTEC.png"], ["COPYING", "COPYING"], ["COPYING.utf8", "COPYING.utf8"]]
 url = "https://download.phytec.de/Software/Linux/Applications/Media/"
 
 

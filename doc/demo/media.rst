@@ -1,7 +1,8 @@
 Media with Kivy
 ===============
 
-The provider used on Kivy is the gstreamer. 
+Kivy use Gstreamer as provider on the board for images and videos.
+You can have more information on how they are setup in Kivy documentation in the `Image section <https://kivy.org/doc/stable/api-kivy.core.image.html#module-kivy.core.image>`_ and the `Video section <https://kivy.org/doc/stable/api-kivy.core.video.html#module-kivy.core.video>`_.
 
 Images
 ------
@@ -18,7 +19,7 @@ Invalid format for images:
 Videos
 ------
 
-Valid format for video: 
+Valid format for videos: 
 
 * mp4
 
@@ -30,8 +31,8 @@ Comming soon !
 Contributing
 -------------
 
-Please feel free to add any test working for you in this part. 
-For example you can add valid format working on the board with kivy for each media.  
+Please feel free to complete this page. 
+For example, if you find another valid format for the video, let us know by opening a new issue in the project.  
 
 
 

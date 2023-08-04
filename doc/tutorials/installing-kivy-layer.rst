@@ -12,7 +12,7 @@ To install the :code:`meta-phykivy` layer and understand what is available in it
 
 .. code-block:: bash
 
-   MACHINE=phyboard-mira-imx6-3 ./phyLinux init -p imx8mp -r BSP-Yocto-Ampliphy-i.MX8-PD22.1.0
+   DISTRO=ampliphy-vendor-xwayland MACHINE=phyboard-pollux-imx8mp-3 ./phyLinux init -p imx8mp -r BSP-Yocto-NXP-i.MX8MP-PD22.1.1
 
 You can also only use :code:`./phyLinux init` and see all the options for the parameters before choosing one.
 If you want more information on how to install your Phytec BSP with :code:`phyLinux`, you can check the `PHYTEC Yocto Reference Manual <https://www.phytec.de/cdocuments/?doc=UIHsG>`_

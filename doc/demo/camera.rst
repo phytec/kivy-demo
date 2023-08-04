@@ -4,28 +4,27 @@ Camera with Kivy
 How to run the demo with the camera
 -----------------------------------
 
-With the option 
-
-
-How was build the camera
-------------------------
-
-My monologue 
-
-If you try other camera
------------------------
-
-If other type of camera work, please feel free to add it to this documentation.
-
-I hope the previous explanation can help on how to do that if it's not possible by default. 
+The camera is not able by default on the demo. In fact, if you do not provide a camera before starting the dom with the video enable, you will end up with an error.
 
 Important infos 
 ---------------
 
-2 providers tested:
-- opencv (with patch)
-- gstreamer (with patch)
+Two providers have been tested:
 
-One type of camera tested:
-- USB camera
+* gstreamer (with patch): already installed, used for images and videos
+* opencv (with patch): a lot of features available in opencv 
+
+WARNING: If you want to use opencv, you need to install it on the board (if you're not sure how to do it, check :ref:`tutorials/yocto-pip`)
+
+One type of camera has been tested:
+
+* USB camera
+
+If you try other type of cameras
+---------------------------------
+
+If you tested another type of camera or provider and made it work, feel free to add it to this documentation by opening an issue.
+
+If it's not working, you can check the camera folder in the core part of the Kivy repository to understand how it work. 
+
 

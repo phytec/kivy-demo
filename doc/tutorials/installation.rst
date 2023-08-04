@@ -4,22 +4,20 @@ Installation
 Product : Imx8mp 
 -----------------
 
-The first step is to setup the device. For that you need: 
+You first need to setup the device. For that you need : 
 
-* SD Card (and an adaptator if needed for your computer)
-* power adapter +24V
-* Ethernet cable 
-* USB-A to USB-B Micro Cable 
-* [optional] USB camera (WebCam)
+* a SD Card (and an adaptator if needed for your computer)
+* a power adapter +24V
+* an ethernet cable 
+* a USB-A to USB-B Micro Cable 
+* [OPTIONAL] a USB camera
 
 For the display, you have two choices:
 
-* HDMI cable with basic screen 
-* LVSD screen with cables 
+* use a screen connected through an HDMI cable  
+* an LVSD screen and its cables
 
-To setup the board, do the following :
-
-The first step is to check that the Boot Mode DIP Switch (S3) is set to "SD Card" as follow:
+To start your board, the first step is to check that the Boot Mode DIP Switch (S3) is set to :code:`SD Card` as follow:
 
 .. image:: ../images/SD_Card_Boot.png
   :width: 100
@@ -30,8 +28,7 @@ Once it's done, you can continue with the following steps:
 
 #. Connect the USB cable to your host PC and the Debug FTDI (X1).
 #. Insert the Micro SD Card inside the board (X7).
-#. Power up the phyCORE-i.MX 8M Plus.
-#. Connect the power adapter (+24 V DC) to the power supply connector (X23).
+#. Connect the power adapter to the power supply connector (X23).
 #. Turn your power supply on.
 
 .. image:: ../images/board-front.png
@@ -42,52 +39,53 @@ Once it's done, you can continue with the following steps:
 For more information on how to setup the board, please refer to `this document for the i.MX8MP product <https://www.phytec.de/fileadmin/phytec_base/images/01-Produkte/Component-Placement/L1025e.A0-phyBOARD-Pollux_iMX8M-Plus_web.pdf>`_.
 
 
-Downloading a bootable image in the sd card 
+Downloading a bootable image on the SD card 
 --------------------------------------------
 
-The first step is to download the new image and copy it on the SD card. To do that use the following command: 
+To start correcly, your board need an image. In this example, you will learn how to download a pre-build image made by Phytec on the SD Card.
+
+First you need to download the pre-build image on your computer: 
 
 .. code-block:: bash
 
-    wget my_image_url.de 
+    wget https://phytec/a_specific_folder/my_image_url.wic 
 
-You should have in your folder a file named :code:`my_image_url`. 
+You should have in your folder a file named :code:`my_image_url.wic`. 
 
-Everything you need for this tutorial is installed on this image already. 
-If you want to personalize the image or add new package using yocto, you can see how to do it with the :doc:`/tutorials/first-steps-yocto` or `check the PHYTEC documentation <https://www.phytec.de/cdocuments/?doc=UIHsG>`_ .
+Everything you need for this tutorial is installed on this image. 
+If you want to personalize the image or add new package using Yocto, you can go to the tutorial :doc:`/tutorials/first-steps-yocto` or check `the PHYTEC documentation <https://www.phytec.de/cdocuments/?doc=UIHsG>`_ .
 
 Once the file is downloaded on your computer, you need to copy it on the SD card. 
-To do that, you first need to find the name of your sd card.
+To do that, you first need to find the name of your SD Card.
 
-On linux, you have two ways to find the name of your sd card: :code:`dmseg` or comparing the :code:`/dev` folder on linux before and after pluging the SD Card to the computer.
+On linux, you have two ways to find the name of your SD Card: :code:`dmseg` or comparing the files in :code:`/dev` before and after pluging the SD Card to the computer.
 
-
-Once you have the name of your sd card (for example :code:`mmcblk0`), you need to unmount the partitions. The name of partitions is as follow `/dev/mmcblk0p1` with `p1` indicating the first partition. 
+Once you have the name of your sd card (for example :code:`mmcblk0`), you need to unmount the partitions. The name of a partition is as follow `/dev/mmcblk0p1` with `p1` indicating the first partition. 
 To unmount a partition use the following command: 
 
 .. code-block:: bash
 
     unmount /dev/mmcblk0p1
 
-Once **ALL** you partitons are removed, you can copy the image using the dd command:
+Once **ALL** you partitons are removed, you can copy the image using the :code:`dd` command:
 
 .. code-block:: bash
 
     sudo dd if=my_image_url.wic of=/dev/mmcblk0 bs=1M conv=fsync status=progress
 
 .. warning:: 
-    Be very careful when selecting the right drive for the sd card ! 
 
-    Selecting the wrong drive can erase your hard drive! The parameter conv=fsync forces a data buffer to write to the device before dd returns.
+    Be very careful when selecting the right drive for the SD card ! 
+    Selecting the wrong drive can erase your hard drive!
 
 
 Your SD Card is now ready to be used !
-To test your image, add you SD card, power the board. You should see the Linux Logo and then a demo for kivy starting.
+To test your image, add you SD card and power the board. You should see the Linux logo and then a demo for kivy starting.
 
 Getting connected to the target
 -------------------------------
 
-There are two ways to connect to the board:
+There are two ways to connect to the board from your PC:
 
 - `Serial connection`_
 - `Ethernet connection`_
@@ -96,10 +94,10 @@ There are two ways to connect to the board:
 Serial connection
 *****************
 
-If you want to connect to the target (the board) you can do that via the serial connection. 
+If you want to connect to the target you can do that via the serial connection. 
 First check that your computer is link to the board via the serial connector (X1: USB debug).
 
-Then install tio with the following command if it's not already present on you computer: 
+If it's not present on you computer, install :code:`tio` with the following command : 
 
 .. code-block:: bash
 
@@ -119,43 +117,66 @@ You need to replace the <num> part by the good USB number. If you have any doubt
     cd /dev
     find -name ttyUSB*
 
-After connecting to the board with tio. You should then access the board and be able to see a line asking for a password.
-The password is `root` when developping. Once you enter this password, you should be connected as root.  
+After connecting to the board with :code:`tio`. You see a line asking for a password.
+The password is `root` when developping. Once you enter this password, you should be connected to the board as root.  
 
-You can then play with your device ! 
+Congratulation, you are connected to your device ! 
 
 Ethernet connection
 *******************
+ 
+With an Ethernet connection, you can connect to the board using the :code:`ssh`. You can also copy files from your computer to your device using :code:`scp`. 
 
-We recommend disconnecting your host-PC from any other network, because a peer to-peer
-connection from your PC to the phyCORE-i.MX 8M will be established.
+To create this connection, first use an Ethernet cable to link your device and your PC. 
 
-Connect your preferred Ethernet interface on your PC with RJ45 connector X8 (ETH1) on the phyCORE-i.MX 8M Plus using an Ethernet cable.
 
-Configure the IP-settings on your host platform in Ubuntu:
+.. in Ubuntu. If you are not using Linux, you can follow how to install Phytec virtual Machine:
 
-#. In the Unity-panel (left side of your desktop) click on the Ubuntu logo (topmost icon).
-#. The Ubuntu dashboard will open; enter System Settings in the search field (you will see the corresponding icon showing up already during typing of the search string).
-#. Open System Settings and click on the Network icon.
-#.  Select the physical interface to which you have connected the Ethernet cable (if you have more than one network in the list) and click on Options.
-#. Select the IPv4Settings (E) tab and choose Manual (F) in the Method drop down box.
-#. Click Add (G) and enter the IP address 192.168.3.10 (H) and 255.255.255.0 as subnet mask (I) and 192.168.3.10 as gateway (J).
-#. Last, click on Save (K) to save these connection settings and close the windows.
+.. #. In the Unity-panel (left side of your desktop) click on the Ubuntu logo (topmost icon).
+.. #. The Ubuntu dashboard will open; enter System Settings in the search field (you will see the corresponding icon showing up already during typing of the search string).
+.. #. Open System Settings and click on the Network icon.
+.. #.  Select the physical interface to which you have connected the Ethernet cable (if you have more than one network in the list) and click on Options.
+.. #. Select the IPv4Settings (E) tab and choose Manual (F) in the Method drop down box.
+.. #. Click Add (G) and enter the IP address 192.168.3.10 (H) and 255.255.255.0 as subnet mask (I) and 192.168.3.10 as gateway (J).
+.. #. Last, click on Save (K) to save these connection settings and close the windows.
 
-You are now ready to test the Ethernet network connection.
+.. You are now ready to test the Ethernet network connection.
 
-To test the connection, do on you computer (or target, I need to check !):
+You then need to setup manually the following information on your computer.  
+
+.. _Device ip info table:
+.. list-table:: Device IPv4 information
+   :widths: 25 25 40
+   :header-rows: 1
+
+   * - IP address
+     - Subnet mask
+     - Gateway
+   * - 192.168.3.10
+     - 255.255.255.0 or /24
+     - 192.168.3.10
+
+You can do it on your own with the :code:`ifconfig` or :code:`idk`. 
+
+Otherwise, here are the setps to configure the Ethernet connection on Ubuntu. 
+If you are not using Ubuntu but want still stay close to this tutorial, you can install and use a PHYTEC Virtual Machine. 
+
+To configure the IPv4 device information on Ubuntu you need to:
+
+#. Search "network" in the applications (Windows key to access the search bar on Ubuntu)
+#. Select the Ethernet port used by the connection
+#. Go to IPv4 setting 
+#. Select the :code:`Manual` method and add a new adress with the information available in the :ref:`previous table <Device ip info table>`.
+
+To test the connection, you can do :
 
 .. code-block:: bash
 
-    ping 192.168.3.10
+    ping 192.168.3.11
 
-If you receive the package, you are connected. You can then use scp or ssh to connect to the target. 
+WARNING:  Your device need to be turned on when you test your connection ! 
 
-Congratulations, you are now connected to the target !
-
-If you do not see the user login, check the Ethernet connection between the target
-and the host with ifconfig or via the network panel on ubuntu. 
+If you receive the packets of data then congratulation, you are connected !
 
 Sources
 -------

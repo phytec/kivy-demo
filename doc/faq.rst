@@ -27,7 +27,7 @@ Each time you want to use a command, do first ESC.
 * to save: :code:`:w`
 * to save and exit: :code:`:wq`
 
-If you want to learn more commands check this link: https://www.redhat.com/sysadmin/introduction-vi-editor
+If you want to learn more commands check `An introduction to the vi editor made by RedHat <https://www.redhat.com/sysadmin/introduction-vi-editor>`_.
 
 How to use :code:`scp` command ?
 --------------------------------
@@ -40,7 +40,7 @@ Here are some useful commands:
 * Copy file to the remote host: :code:`scp myfile.txt user@remote:/remote/directory`
 * can use the option :code:`-r` fo recursive copy and :code:`-P` for the port
 
-If you want to learn more, you can check this tutorial https://www.hypexr.org/linux_scp_help.php or check in the man the command (with :code:`man scp`).
+If you want to learn more, you can check `Example syntax for Secure Copy <https://www.hypexr.org/linux_scp_help.php>`_ or check in the man the command (with :code:`man scp`).
 
 
 How to package Python programs on your computer ?
@@ -69,7 +69,7 @@ Yocto - How to create a new layer ?
 #. Add the new layer inside the config file: :code:`nano confi/bblayers.conf` and add at the end :code:`BBLAYERS += "${BSPDIR}/sources/meta-sdltest "`
 #. Check if layer added:  :code:`bitbake-layers show-layers`
 
-For more information, check this tutorial: https://community.nxp.com/t5/i-MX-Processors-Knowledge-Base/How-to-add-a-new-layer-and-a-new-recipe-in-Yocto/ta-p/1102230 
+For more information, check `How to add a new layer and a new recipe in Yocto <https://community.nxp.com/t5/i-MX-Processors-Knowledge-Base/How-to-add-a-new-layer-and-a-new-recipe-in-Yocto/ta-p/1102230>`_. 
 
 How to add a tactile keyboard to your kivy app ?
 ------------------------------------------------
@@ -77,4 +77,4 @@ How to add a tactile keyboard to your kivy app ?
 To add the keyboard with kivy: :code:`systemanddock` or :code:`systemandmulti`
 (:code:`KCFG_KIVY_KEYBOARD_MODE` env variable).
 
-Check the kivy documentation for more option: 
+Check the `Configuration object in the Kivy documentation <https://kivy.org/doc/stable/api-kivy.config.html>`_.

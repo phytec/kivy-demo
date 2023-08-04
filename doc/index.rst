@@ -8,8 +8,11 @@
 Welcome to kivydemo's documentation!
 ====================================
 
+This guide is for beginners learning how to use Yocto and embedded devices.
+The goal is to end up with a beautiful graphic application on your board using Kivy. 
+
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: 🚀 Tutorials
    :numbered:
    
@@ -21,17 +24,16 @@ Welcome to kivydemo's documentation!
    tutorials/yocto-pip
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: 💡 Info on kivydemo
    :numbered:
 
    demo/info-kivydemo
    demo/media
    demo/camera
-   demo/threeD-rendering
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: 📚 Other
 
    faq
