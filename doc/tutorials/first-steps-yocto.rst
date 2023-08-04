@@ -86,7 +86,7 @@ You can copy on the SD card the files with the extension :code:`.sdcard` or :cod
 
     find -name "*.wic"
 
-Like in the :ref:`tutorials/installation:Downloading a bootable image in the sd card` documentation, you have to unmout the partitions and copy the image you found with:
+Like in the :ref:`tutorials/installation:Downloading a bootable image on the SD card` documentation, you have to unmout the partitions and copy the image you found with:
 
 .. code-block:: bash 
 

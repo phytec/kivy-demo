@@ -48,4 +48,4 @@ This code is under the MIT license. See :code:`LICENSE` for the full terms and c
 
 Images, videos and fonts can have a different license. See the different license in the folder for each resources. 
 
-3D Phytec Logo made by Manon Girard (https://manon_girard.artstation.com/) and licensed under the Creative Commons Attribution 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.
+3D Phytec Logo made by Manon Girard and licensed under the Creative Commons Attribution 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.

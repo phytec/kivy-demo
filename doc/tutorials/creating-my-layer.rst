@@ -24,9 +24,7 @@ Imagine you want to install Kivy, and the recipe to install it already exists. I
 
 That's where the file with the extension :code:`bbappend` comes into play. It allows you to extend the behavior of an existing recipe without modifying it directly.
 
-To learn how to create and use bbappend, you can refer to the following links: 
-- `Yocto documentation <https://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user-manual.html#modifying-a-recipe>`_
-- `PHYTEC blog post <https://www.phytec.eu/blog/bbappend/>`_
+To learn how to create and use bbappend, you can refer to the `Yocto documentation on write a new recipe <https://docs.yoctoproject.org/dev-manual/new-recipe.html>`_.
 
 How to Debug on Yocto?
 ----------------------
