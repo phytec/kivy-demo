@@ -14,7 +14,7 @@ Two providers have been tested:
 * gstreamer (with patch): already installed, used for images and videos
 * opencv (with patch): a lot of features available in opencv 
 
-WARNING: If you want to use opencv, you need to install it on the board (if you're not sure how to do it, check :doc:`/tutorials/yocto-pip`)
+**WARNING** If you want to use opencv, you need to install it on the board (if you're not sure how to do it, check :doc:`/tutorials/yocto-pip`)
 
 One type of camera has been tested:
 

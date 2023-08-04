@@ -23,13 +23,13 @@ If you are using the :code:`meta-phykivy` layer, you can skip to the last step.
 If you want to try the demo with the camera, use the following command: :code:`kivydemo -- --camera`. 
 To use the audio, do: :code:`kivydemo -- --audio`
 
-NOTE: If you want to test the camera in your virtual environment, make sure you have at least one camera provider available. If not, you can install OpenCV by running the following command
+**NOTE** If you want to test the camera in your virtual environment, make sure you have at least one camera provider available. If not, you can install OpenCV by running the following command
  
 .. code-block:: bash
 
     (myenv)$ pip install opencv-python 
 
-NOTE: To exit the virtual environment, you can use the :code:`deactivate` command. For more information, refer to `the virtual environment documentation <https://docs.python.org/3/library/venv.html>`_
+**NOTE** To exit the virtual environment, you can use the :code:`deactivate` command. For more information, refer to `the virtual environment documentation <https://docs.python.org/3/library/venv.html>`_
 
 Credits
 -------

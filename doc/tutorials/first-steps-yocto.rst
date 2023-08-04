@@ -91,30 +91,3 @@ Like in the :ref:`tutorials/installation:Downloading a bootable image on the SD 
 .. code-block:: bash 
 
     sudo dd if=phytec-headless-image-<MACHINE>.sdcard of=/dev/<your_device> bs=1M conv=fsync
-
-Understanding the Yocto structure
-----------------------------------
-
-More on yocto:
-
-* source bitebake - you are then in build 
-
-Okay, we have two main folder :
-
-* build 
-* sources 
-
-In build, you have: 
-
-* a conf folder with three files (I know 2 - local.conf and bblayer.conf)
-* the image for your product 
-* tmp folder where you can see all the result in your recipe
-
-Note: a bit tricky but I think the main thing to understand with yocto is that it is kind of a mega parser. It goes on, parse the update files and check what you have on your cache. A lot of stuff are done implicilty, for example if you follow the structure of the recipe folder, you can easily add bbappend in another parent folder without any problem. And some config are going to overlap over each other. It can be quite confusing sometimes. One of the best tools to use in yocto are : `find`, `grep` and `tree`. They can show interesting informations about the structure of your code in the sources folder. 
-
-Here is the structure inside a yocto project: 
-
-* layer 
-* recipe (files, patches, ... )
-
-You have multiple layers, and it's not because some recipes or layers are inside your source folder that bitebake is going to compile and package them. No you have to add them

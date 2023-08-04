@@ -73,10 +73,9 @@ Once **ALL** you partitons are removed, you can copy the image using the :code:`
 
     sudo dd if=my_image_url.wic of=/dev/mmcblk0 bs=1M conv=fsync status=progress
 
-.. warning:: 
 
-    Be very careful when selecting the right drive for the SD card ! 
-    Selecting the wrong drive can erase your hard drive!
+**WARNING** Be very careful when selecting the right drive for the SD card ! 
+Selecting the wrong drive can erase your hard drive!
 
 
 Your SD Card is now ready to be used !
@@ -129,19 +128,6 @@ With an Ethernet connection, you can connect to the board using the :code:`ssh`.
 
 To create this connection, first use an Ethernet cable to link your device and your PC. 
 
-
-.. in Ubuntu. If you are not using Linux, you can follow how to install Phytec virtual Machine:
-
-.. #. In the Unity-panel (left side of your desktop) click on the Ubuntu logo (topmost icon).
-.. #. The Ubuntu dashboard will open; enter System Settings in the search field (you will see the corresponding icon showing up already during typing of the search string).
-.. #. Open System Settings and click on the Network icon.
-.. #.  Select the physical interface to which you have connected the Ethernet cable (if you have more than one network in the list) and click on Options.
-.. #. Select the IPv4Settings (E) tab and choose Manual (F) in the Method drop down box.
-.. #. Click Add (G) and enter the IP address 192.168.3.10 (H) and 255.255.255.0 as subnet mask (I) and 192.168.3.10 as gateway (J).
-.. #. Last, click on Save (K) to save these connection settings and close the windows.
-
-.. You are now ready to test the Ethernet network connection.
-
 You then need to setup manually the following information on your computer.  
 
 .. _Device ip info table:
@@ -156,9 +142,9 @@ You then need to setup manually the following information on your computer.
      - 255.255.255.0 or /24
      - 192.168.3.10
 
-You can do it on your own with the :code:`ifconfig` or :code:`idk`. 
+You can do it on your own with the :code:`ifconfig` or :code:`ip` command. 
 
-Otherwise, here are the setps to configure the Ethernet connection on Ubuntu. 
+Otherwise, here are the steps to configure the Ethernet connection on Ubuntu. 
 If you are not using Ubuntu but want still stay close to this tutorial, you can install and use a PHYTEC Virtual Machine. 
 
 To configure the IPv4 device information on Ubuntu you need to:
@@ -174,7 +160,7 @@ To test the connection, you can do :
 
     ping 192.168.3.11
 
-WARNING:  Your device need to be turned on when you test your connection ! 
+**WARNING**  Your device need to be turned on when you test your connection.
 
 If you receive the packets of data then congratulation, you are connected !
 
