@@ -29,8 +29,8 @@ Each time you want to use a command, do first ESC.
 
 If you want to learn more commands check `An introduction to the vi editor made by RedHat <https://www.redhat.com/sysadmin/introduction-vi-editor>`_.
 
-How to use :code:`scp` command ?
---------------------------------
+How to use scp command ?
+-------------------------
 
 Scp stand for secure copy protocol. It enables you to copy a file to or from an other machine. 
 

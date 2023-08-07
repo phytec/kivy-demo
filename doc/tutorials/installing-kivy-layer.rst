@@ -12,7 +12,7 @@ To install the :code:`meta-phykivy` layer and understand what is available in it
 
 .. code-block:: bash
 
-   DISTRO=ampliphy-vendor-xwayland MACHINE=phyboard-pollux-imx8mp-3 ./phyLinux init -p imx8mp -r BSP-Yocto-NXP-i.MX8MP-PD22.1.1
+   DISTRO=ampliphy-vendor-xwayland MACHINE=phyboard-pollux-imx8mp-3 ./phyLinux init -p imx8mp -r BSP-Yocto-NXP-i.MX8MP-PD22.x.y
 
 You can also only use :code:`./phyLinux init` and see all the options for the parameters before choosing one.
 If you want more information on how to install your Phytec BSP with :code:`phyLinux`, you can check the `PHYTEC Yocto Reference Manual <https://www.phytec.de/cdocuments/?doc=UIHsG>`_
@@ -22,6 +22,9 @@ If you want more information on how to install your Phytec BSP with :code:`phyLi
 4. Build the final image by using the :code:`bitbake phytec-kivydemo-image` command after starting bitbake.
 
 That's it, you should then have the exact same image as the one you download during the first tutorial in :doc:`/tutorials/installation`.
+
+**NOTE**: For the first step, we have a distro using xwayland, however kivy also work with pure wayland. 
+You just need to remove X11 in the :code:`REQUIRED_DISTRO` by adding :code:`REQUIRED_DISTRO:remove = "X11"` in the bbappend file of Kivy.
 
 Understanding the Layer
 ------------------------

@@ -35,6 +35,17 @@ This program was developed using the following examples from the Kivy repository
 - [3D rendering (renamed MonkeyRendering)](https://github.com/kivy/kivy/tree/2.1.0.dev0/examples/3Drendering) 
 - [camera](https://github.com/kivy/kivy/tree/2.1.0.dev0/examples/camera)
 
+## 📝 Documentation 
+
+We are using [Sphinx](https://www.sphinx-doc.org/en/master/) and [Read the doc's template](https://sphinx-rtd-theme.readthedocs.io/en/stable/index.html) to document this project. Here are the steps to build the documenation.
+
+1. Go to the doc folder 
+2. Build the html files: `make html`
+3. The files are in the `_build` folder, you can launch the generated files in a browser with : `firefox _build/html/index.html`
+
+You can also check if all the links in the documentation are working with: `make linkcheck`.
+
+
 ## 📜 LICENSE 
 
 This code is under the MIT license. See `LICENSE` for the full terms and conditions.
