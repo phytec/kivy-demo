@@ -33,7 +33,8 @@ release = '0.1.0'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx_rtd_theme',
-    'sphinx.ext.autosectionlabel'
+    'sphinx.ext.autosectionlabel',
+    'sphinx.ext.githubpages'
 ]
 
 # Make sure the target is unique
