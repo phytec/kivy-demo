@@ -14,7 +14,7 @@ jobs:
       - name: Sphinx build
         run: |
           cd doc
-          make hmtl
+          make html
       - name: Check links 
         run: |
           make linkcheck
