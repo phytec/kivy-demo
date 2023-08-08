@@ -17,5 +17,6 @@ jobs:
           make html
       - name: Check links 
         run: |
+          cd doc
           make linkcheck
           
