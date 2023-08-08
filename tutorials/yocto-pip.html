@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6. Install a Package in Yocto with Pip &mdash; kivydemo 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1. Demo Kivy" href="../demo/info-kivydemo.html" />
+    <link rel="prev" title="5. Creating Your Own Layer with Yocto" href="creating-my-layer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            kivydemo
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">1. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first-steps-kivy.html">2. First steps with Kivy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first-steps-yocto.html">3. First steps with Yocto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installing-kivy-layer.html">4. Installing the Kivy layer in Yocto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating-my-layer.html">5. Creating Your Own Layer with Yocto</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Install a Package in Yocto with Pip</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#recipe-is-available-in-openembedded">6.1. Recipe is available in OpenEmbedded</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#if-the-recipe-is-not-available-download-it-from-pip">6.2. If the Recipe is Not Available, Download It from Pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusion">6.3. Conclusion</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">💡 Info on kivydemo</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../demo/info-kivydemo.html">1. Demo Kivy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo/media.html">2. Media with Kivy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo/camera.html">3. Camera with Kivy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact.html">Contact</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">kivydemo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6. </span>Install a Package in Yocto with Pip</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/yocto-pip.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="install-a-package-in-yocto-with-pip">
+<h1><span class="section-number">6. </span>Install a Package in Yocto with Pip<a class="headerlink" href="#install-a-package-in-yocto-with-pip" title="Permalink to this heading"></a></h1>
+<p>Your project is going well, and your application is working beautifully, but now you want to add a new, wonderful package to your project. While installing packages using pip install is simple on your computer, you need to follow a different approach in Yocto if you want to customize your own image while keeping it small.</p>
+<p>Before proceeding, ensure you understand the first steps with Yocto. If you haven’t set up your Yocto environment yet, please refer to the official pages for more information.</p>
+<section id="recipe-is-available-in-openembedded">
+<h2><span class="section-number">6.1. </span>Recipe is available in OpenEmbedded<a class="headerlink" href="#recipe-is-available-in-openembedded" title="Permalink to this heading"></a></h2>
+<p>The simplest option is to check if the desired package already exists in OpenEmbedded. Follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Determine the version of Yocto you are using. You can find this information in a configuration file.</p></li>
+<li><p>Go to the following website to check if a recipe for your package already exists in OpenEmbedded.</p></li>
+<li><p>Alternatively, you can manually check if the package is installed by navigating to the folder <code class="code docutils literal notranslate"><span class="pre">sources/meta-openembedded/python/</span></code> in your Yocto setup and using the following command on Linux:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;my-lib&quot;</span>
+</pre></div>
+</div>
+<p>If you get some results, it’s a good sign. The first part of the file name is the recipe name (e.g., if you have my-lib_0.1.2.bb, the recipe name is my-lib).</p>
+<ol class="arabic simple" start="4">
+<li><p>Add the recipe to your Yocto configuration. Open the <code class="code docutils literal notranslate"><span class="pre">conf/local.conf</span></code> file and add the following line:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">IMAGE_INSTALL</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s2">&quot;python3-my-lib&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Replace <code class="code docutils literal notranslate"><span class="pre">my-lib</span></code> with the actual name of your package.</p></li>
+<li><p>Bake the Yocto image using the updated configuration.</p></li>
+</ol>
+<p>Now, you are ready to use the new library on your Yocto target!</p>
+</section>
+<section id="if-the-recipe-is-not-available-download-it-from-pip">
+<h2><span class="section-number">6.2. </span>If the Recipe is Not Available, Download It from Pip<a class="headerlink" href="#if-the-recipe-is-not-available-download-it-from-pip" title="Permalink to this heading"></a></h2>
+<p>If the desired package’s recipe is not available in OpenEmbedded, you can create a new recipe in your Yocto layer. Follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Determine the version of the package you need for your project by checking the desired version on the official PyPI website.</p></li>
+<li><p>Name your recipe file following the convention mylib_version.bb, where mylib is the name of your package, and version is the version you want.</p></li>
+<li><p>Create a new recipe with the following content:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SUMMARY</span> <span class="o">=</span> <span class="s2">&quot;MyLib Python package&quot;</span>
+<span class="n">HOMEPAGE</span> <span class="o">=</span> <span class="s2">&quot;https://example.com/mylib&quot;</span>
+<span class="n">LICENSE</span> <span class="o">=</span> <span class="s2">&quot;MIT&quot;</span>
+<span class="n">LIC_FILES_CHKSUM</span> <span class="o">=</span> <span class="s2">&quot;file://$</span><span class="si">{COMMON_LICENSE_DIR}</span><span class="s2">/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302&quot;</span>
+
+<span class="n">SRC_URI</span><span class="p">[</span><span class="n">md5sum</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;1234567890abcdef1234567890abcdef&quot;</span>
+<span class="n">SRC_URI</span><span class="p">[</span><span class="n">sha256sum</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890&quot;</span>
+
+<span class="n">inherit</span> <span class="n">pypi</span> <span class="n">setuptools3</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Replace the <code class="code docutils literal notranslate"><span class="pre">SRC_URI</span></code> <code class="code docutils literal notranslate"><span class="pre">md5sum</span></code> and <code class="code docutils literal notranslate"><span class="pre">sha256sum</span></code> values with the actual checksums you obtained from the PyPI website.</p></li>
+<li><p>Check the dependencies needed for your library and add them to your Yocto setup.</p></li>
+<li><p>Attempt to build the recipe using the bitbake command. For exampke, if your recipe is named <code class="code docutils literal notranslate"><span class="pre">mylib_1.2.3.bb</span></code> you need to do <cite>bitbake mylib</cite>.</p></li>
+</ol>
+<p>If everything is working fine, that’s great! You have successfully created a recipe for your package.</p>
+<p>However, if you encounter issues, here are some possible solutions:</p>
+<ol class="arabic simple">
+<li><p>If there is a problem with the <code class="code docutils literal notranslate"><span class="pre">setup.py</span></code> file, you may need to apply a patch to solve the problem.</p></li>
+<li><p>Ensure that all dependencies are correctly specified in the recipe.</p></li>
+</ol>
+<p>The best way to learn more is to go check the recipes in the openembedded <code class="code docutils literal notranslate"><span class="pre">meta-python</span></code> layer for recipe.</p>
+</section>
+<section id="conclusion">
+<h2><span class="section-number">6.3. </span>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading"></a></h2>
+<p>Installing the package library directly from Yocto can help save space that may not be available due to using pip.</p>
+<p>Remember, there are other methods to add Python packages in Yocto, such as using recipes from OpenEmbedded layers or creating custom recipes for packages not available in the default Yocto repositories.
+Be sure to explore those options as well.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.yoctoproject.org/">official Yocto page</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/">official PyPI website</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="creating-my-layer.html" class="btn btn-neutral float-left" title="5. Creating Your Own Layer with Yocto" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../demo/info-kivydemo.html" class="btn btn-neutral float-right" title="1. Demo Kivy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Marine Vovard.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

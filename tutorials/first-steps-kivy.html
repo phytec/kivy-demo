@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. First steps with Kivy &mdash; kivydemo 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. First steps with Yocto" href="first-steps-yocto.html" />
+    <link rel="prev" title="1. Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            kivydemo
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🚀 Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">1. Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. First steps with Kivy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup-the-environment-on-you-computer">2.2. Setup the environment on you computer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kivy-tutorial-ping-pong-game">2.3. Kivy tutorial: Ping Pong Game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-of-kivy">2.4. Configuration of kivy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusion">2.5. Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="first-steps-yocto.html">3. First steps with Yocto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installing-kivy-layer.html">4. Installing the Kivy layer in Yocto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating-my-layer.html">5. Creating Your Own Layer with Yocto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yocto-pip.html">6. Install a Package in Yocto with Pip</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">💡 Info on kivydemo</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../demo/info-kivydemo.html">1. Demo Kivy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo/media.html">2. Media with Kivy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo/camera.html">3. Camera with Kivy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">📚 Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact.html">Contact</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">kivydemo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2. </span>First steps with Kivy</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/first-steps-kivy.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="first-steps-with-kivy">
+<h1><span class="section-number">2. </span>First steps with Kivy<a class="headerlink" href="#first-steps-with-kivy" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2><span class="section-number">2.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>Kivy is an open source library used to provide GUI interface.
+It is crossplateform, which means that it can be used on all kind of OS such as Linux, MacOS, Windows, but also on other device like phone (Android or IOS) and embedded devices (RaspberryPi or Imx8mp).</p>
+<p>The advantage is that you can easily start a GUI application without worrying about corss-compilation or Yocto.</p>
+<p>That’s what we are going to do in this tutorial !</p>
+</section>
+<section id="setup-the-environment-on-you-computer">
+<h2><span class="section-number">2.2. </span>Setup the environment on you computer<a class="headerlink" href="#setup-the-environment-on-you-computer" title="Permalink to this heading"></a></h2>
+<p>The first step is to install the good version of kivy on you computer. To do that, do the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a new folder for your project</span>
+mkdir<span class="w"> </span>My_project
+<span class="nb">cd</span><span class="w"> </span>My_project
+
+<span class="c1"># install kivy</span>
+pip<span class="w"> </span>install<span class="w"> </span><span class="nv">kivy</span><span class="o">=</span><span class="m">2</span>.1.0dev0
+</pre></div>
+</div>
+<p>If you plan to make a service and package your program, you should work in a Python virtual environment. For more information on the subject, check <a class="reference external" href="https://docs.python.org/3/library/venv.html">Python documentation for virtual environment</a></p>
+<p><strong>WARNING</strong> The providers you are using on your computer and on your board are probably going to be different, please check regularly that your file is working correctly on the board too.</p>
+<p><strong>NOTE</strong> If you are using a virtual environment, each time you go back to your project, you need to restart your environment !</p>
+<p>Try the following python code to check that everything is working as it should on your computer.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">kivy</span>
+<span class="n">kivy</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="s1">&#39;2.1.0&#39;</span><span class="p">)</span> <span class="c1"># replace with your current kivy version !</span>
+
+<span class="kn">from</span> <span class="nn">kivy.app</span> <span class="kn">import</span> <span class="n">App</span>
+<span class="kn">from</span> <span class="nn">kivy.uix.label</span> <span class="kn">import</span> <span class="n">Label</span>
+
+
+<span class="k">class</span> <span class="nc">MyApp</span><span class="p">(</span><span class="n">App</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Hello world&#39;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">MyApp</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If no error occurs, then you can go to the next step.
+Otherwise, please check <a class="reference external" href="https://kivy.org/doc/stable/gettingstarted/intro.html">the Kivy documentation: Getting started</a>.</p>
+</section>
+<section id="kivy-tutorial-ping-pong-game">
+<h2><span class="section-number">2.3. </span>Kivy tutorial: Ping Pong Game<a class="headerlink" href="#kivy-tutorial-ping-pong-game" title="Permalink to this heading"></a></h2>
+<p>To understand how kivy work, you can follow <a class="reference external" href="https://kivy.org/doc/stable/tutorials/pong.html">this fantastic tutorial</a>. Every steps are detailed and well-explained.
+However if you don’t want to spend too much time with the tutorial, you can simply download the <a class="reference external" href="https://github.com/kivy/kivy/tree/2.2.0dev0/examples/tutorials/pong">files inside the pong folder</a>.</p>
+<p><strong>WARNING</strong> Make sure when you are checking the <a class="reference external" href="https://github.com/kivy/kivy/tree/2.2.0dev0">Github repository of Kivy</a> or the <a class="reference external" href="https://kivy.org/doc/stable/">Documentation of Kivy</a> that you are using the <strong>version 2.1.0</strong> and not the latest version.</p>
+<p>Once you have the files needed for the Pong game, you need to check if it’s working on you computer. If that’s the case, our next goal is to install the files in your target.</p>
+<p>First, start the board. You should end up with a demo starting. You can exit the application clicking the top right button.</p>
+<p>To install your file on the target you need to :</p>
+<ol class="arabic simple">
+<li><p>Setup the Ethernet connexion (check <a class="reference internal" href="installation.html#ethernet-connection"><span class="std std-ref">Ethernet connection</span></a> for more indication)</p></li>
+<li><p>Use scp to copy the file on the target (you can check <a class="reference internal" href="../faq.html#how-to-use-scp-command"><span class="std std-ref">How to use scp command ?</span></a>)</p></li>
+<li><p>Connect on the target via serial connection with tio (if you are not sure how to do it, please check <a class="reference internal" href="installation.html#serial-connection"><span class="std std-ref">Serial connection</span></a>)</p></li>
+<li><p>Launch your program from the target (for example with <code class="code docutils literal notranslate"><span class="pre">python3</span> <span class="pre">main.py</span></code>)</p></li>
+</ol>
+<p>For the last step, if your main program (the one with the App object) is named <code class="code docutils literal notranslate"><span class="pre">main.py</span></code> you need to do:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>main.py
+</pre></div>
+</div>
+<p>You should see the game working on your target.</p>
+<p><strong>WARNING</strong>: Make sure you have your display is connected to the board. You can check the <code class="code docutils literal notranslate"><span class="pre">weston.init</span></code> file in the target file to see if your display is setup as <code class="code docutils literal notranslate"><span class="pre">current</span></code>.
+If it’s not the case, you can change that setting and reboot your device.</p>
+<p>If you want to see the game in full screen or change some configuration please check the next section.
+If the device is not detected, please check that one screen is connected or change the weston init file. For more information check the PHYTEC documentation …</p>
+</section>
+<section id="configuration-of-kivy">
+<h2><span class="section-number">2.4. </span>Configuration of kivy<a class="headerlink" href="#configuration-of-kivy" title="Permalink to this heading"></a></h2>
+<p>The game is working, but you want to play with a friend and realise that having the fullscreen can be useful.
+You can do that using the configuration of Kivy.</p>
+<p>Here are some useful config option:</p>
+<ul class="simple">
+<li><p><strong>mouse</strong>: you need to tell Kivy to disable the mouse input when you touch the screen with <code class="code docutils literal notranslate"><span class="pre">disable_on_activity</span></code></p></li>
+<li><p><strong>fullscreen</strong>: you need to use <code class="code docutils literal notranslate"><span class="pre">auto</span></code> to adjust automaticaly the size of the windows. By default, it is going to be fullscreen.</p></li>
+<li><p><strong>keyboard</strong>: use the <code class="code docutils literal notranslate"><span class="pre">systemanddock</span></code> option to add a tactile keyboard in Kivy at the bottom of you window when you want to type something.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">LIMIT_EGL</span></code>: set this option to 1 to avoid bad surprise due to EGL usage on the board.</p></li>
+</ul>
+<p>To do that, go to the <code class="code docutils literal notranslate"><span class="pre">.kivy/conf.ini</span></code> file and change the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mouse</span> <span class="o">=</span> <span class="n">mouse</span><span class="p">,</span> <span class="n">disable_on_activity</span>
+<span class="n">full_screen</span><span class="o">=</span><span class="n">auto</span>
+<span class="n">gles_limits</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">keyboard</span><span class="o">=</span><span class="n">systemanddock</span>
+</pre></div>
+</div>
+<p>There are several way to change the configuration in Kivy. The easiest one is to change the <code class="code docutils literal notranslate"><span class="pre">.kivy/conf.ini</span></code> file.</p>
+<p>You can also define those configuration parameters with environement variables like that:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">KCFG_KIVY_FULL_SCREEN</span><span class="o">=</span>auto<span class="w"> </span><span class="nv">KIVY_GLES_LIMITS</span><span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<p>For more information, you can check <a class="reference external" href="https://kivy.org/doc/stable-2.1.0/api-kivy.config.html">the Kivy documentation on Configuration object</a>.</p>
+<p><strong>WARNING</strong> For the touch screen to work properly, you need to configurate the following parameters: fullscreen and mouse.</p>
+</section>
+<section id="conclusion">
+<h2><span class="section-number">2.5. </span>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading"></a></h2>
+<p>If you want to install your own kivy program on the target, you need to:</p>
+<ol class="arabic simple">
+<li><p>Develop on your computer an application</p></li>
+<li><p>Copy the files on the target</p></li>
+<li><p>Test them on the board</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="1. Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="first-steps-yocto.html" class="btn btn-neutral float-right" title="3. First steps with Yocto" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Marine Vovard.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
