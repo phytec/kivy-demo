@@ -56,6 +56,15 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 #
 html_theme = 'sphinx_rtd_theme'
 
+html_context = {
+    "display_github": True,  # Add 'Edit on Github' link instead of 'View page source'
+    "github_user": "phytec",
+    "github_repo": "kivy-demo",  # assuming an exact match
+    "github_version": "main",
+    "conf_py_path": "/doc/",  # needs leading and trailing slashes!
+}
+
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
