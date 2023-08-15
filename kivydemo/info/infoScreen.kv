@@ -1,5 +1,6 @@
 #:import path os.path
-#:import path_demo kivydemo.path_demo
+#:import path_demo kivydemo.path_demo 
+#:import path_images kivydemo.path_images
 
 <Subtitle@TextLabel>:
     canvas: 
@@ -45,7 +46,7 @@
                     AnchorLayout:
                         anchor_x: 'center'
                         Image: 
-                            source: path.join(path_demo,'images/PHYTEC.png')
+                            source: path.join(path_images,'phytec_logo_medium.png')
                             size_hint_y: None
                             height: dp(40)
                 BoxLayout:

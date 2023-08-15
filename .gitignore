@@ -3,3 +3,4 @@ __pycache__
 kivydemo.egg-info
 dist
 _build
+kivydemo/images/*

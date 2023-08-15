@@ -4,13 +4,13 @@ import os
 
 # Import images
 # scatter, background and logo images
-files = [["IMG_7942.JPG", "image_scatter.jpg"], ["PHYTEC_Produkte.jpg", "background.jpg"],
-         ["phytec_logo_medium.png", "PHYTEC.png"], ["COPYING", "COPYING"], ["COPYING.utf8", "COPYING.utf8"]]
+files = ["IMG_7942.JPG", "PHYTEC_Produkte.jpg",
+         "phytec_logo_medium.png", "COPYING", "COPYING.utf8"]
 url = "https://download.phytec.de/Software/Linux/Applications/Media/"
 
 
-def download_file(url, file_path, file_name, new_name):
-    full_path = file_path + new_name
+def download_file(url, file_path, file_name):
+    full_path = file_path + file_name
     full_url = url + file_name
     try:
         urllib.request.urlretrieve(full_url, full_path)
@@ -20,8 +20,8 @@ def download_file(url, file_path, file_name, new_name):
 
 path_demo = os.path.dirname(__file__)
 path_to_images = path_demo + '/kivydemo/images/'
-for f, new_name in files:
-    download_file(url, path_to_images, f, new_name)
+for f in files:
+    download_file(url, path_to_images, f)
 
 
 setup(
