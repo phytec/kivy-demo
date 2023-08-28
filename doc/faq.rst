@@ -4,18 +4,18 @@ Frequently Asked Questions
 Yocto - How to import files from a git repository ?
 ----------------------------------------------------
 
-Three steps to make it work:
+To add sources using git, you need to: 
 
 #. Get the url of your repo and remove the https part.
 #. Add the new source to your recipe (you can precise the protocol and the branch): :code:`SRC_URI = "git://github.com/MarineVovard/kivy-demo;protocol=https;branch=main"`
 #. Add `SRCREV` with the commit number you want to use: :code:`SRCREV = "a1d631d82f761ce78bfb4bdaeed9f673f4a3bed4"`
 
 Bake your recipe and voilà !
-Now, you just need to update the `SRCREV` to have a new version of code !
+Now, you just need to update the :code:`SRCREV` to have the commit you want !
 
-For more information check the Yocto Manual.
+For more information check the `Yocto Manual <https://docs.yoctoproject.org/index.html>`_.
 
-.. warning:: The repo needs to be public
+**WARNING** The repo needs to be public
 
 How to use Vim (and vi) commands ?
 ----------------------------------
@@ -24,6 +24,7 @@ Each time you want to use a command, do first ESC.
 
 * to exit: :code:`:q!`
 * to modify (insert): :code:`i`
+* to undo: :code:`u`
 * to save: :code:`:w`
 * to save and exit: :code:`:wq`
 
@@ -40,24 +41,26 @@ Here are some useful commands:
 * Copy file to the remote host: :code:`scp myfile.txt user@remote:/remote/directory`
 * can use the option :code:`-r` fo recursive copy and :code:`-P` for the port
 
-If you want to learn more, you can check `Example syntax for Secure Copy <https://www.hypexr.org/linux_scp_help.php>`_ or check in the man the command (with :code:`man scp`).
+If you want to learn more, you can check `Example syntax for Secure Copy <https://www.hypexr.org/linux_scp_help.php>`_ or check the man.
 
 
-How to package Python programs on your computer ?
--------------------------------------------------
+How to test your Python package on your computer ?
+---------------------------------------------------
 
-#. launch virtual environnement: :code:`source .venv/bin/activate`
-#. install my package: :code:`pip install --editable .`
-#. uninstall my package: :code:`pip uninstall <mypackage>`
+#. Create a virtual environment: :code:`python3 -m venv .venv`
+#. Launch the virtual environnement with :code:`source .venv/bin/activate`
+#. Install your package: :code:`pip install --editable .`
+
+You can also uninstall your package with: :code:`pip uninstall <mypackage>`.
 
 How to manage services in Linux ?
 ---------------------------------
 
-* list of service: :code:`systemctl`
-* list of failed services: :code:`systemctl list-units --failed`
+* List of services: :code:`systemctl`
+* List of failed services: :code:`systemctl list-units --failed`
 * To see the log of a service: :code:`journalctl -u <mywonderful.service>`
-* restart service: :code:`systemctl daemon-reload`
-* start a service: :code:`systemctl start <mywonderful.service>`
+* Restart a service: :code:`systemctl daemon-reload`
+* Start a service: :code:`systemctl start <mywonderful.service>`
 
 
 Yocto - How to create a new layer ?
@@ -67,7 +70,7 @@ Yocto - How to create a new layer ?
 #. Create layer: :code:`bitbake-layers create-layer meta-sdltest`
 #. Move the repo in sources: :code:`mv meta-sdltest ../sources/`
 #. Add the new layer inside the config file: :code:`nano confi/bblayers.conf` and add at the end :code:`BBLAYERS += "${BSPDIR}/sources/meta-sdltest "`
-#. Check if layer added:  :code:`bitbake-layers show-layers`
+#. Check if the layer is added:  :code:`bitbake-layers show-layers`
 
 For more information, check `How to add a new layer and a new recipe in Yocto <https://community.nxp.com/t5/i-MX-Processors-Knowledge-Base/How-to-add-a-new-layer-and-a-new-recipe-in-Yocto/ta-p/1102230>`_. 
 

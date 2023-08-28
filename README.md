@@ -34,6 +34,7 @@ This program was developed using the following examples from the Kivy repository
 - [showcase](https://github.com/kivy/kivy/tree/2.1.0.dev0/examples/demo/showcase)
 - [3D rendering (renamed MonkeyRendering)](https://github.com/kivy/kivy/tree/2.1.0.dev0/examples/3Drendering) 
 - [camera](https://github.com/kivy/kivy/tree/2.1.0.dev0/examples/camera)
+- [audio](https://github.com/kivy/kivy/tree/2.1.0.dev0/examples/audio)
 
 ## 📝 Documentation 
 
