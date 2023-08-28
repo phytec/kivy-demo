@@ -11,11 +11,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -46,10 +46,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/installation.html">1. Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/first-steps-kivy.html">2. First steps with Kivy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/first-steps-yocto.html">3. First steps with Yocto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/first-steps-yocto.html">3. First Steps with Yocto</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/installing-kivy-layer.html">4. Installing the Kivy layer in Yocto</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/creating-my-layer.html">5. Creating Your Own Layer with Yocto</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/yocto-pip.html">6. Install a Package in Yocto with Pip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/yocto-pip.html">6. Install a Python Package in Yocto</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">💡 Info on kivydemo</span></p>
 <ul>
@@ -63,7 +63,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#yocto-how-to-import-files-from-a-git-repository">Yocto - How to import files from a git repository ?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-use-vim-and-vi-commands">How to use Vim (and vi) commands ?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-use-scp-command">How to use scp command ?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#how-to-package-python-programs-on-your-computer">How to package Python programs on your computer ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-test-your-python-package-on-your-computer">How to test your Python package on your computer ?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-manage-services-in-linux">How to manage services in Linux ?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#yocto-how-to-create-a-new-layer">Yocto - How to create a new layer ?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-add-a-tactile-keyboard-to-your-kivy-app">How to add a tactile keyboard to your kivy app ?</a></li>
@@ -98,36 +98,34 @@
            <div itemprop="articleBody">
              
   <section id="frequently-asked-questions">
-<h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this heading"></a></h1>
+<h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Link to this heading"></a></h1>
 <section id="yocto-how-to-import-files-from-a-git-repository">
-<h2>Yocto - How to import files from a git repository ?<a class="headerlink" href="#yocto-how-to-import-files-from-a-git-repository" title="Permalink to this heading"></a></h2>
-<p>Three steps to make it work:</p>
+<h2>Yocto - How to import files from a git repository ?<a class="headerlink" href="#yocto-how-to-import-files-from-a-git-repository" title="Link to this heading"></a></h2>
+<p>To add sources using git, you need to:</p>
 <ol class="arabic simple">
 <li><p>Get the url of your repo and remove the https part.</p></li>
 <li><p>Add the new source to your recipe (you can precise the protocol and the branch): <code class="code docutils literal notranslate"><span class="pre">SRC_URI</span> <span class="pre">=</span> <span class="pre">&quot;git://github.com/MarineVovard/kivy-demo;protocol=https;branch=main&quot;</span></code></p></li>
 <li><p>Add <cite>SRCREV</cite> with the commit number you want to use: <code class="code docutils literal notranslate"><span class="pre">SRCREV</span> <span class="pre">=</span> <span class="pre">&quot;a1d631d82f761ce78bfb4bdaeed9f673f4a3bed4&quot;</span></code></p></li>
 </ol>
 <p>Bake your recipe and voilà !
-Now, you just need to update the <cite>SRCREV</cite> to have a new version of code !</p>
-<p>For more information check the Yocto Manual.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The repo needs to be public</p>
-</div>
+Now, you just need to update the <code class="code docutils literal notranslate"><span class="pre">SRCREV</span></code> to have the commit you want !</p>
+<p>For more information check the <a class="reference external" href="https://docs.yoctoproject.org/index.html">Yocto Manual</a>.</p>
+<p><strong>WARNING</strong> The repo needs to be public</p>
 </section>
 <section id="how-to-use-vim-and-vi-commands">
-<h2>How to use Vim (and vi) commands ?<a class="headerlink" href="#how-to-use-vim-and-vi-commands" title="Permalink to this heading"></a></h2>
+<h2>How to use Vim (and vi) commands ?<a class="headerlink" href="#how-to-use-vim-and-vi-commands" title="Link to this heading"></a></h2>
 <p>Each time you want to use a command, do first ESC.</p>
 <ul class="simple">
 <li><p>to exit: <code class="code docutils literal notranslate"><span class="pre">:q!</span></code></p></li>
 <li><p>to modify (insert): <code class="code docutils literal notranslate"><span class="pre">i</span></code></p></li>
+<li><p>to undo: <code class="code docutils literal notranslate"><span class="pre">u</span></code></p></li>
 <li><p>to save: <code class="code docutils literal notranslate"><span class="pre">:w</span></code></p></li>
 <li><p>to save and exit: <code class="code docutils literal notranslate"><span class="pre">:wq</span></code></p></li>
 </ul>
 <p>If you want to learn more commands check <a class="reference external" href="https://www.redhat.com/sysadmin/introduction-vi-editor">An introduction to the vi editor made by RedHat</a>.</p>
 </section>
 <section id="how-to-use-scp-command">
-<h2>How to use scp command ?<a class="headerlink" href="#how-to-use-scp-command" title="Permalink to this heading"></a></h2>
+<h2>How to use scp command ?<a class="headerlink" href="#how-to-use-scp-command" title="Link to this heading"></a></h2>
 <p>Scp stand for secure copy protocol. It enables you to copy a file to or from an other machine.</p>
 <p>Here are some useful commands:</p>
 <ul class="simple">
@@ -135,39 +133,40 @@ Now, you just need to update the <cite>SRCREV</cite> to have a new version of co
 <li><p>Copy file to the remote host: <code class="code docutils literal notranslate"><span class="pre">scp</span> <span class="pre">myfile.txt</span> <span class="pre">user&#64;remote:/remote/directory</span></code></p></li>
 <li><p>can use the option <code class="code docutils literal notranslate"><span class="pre">-r</span></code> fo recursive copy and <code class="code docutils literal notranslate"><span class="pre">-P</span></code> for the port</p></li>
 </ul>
-<p>If you want to learn more, you can check <a class="reference external" href="https://www.hypexr.org/linux_scp_help.php">Example syntax for Secure Copy</a> or check in the man the command (with <code class="code docutils literal notranslate"><span class="pre">man</span> <span class="pre">scp</span></code>).</p>
+<p>If you want to learn more, you can check <a class="reference external" href="https://www.hypexr.org/linux_scp_help.php">Example syntax for Secure Copy</a> or check the man.</p>
 </section>
-<section id="how-to-package-python-programs-on-your-computer">
-<h2>How to package Python programs on your computer ?<a class="headerlink" href="#how-to-package-python-programs-on-your-computer" title="Permalink to this heading"></a></h2>
+<section id="how-to-test-your-python-package-on-your-computer">
+<h2>How to test your Python package on your computer ?<a class="headerlink" href="#how-to-test-your-python-package-on-your-computer" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
-<li><p>launch virtual environnement: <code class="code docutils literal notranslate"><span class="pre">source</span> <span class="pre">.venv/bin/activate</span></code></p></li>
-<li><p>install my package: <code class="code docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--editable</span> <span class="pre">.</span></code></p></li>
-<li><p>uninstall my package: <code class="code docutils literal notranslate"><span class="pre">pip</span> <span class="pre">uninstall</span> <span class="pre">&lt;mypackage&gt;</span></code></p></li>
+<li><p>Create a virtual environment: <code class="code docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">.venv</span></code></p></li>
+<li><p>Launch the virtual environnement with <code class="code docutils literal notranslate"><span class="pre">source</span> <span class="pre">.venv/bin/activate</span></code></p></li>
+<li><p>Install your package: <code class="code docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--editable</span> <span class="pre">.</span></code></p></li>
 </ol>
+<p>You can also uninstall your package with: <code class="code docutils literal notranslate"><span class="pre">pip</span> <span class="pre">uninstall</span> <span class="pre">&lt;mypackage&gt;</span></code>.</p>
 </section>
 <section id="how-to-manage-services-in-linux">
-<h2>How to manage services in Linux ?<a class="headerlink" href="#how-to-manage-services-in-linux" title="Permalink to this heading"></a></h2>
+<h2>How to manage services in Linux ?<a class="headerlink" href="#how-to-manage-services-in-linux" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>list of service: <code class="code docutils literal notranslate"><span class="pre">systemctl</span></code></p></li>
-<li><p>list of failed services: <code class="code docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">list-units</span> <span class="pre">--failed</span></code></p></li>
+<li><p>List of services: <code class="code docutils literal notranslate"><span class="pre">systemctl</span></code></p></li>
+<li><p>List of failed services: <code class="code docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">list-units</span> <span class="pre">--failed</span></code></p></li>
 <li><p>To see the log of a service: <code class="code docutils literal notranslate"><span class="pre">journalctl</span> <span class="pre">-u</span> <span class="pre">&lt;mywonderful.service&gt;</span></code></p></li>
-<li><p>restart service: <code class="code docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">daemon-reload</span></code></p></li>
-<li><p>start a service: <code class="code docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">start</span> <span class="pre">&lt;mywonderful.service&gt;</span></code></p></li>
+<li><p>Restart a service: <code class="code docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">daemon-reload</span></code></p></li>
+<li><p>Start a service: <code class="code docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">start</span> <span class="pre">&lt;mywonderful.service&gt;</span></code></p></li>
 </ul>
 </section>
 <section id="yocto-how-to-create-a-new-layer">
-<h2>Yocto - How to create a new layer ?<a class="headerlink" href="#yocto-how-to-create-a-new-layer" title="Permalink to this heading"></a></h2>
+<h2>Yocto - How to create a new layer ?<a class="headerlink" href="#yocto-how-to-create-a-new-layer" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Start bitbake: <code class="code docutils literal notranslate"><span class="pre">source</span> <span class="pre">sources/poky/oe...-env</span></code></p></li>
 <li><p>Create layer: <code class="code docutils literal notranslate"><span class="pre">bitbake-layers</span> <span class="pre">create-layer</span> <span class="pre">meta-sdltest</span></code></p></li>
 <li><p>Move the repo in sources: <code class="code docutils literal notranslate"><span class="pre">mv</span> <span class="pre">meta-sdltest</span> <span class="pre">../sources/</span></code></p></li>
 <li><p>Add the new layer inside the config file: <code class="code docutils literal notranslate"><span class="pre">nano</span> <span class="pre">confi/bblayers.conf</span></code> and add at the end <code class="code docutils literal notranslate"><span class="pre">BBLAYERS</span> <span class="pre">+=</span> <span class="pre">&quot;${BSPDIR}/sources/meta-sdltest</span> <span class="pre">&quot;</span></code></p></li>
-<li><p>Check if layer added:  <code class="code docutils literal notranslate"><span class="pre">bitbake-layers</span> <span class="pre">show-layers</span></code></p></li>
+<li><p>Check if the layer is added:  <code class="code docutils literal notranslate"><span class="pre">bitbake-layers</span> <span class="pre">show-layers</span></code></p></li>
 </ol>
 <p>For more information, check <a class="reference external" href="https://community.nxp.com/t5/i-MX-Processors-Knowledge-Base/How-to-add-a-new-layer-and-a-new-recipe-in-Yocto/ta-p/1102230">How to add a new layer and a new recipe in Yocto</a>.</p>
 </section>
 <section id="how-to-add-a-tactile-keyboard-to-your-kivy-app">
-<h2>How to add a tactile keyboard to your kivy app ?<a class="headerlink" href="#how-to-add-a-tactile-keyboard-to-your-kivy-app" title="Permalink to this heading"></a></h2>
+<h2>How to add a tactile keyboard to your kivy app ?<a class="headerlink" href="#how-to-add-a-tactile-keyboard-to-your-kivy-app" title="Link to this heading"></a></h2>
 <p>To add the keyboard with kivy: <code class="code docutils literal notranslate"><span class="pre">systemanddock</span></code> or <code class="code docutils literal notranslate"><span class="pre">systemandmulti</span></code>
 (<code class="code docutils literal notranslate"><span class="pre">KCFG_KIVY_KEYBOARD_MODE</span></code> env variable).</p>
 <p>Check the <a class="reference external" href="https://kivy.org/doc/stable/api-kivy.config.html">Configuration object in the Kivy documentation</a>.</p>

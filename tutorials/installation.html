@@ -11,11 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -46,20 +46,21 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">1. Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#product-imx8mp">1.1. Product : Imx8mp</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#downloading-a-bootable-image-on-the-sd-card">1.2. Downloading a bootable image on the SD card</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#downloading-a-bootable-image-on-the-sd-card">1.2. Downloading a Bootable Image on the SD Card</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#getting-connected-to-the-target">1.3. Getting connected to the target</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#serial-connection">1.3.1. Serial connection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ethernet-connection">1.3.2. Ethernet connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#serial-connection">1.3.1. Serial Connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ethernet-connection">1.3.2. Ethernet Connection</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#sources">1.4. Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#display">1.4. Display</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sources">1.5. Sources</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="first-steps-kivy.html">2. First steps with Kivy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="first-steps-yocto.html">3. First steps with Yocto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first-steps-yocto.html">3. First Steps with Yocto</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installing-kivy-layer.html">4. Installing the Kivy layer in Yocto</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creating-my-layer.html">5. Creating Your Own Layer with Yocto</a></li>
-<li class="toctree-l1"><a class="reference internal" href="yocto-pip.html">6. Install a Package in Yocto with Pip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yocto-pip.html">6. Install a Python Package in Yocto</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">💡 Info on kivydemo</span></p>
 <ul>
@@ -99,96 +100,98 @@
            <div itemprop="articleBody">
              
   <section id="installation">
-<h1><span class="section-number">1. </span>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">1. </span>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
 <section id="product-imx8mp">
-<h2><span class="section-number">1.1. </span>Product : Imx8mp<a class="headerlink" href="#product-imx8mp" title="Permalink to this heading"></a></h2>
-<p>You first need to setup the device. For that you need :</p>
+<h2><span class="section-number">1.1. </span>Product : Imx8mp<a class="headerlink" href="#product-imx8mp" title="Link to this heading"></a></h2>
+<p>Before you start, make sure you have everything you need for setting up your device.</p>
+<p><strong>Required Items:</strong></p>
 <ul class="simple">
-<li><p>a SD Card (and an adaptator if needed for your computer)</p></li>
-<li><p>a power adapter +24V</p></li>
-<li><p>an ethernet cable</p></li>
-<li><p>a USB-A to USB-B Micro Cable</p></li>
-<li><p>[OPTIONAL] a USB camera</p></li>
+<li><p>SD Card (and an adaptator if needed for your computer)</p></li>
+<li><p>Power adapter (+24V)</p></li>
+<li><p>Ethernet cable</p></li>
+<li><p>USB-A to USB-B Micro Cable</p></li>
+<li><p>[OPTIONAL] USB camera</p></li>
 </ul>
-<p>For the display, you have two choices:</p>
+<p>For the display, you have two options:</p>
 <ul class="simple">
-<li><p>use a screen connected through an HDMI cable</p></li>
-<li><p>an LVSD screen and its cables</p></li>
+<li><p>Use an HDMI-connected screen</p></li>
+<li><p>Use an LVDS screen with its cables</p></li>
 </ul>
-<p>To start your board, the first step is to check that the Boot Mode DIP Switch (S3) is set to <code class="code docutils literal notranslate"><span class="pre">SD</span> <span class="pre">Card</span></code> as follow:</p>
+<p>To begin, ensure that the Boot Mode DIP Switch (S3) is set to <code class="code docutils literal notranslate"><span class="pre">SD</span> <span class="pre">Card</span></code>:</p>
 <a class="reference internal image-reference" href="../_images/SD_Card_Boot.png"><img alt="board-front" class="align-center" src="../_images/SD_Card_Boot.png" style="width: 100px;" /></a>
-<p>Once it’s done, you can continue with the following steps:</p>
+<p>Follow these steps to get your board up and running:</p>
 <ol class="arabic simple">
 <li><p>Connect the USB cable to your host PC and the Debug FTDI (X1).</p></li>
-<li><p>Insert the Micro SD Card inside the board (X7).</p></li>
+<li><p>Insert the Micro SD Card into the board (X7).</p></li>
 <li><p>Connect the power adapter to the power supply connector (X23).</p></li>
-<li><p>Turn your power supply on.</p></li>
+<li><p>Turn on the power supply.</p></li>
 </ol>
 <a class="reference internal image-reference" href="../_images/board-front.png"><img alt="board-front" class="align-center" src="../_images/board-front.png" style="width: 600px;" /></a>
-<p>For more information on how to setup the board, please refer to <a class="reference external" href="https://www.phytec.de/fileadmin/phytec_base/images/01-Produkte/Component-Placement/L1025e.A0-phyBOARD-Pollux_iMX8M-Plus_web.pdf">this document for the i.MX8MP product</a>.</p>
+<p>For detailed setup instructions, refer to the <a class="reference external" href="https://www.phytec.de/fileadmin/phytec_base/images/01-Produkte/Component-Placement/L1025e.A0-phyBOARD-Pollux_iMX8M-Plus_web.pdf">the i.MX8MP Product Documentation</a>.</p>
 </section>
 <section id="downloading-a-bootable-image-on-the-sd-card">
-<h2><span class="section-number">1.2. </span>Downloading a bootable image on the SD card<a class="headerlink" href="#downloading-a-bootable-image-on-the-sd-card" title="Permalink to this heading"></a></h2>
-<p>To start correcly, your board need an image. In this example, you will learn how to download a pre-build image made by Phytec on the SD Card.</p>
-<p>First you need to download the pre-build image on your computer:</p>
+<h2><span class="section-number">1.2. </span>Downloading a Bootable Image on the SD Card<a class="headerlink" href="#downloading-a-bootable-image-on-the-sd-card" title="Link to this heading"></a></h2>
+<p>To get started, your board needs an image. Here’s how to download a pre-built image from Phytec to your SD Card.</p>
+<p>First, download the pre-build image:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://phytec/a_specific_folder/my_image_url.wic
 </pre></div>
 </div>
-<p>You should have in your folder a file named <code class="code docutils literal notranslate"><span class="pre">my_image_url.wic</span></code>.</p>
-<p>Everything you need for this tutorial is installed on this image.
-If you want to personalize the image or add new package using Yocto, you can go to the tutorial <a class="reference internal" href="first-steps-yocto.html"><span class="doc">First steps with Yocto</span></a> or check <a class="reference external" href="https://www.phytec.de/cdocuments/?doc=UIHsG">the PHYTEC documentation</a> .</p>
+<p>You should now have a file named <code class="code docutils literal notranslate"><span class="pre">my_image_url.wic</span></code> in your folder.</p>
+<p>If you need to customize the image or add packages using Yocto, refer to the turotial <a class="reference internal" href="first-steps-yocto.html"><span class="doc">First Steps with Yocto</span></a> or check <a class="reference external" href="https://www.phytec.de/cdocuments/?doc=UIHsG">the PHYTEC documentation</a> .</p>
 <p>Once the file is downloaded on your computer, you need to copy it on the SD card.
 To do that, you first need to find the name of your SD Card.</p>
-<p>On linux, you have two ways to find the name of your SD Card: <code class="code docutils literal notranslate"><span class="pre">dmseg</span></code> or comparing the files in <code class="code docutils literal notranslate"><span class="pre">/dev</span></code> before and after pluging the SD Card to the computer.</p>
-<p>Once you have the name of your sd card (for example <code class="code docutils literal notranslate"><span class="pre">mmcblk0</span></code>), you need to unmount the partitions. The name of a partition is as follow <cite>/dev/mmcblk0p1</cite> with <cite>p1</cite> indicating the first partition.
+<p>On linux, you have two ways to find this name: <code class="code docutils literal notranslate"><span class="pre">dmseg</span></code> or comparing the files in <code class="code docutils literal notranslate"><span class="pre">/dev</span></code> before and after pluging the SD Card to the computer.</p>
+<p>Once you have the name of your SD Card (for example <code class="code docutils literal notranslate"><span class="pre">mmcblk0</span></code>), you need to unmount the partitions. The name of a partition is as follow: <code class="code docutils literal notranslate"><span class="pre">/dev/mmcblk0p1</span></code> with <code class="code docutils literal notranslate"><span class="pre">p1</span></code> indicating the first partition.
 To unmount a partition use the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unmount<span class="w"> </span>/dev/mmcblk0p1
 </pre></div>
 </div>
 <p>Once <strong>ALL</strong> you partitons are removed, you can copy the image using the <code class="code docutils literal notranslate"><span class="pre">dd</span></code> command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>my_image_url.wic<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/mmcblk0<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M<span class="w"> </span><span class="nv">conv</span><span class="o">=</span>fsync<span class="w"> </span><span class="nv">status</span><span class="o">=</span>progress
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>&lt;my_image_url.wic&gt;<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/mmcblk0<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M<span class="w"> </span><span class="nv">conv</span><span class="o">=</span>fsync<span class="w"> </span><span class="nv">status</span><span class="o">=</span>progress
 </pre></div>
 </div>
+<p>You need to replace <code class="code docutils literal notranslate"><span class="pre">my_image_url.wic</span></code> by the file downloaded previously.</p>
 <p><strong>WARNING</strong> Be very careful when selecting the right drive for the SD card !
-Selecting the wrong drive can erase your hard drive!</p>
+Selecting the wrong one can erase your hard drive!</p>
 <p>Your SD Card is now ready to be used !
-To test your image, add you SD card and power the board. You should see the Linux logo and then a demo for kivy starting.</p>
+To test your image, add your SD card and power the board. You should see the Linux logo and then a demo for kivy starting.</p>
 </section>
 <section id="getting-connected-to-the-target">
-<h2><span class="section-number">1.3. </span>Getting connected to the target<a class="headerlink" href="#getting-connected-to-the-target" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">1.3. </span>Getting connected to the target<a class="headerlink" href="#getting-connected-to-the-target" title="Link to this heading"></a></h2>
 <p>There are two ways to connect to the board from your PC:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#serial-connection">Serial connection</a></p></li>
-<li><p><a class="reference internal" href="#ethernet-connection">Ethernet connection</a></p></li>
+<li><p><a class="reference internal" href="#serial-connection">Serial Connection</a></p></li>
+<li><p><a class="reference internal" href="#ethernet-connection">Ethernet Connection</a></p></li>
 </ul>
 <section id="serial-connection">
-<h3><span class="section-number">1.3.1. </span>Serial connection<a class="headerlink" href="#serial-connection" title="Permalink to this heading"></a></h3>
-<p>If you want to connect to the target you can do that via the serial connection.
-First check that your computer is link to the board via the serial connector (X1: USB debug).</p>
+<h3><span class="section-number">1.3.1. </span>Serial Connection<a class="headerlink" href="#serial-connection" title="Link to this heading"></a></h3>
+<p>To the target, you can use a connection.
+First check that your computer is linked to the board via the serial connector (X1: USB debug).</p>
 <p>If it’s not present on you computer, install <code class="code docutils literal notranslate"><span class="pre">tio</span></code> with the following command :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>tio
 </pre></div>
 </div>
-<p>Then launch:</p>
+<p>Then to connect to the board, launch:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tio<span class="w"> </span>/dev/ttyUSB&lt;num&gt;
 </pre></div>
 </div>
-<p>You need to replace the &lt;num&gt; part by the good USB number. If you have any doubt check the number available with the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/dev
-find<span class="w"> </span>-name<span class="w"> </span>ttyUSB*
+<p>You need to replace the &lt;num&gt; part by your USB number. If you have any doubt check the number available with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/dev
+
+$<span class="w"> </span>find<span class="w"> </span>-name<span class="w"> </span>ttyUSB*
 </pre></div>
 </div>
-<p>After connecting to the board with <code class="code docutils literal notranslate"><span class="pre">tio</span></code>. You see a line asking for a password.
-The password is <cite>root</cite> when developping. Once you enter this password, you should be connected to the board as root.</p>
+<p>After connecting to the board with <code class="code docutils literal notranslate"><span class="pre">tio</span></code>. You will see a line asking for a password.
+By default, the password is <cite>root</cite>. Once you enter this password, you should be able to access to the board.</p>
 <p>Congratulation, you are connected to your device !</p>
 </section>
 <section id="ethernet-connection">
-<h3><span class="section-number">1.3.2. </span>Ethernet connection<a class="headerlink" href="#ethernet-connection" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">1.3.2. </span>Ethernet Connection<a class="headerlink" href="#ethernet-connection" title="Link to this heading"></a></h3>
 <p>With an Ethernet connection, you can connect to the board using the <code class="code docutils literal notranslate"><span class="pre">ssh</span></code>. You can also copy files from your computer to your device using <code class="code docutils literal notranslate"><span class="pre">scp</span></code>.</p>
 <p>To create this connection, first use an Ethernet cable to link your device and your PC.</p>
 <p>You then need to setup manually the following information on your computer.</p>
-<span id="device-ip-info-table"></span><table class="docutils align-default" id="id1">
-<caption><span class="caption-text">Device IPv4 information</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<span id="device-ip-info-table"></span><table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Device IPv4 information</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 28%" />
 <col style="width: 28%" />
@@ -225,9 +228,16 @@ If you are not using Ubuntu but want still stay close to this tutorial, you can 
 <p>If you receive the packets of data then congratulation, you are connected !</p>
 </section>
 </section>
+<section id="display">
+<h2><span class="section-number">1.4. </span>Display<a class="headerlink" href="#display" title="Link to this heading"></a></h2>
+<p>You need a display to render your graphic application. To setup the display with your board, you need to check the BSP Manual of your product.</p>
+<p>For example, if you have a LVDS screen on a i.MX8MP boad, you need to modify the <code class="code docutils literal notranslate"><span class="pre">weston.ini</span></code> file and restart your board.
+You can find more information in the <a class="reference external" href="https://www.phytec.de/cdocuments/?doc=mwDRJw&amp;__hstc=12841640.7b3cea865c20ac90f4f0261768fbccc3.1685517610384.1685602240432.1685687289043.7&amp;__hssc=12841640.1.1685687289043&amp;__hsfp=2239254415&amp;_ga=2.132368782.1467000783.1685517610-576238176.1685517609#L1017e-A5phyCOREi-MX8MPlusBSPManual-phyBOARD-PolluxComponentsphyBOARD-PolluxComponents">phyCORE-i.MX 8M Plus BSP Manual</a>.</p>
+</section>
 <section id="sources">
-<h2><span class="section-number">1.4. </span>Sources<a class="headerlink" href="#sources" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">1.5. </span>Sources<a class="headerlink" href="#sources" title="Link to this heading"></a></h2>
 <p>If you want to learn more on how to install the image on the board or how to configure the display, please check the <a class="reference external" href="https://www.phytec.de/cdocuments/?doc=mwDRJw&amp;__hstc=12841640.7b3cea865c20ac90f4f0261768fbccc3.1685517610384.1685602240432.1685687289043.7&amp;__hssc=12841640.1.1685687289043&amp;__hsfp=2239254415&amp;_ga=2.132368782.1467000783.1685517610-576238176.1685517609#L1017e-A5phyCOREi-MX8MPlusBSPManual-phyBOARD-PolluxComponentsphyBOARD-PolluxComponents">phyCORE-i.MX 8M Plus BSP Manual</a>.</p>
+<p>If you are working on another product (for example the imx6) you can check the BSP Manual on the PHYTEC website.</p>
 </section>
 </section>
 

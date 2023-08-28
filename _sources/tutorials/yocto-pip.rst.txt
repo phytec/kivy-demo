@@ -1,43 +1,54 @@
-Install a Package in Yocto with Pip
-===================================
+Install a Python Package in Yocto
+==================================
 
-Your project is going well, and your application is working beautifully, but now you want to add a new, wonderful package to your project. While installing packages using pip install is simple on your computer, you need to follow a different approach in Yocto if you want to customize your own image while keeping it small.
+Your project is going well, and your application is working beautifully, but now you want to add a new, wonderful package to your project. 
 
-Before proceeding, ensure you understand the first steps with Yocto. If you haven't set up your Yocto environment yet, please refer to the official pages for more information.
+While installing packages using :code:`pip install` is simple on your computer, you need to follow a different approach in Yocto if you want to customize your own image while keeping it small.
 
-Recipe is available in OpenEmbedded
-------------------------------------
+Before proceeding, make sure you understand the tutorial :doc:`/tutorials/first-steps-yocto`.
 
-The simplest option is to check if the desired package already exists in OpenEmbedded. Follow these steps:
+Check if the recipe is already available
+------------------------------------------
 
-1. Determine the version of Yocto you are using. You can find this information in a configuration file.
-2. Go to the following website to check if a recipe for your package already exists in OpenEmbedded. 
-3. Alternatively, you can manually check if the package is installed by navigating to the folder :code:`sources/meta-openembedded/python/` in your Yocto setup and using the following command on Linux:
+You can check if a recipe is already available by going inside the :code:`sources` folder and doing:
 
 .. code-block:: bash
 
     find -name "my-lib"
 
-If you get some results, it's a good sign. The first part of the file name is the recipe name (e.g., if you have my-lib_0.1.2.bb, the recipe name is my-lib).
+**NOTE** You can also check the `OpenEmbedded Website <https://layers.openembedded.org/layerindex/branch/master/layers/>`_ for available recipes. 
 
-4. Add the recipe to your Yocto configuration. Open the :code:`conf/local.conf` file and add the following line:
+Add a recipe
+-------------
+
+If Yocto provides a recipe for your package, the integration process is straightforward. Here's how:
+
+1. Open your :code:`conf/local.conf` file
+2. Add the following line to include the package in your image:
 
 .. code-block:: bash
 
-    IMAGE_INSTALL += "python3-my-lib"
+    IMAGE_INSTALL += " python3-my-lib"
 
-5. Replace :code:`my-lib` with the actual name of your package.
-6. Bake the Yocto image using the updated configuration.
+3. Replace :code:`my-lib` with the actual name of your package
+4. Build your Yocto image to incorporate the package with: :code:`bitbake my-image`
 
-Now, you are ready to use the new library on your Yocto target!
 
-If the Recipe is Not Available, Download It from Pip
-----------------------------------------------------
+Create your recipe with PyPI
+-----------------------------
 
-If the desired package's recipe is not available in OpenEmbedded, you can create a new recipe in your Yocto layer. Follow these steps:
+If you don't have an existing recipe and the package is available on PyPi, you have the power to create your own. 
 
-1. Determine the version of the package you need for your project by checking the desired version on the official PyPI website.
-2. Name your recipe file following the convention mylib_version.bb, where mylib is the name of your package, and version is the version you want.
+Prerequisites
+**************
+
+Make sure you have your own layer installed and configured before creating your recipe. If it's not the case, check the tutorial :doc:`/tutorials/creating-my-layer`.
+
+Creating the recipe
+********************
+
+1. Find the package version you need on the `PyPI website <https://pypi.org/>`_
+2. Choose a version for you package and name your recipe following this format: :code:`mylib_1.2.3.bb`, replacing 'mylib' with the package name and '1.2.3' with the desired version
 3. Create a new recipe with the following content:
 
 .. code-block:: python
@@ -48,30 +59,33 @@ If the desired package's recipe is not available in OpenEmbedded, you can create
     LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
     SRC_URI[md5sum] = "1234567890abcdef1234567890abcdef"
-    SRC_URI[sha256sum] = "abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
+    # or
+    # SRC_URI[sha256sum] = "abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
 
     inherit pypi setuptools3
 
-4. Replace the :code:`SRC_URI` :code:`md5sum` and :code:`sha256sum` values with the actual checksums you obtained from the PyPI website.
-5. Check the dependencies needed for your library and add them to your Yocto setup.
-6. Attempt to build the recipe using the bitbake command. For exampke, if your recipe is named :code:`mylib_1.2.3.bb` you need to do `bitbake mylib`.
+6. Replace the :code:`LICENSE`, :code:`LIC_FILES_CHKSUM` and :code:`SRC_URI` values with the actual checksums you obtained from the PyPI website
+7. Check the dependencies needed for your library and add them to your Yocto setup
+8. Try building the recipe using the bitbake command: :code:`bitbake mylib`
 
 If everything is working fine, that's great! You have successfully created a recipe for your package.
 
-However, if you encounter issues, here are some possible solutions:
+Troubleshooting
+****************
 
-#. If there is a problem with the :code:`setup.py` file, you may need to apply a patch to solve the problem.
-#. Ensure that all dependencies are correctly specified in the recipe.
+Running into issues? Don't worry, it happens to the best of us. Here are some tips:
 
-The best way to learn more is to go check the recipes in the openembedded :code:`meta-python` layer for recipe. 
+#. Ensure that all dependencies are correctly specified in the recipe and check the recipe of those dependencies
+#. Create a patch to fix the broken code
+
+To learn more on recipes, check the openembedded :code:`meta-python` layer. 
 
 Conclusion
 -----------
 
-Installing the package library directly from Yocto can help save space that may not be available due to using pip. 
+Yocto offers multiple ways to add Python packages, whether through existing recipes or custom recipes. 
 
-Remember, there are other methods to add Python packages in Yocto, such as using recipes from OpenEmbedded layers or creating custom recipes for packages not available in the default Yocto repositories. 
-Be sure to explore those options as well.
+Remember to refer to the official Yocto documentation and the PyPI website for valuable insights:
 
 * `official Yocto page <https://docs.yoctoproject.org/>`_
 * `official PyPI website <https://pypi.org/>`_

@@ -1,45 +1,46 @@
-First steps with Yocto
+First Steps with Yocto
 ======================
 
 Installing the BSP
 ------------------
 
-1. Create a new folder for your project in your host machine : 
+1. Start by creating a new project folder on your host machine: 
 
 .. code-block:: bash 
 
     $ mkdir ~/yocto
 
-2. Install :code:`phyLinux` inside the new folder.
+2. Install :code:`phyLinux` inside the new folder:
 
-   #. Download the file : :code:`wget https://download.phytec.de/Software/Linux/Yocto/Tools/phyLinux`
-   #. Change the access mode to be able to launch the program with :code:`chmod u+x phyLinux`
-   #. Link python2 to python3 temporarily: :code:`ln -s which python2 python && export PATH=pwd:$PATH` 
+.. code-block:: bash 
+
+    # 1. Download the file
+    $ wget https://download.phytec.de/Software/Linux/Yocto/Tools/phyLinux`
+
+    # 2. Change the access mode to be able to launch the program
+    $ chmod u+x phyLinux
+
+    # 3. Link python2 to python3 temporarily
+    $ ln -s which python2 python && export PATH=pwd:$PATH` 
 
 
-3. Run phyLinux from the new folder with :code:`./phyLinux init`. If you do not want to use the selector, phyLinux also supports command-line arguments for the several settings:
+3. Run phyLinux with :code:`./phyLinux init` and select the needed parameters for your device. Alternatively, use command-line arguments for settings. For example:
 
 .. code-block:: bash 
     
-    host$ MACHINE=phyboard-mira-imx6-3 ./phyLinux init -p imx6 -r BSP-Yocto-Ampliphy-i.MX6-PD21.1.0
+    $ MACHINE=phyboard-mira-imx6-3 ./phyLinux init -p imx6 -r BSP-Yocto-Ampliphy-i.MX6-PD21.1.0
 
-You need to choose 3 parameters for the BSP you are going to work on:
-
-* the machine 
-* the plateform
-* the release
+Choose parameters for the machine, platform, and release. After initialization, important notes and build process information will be displayed.
 
 After the execution of the init command, :code:`phyLinux` will print a few important notes as well as information for the next steps in the build process.
-
-
-For more information on the :code:`phyLinux` file, you can check the `PHYTEC Yocto Reference Manual <https://www.phytec.de/cdocuments/?doc=UIHsG>`_.
+For more information about :code:`phyLinux`, you can check the `PHYTEC Yocto Reference Manual <https://www.phytec.de/cdocuments/?doc=UIHsG>`_.
 
 
 Start the Build
 ----------------
 
-After you download all the metadata with :code:`phyLinux init`, you have to set up the shell environment variables. This needs to be done every time you open a new shell for starting builds. 
-We use the shell script provided by Poky in its default configuration. 
+After you download all the metadata with :code:`phyLinux init`, you have to set up the shell environment variables. 
+This needs to be done every time you open a new shell.  
 
 From the root of your project directory type:
 
@@ -47,7 +48,7 @@ From the root of your project directory type:
 
     $ source sources/poky/oe-init-build-env
 
-The current working directory of the shell should change to :code:`build/`. 
+The shell's working directory should change to :code:`build/`. 
 
 Before building for the first time, you should take a look at the main configuration file, your local modifications for the current build are stored here. 
 
@@ -69,25 +70,30 @@ Now you are ready to build your first image. We suggest starting with our smalle
     
     $ bitbake phytec-headless-image
 
-The first compile process takes about 40 minutes on a modern Intel Core i7. All subsequent builds will use the filled caches and should take about 3 minutes.
+The initial build might take around about 40 minutes on a modern Intel Core i7. All subsequent builds will use the filled caches and should take about 3 minutes.
 
-Installing the image on a SD card
+Installing the Image on a SD card
 ----------------------------------
 
-If everything worked previously, the images should be found under:
+If the build worked, find the images in:
 
 .. code-block:: bash
 
     cd yocto/build/deploy/images/<MACHINE>
 
-You can copy on the SD card the files with the extension :code:`.sdcard` or :code:`.wic`. To find them, you can use the command :code:`find` like that:
+Copy the files with :code:`.sdcard` or :code:`.wic` extensions onto the SD card. To find them, you can use the command :code:`find`:
 
 .. code-block:: bash 
 
     find -name "*.wic"
 
-Like in the :ref:`tutorials/installation:Downloading a bootable image on the SD card` documentation, you have to unmout the partitions and copy the image you found with:
+Like in the :ref:`tutorials/installation:Downloading a bootable image on the SD card` tutorial, you have to unmout the partitions and then copy the image on the SD Card. For example:
 
 .. code-block:: bash 
 
-    sudo dd if=phytec-headless-image-<MACHINE>.sdcard of=/dev/<your_device> bs=1M conv=fsync
+    #unmount partitions of the SD Card
+    umount /dev/mmcblk0p1
+    umount /dev/mmcblk0p2
+
+    #Copy the image on the SD Card called mmcblk0
+    sudo dd if=phytec-kivydemo-image-phyboard-pollux-imx8mp-3.wic of=/dev/mmcblk0 bs=1M conv=fsync

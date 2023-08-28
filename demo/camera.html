@@ -11,11 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -46,10 +46,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/installation.html">1. Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/first-steps-kivy.html">2. First steps with Kivy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/first-steps-yocto.html">3. First steps with Yocto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/first-steps-yocto.html">3. First Steps with Yocto</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/installing-kivy-layer.html">4. Installing the Kivy layer in Yocto</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/creating-my-layer.html">5. Creating Your Own Layer with Yocto</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/yocto-pip.html">6. Install a Package in Yocto with Pip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/yocto-pip.html">6. Install a Python Package in Yocto</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">💡 Info on kivydemo</span></p>
 <ul class="current">
@@ -94,26 +94,26 @@
            <div itemprop="articleBody">
              
   <section id="camera-with-kivy">
-<h1><span class="section-number">3. </span>Camera with Kivy<a class="headerlink" href="#camera-with-kivy" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3. </span>Camera with Kivy<a class="headerlink" href="#camera-with-kivy" title="Link to this heading"></a></h1>
 <section id="how-to-run-the-demo-with-the-camera">
-<h2><span class="section-number">3.1. </span>How to run the demo with the camera<a class="headerlink" href="#how-to-run-the-demo-with-the-camera" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.1. </span>How to run the demo with the camera<a class="headerlink" href="#how-to-run-the-demo-with-the-camera" title="Link to this heading"></a></h2>
 <p>The camera is not able by default on the demo. In fact, if you do not provide a camera before starting the dom with the video enable, you will end up with an error.</p>
 </section>
 <section id="important-infos">
-<h2><span class="section-number">3.2. </span>Important infos<a class="headerlink" href="#important-infos" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2. </span>Important infos<a class="headerlink" href="#important-infos" title="Link to this heading"></a></h2>
 <p>Two providers have been tested:</p>
 <ul class="simple">
 <li><p>gstreamer (with patch): already installed, used for images and videos</p></li>
 <li><p>opencv (with patch): a lot of features available in opencv</p></li>
 </ul>
-<p><strong>WARNING</strong> If you want to use opencv, you need to install it on the board (if you’re not sure how to do it, check <a class="reference internal" href="../tutorials/yocto-pip.html"><span class="doc">Install a Package in Yocto with Pip</span></a>)</p>
+<p><strong>WARNING</strong> If you want to use opencv, you need to install it on the board (if you’re not sure how to do it, check <a class="reference internal" href="../tutorials/yocto-pip.html"><span class="doc">Install a Python Package in Yocto</span></a>)</p>
 <p>One type of camera has been tested:</p>
 <ul class="simple">
 <li><p>USB camera</p></li>
 </ul>
 </section>
 <section id="if-you-try-other-type-of-cameras">
-<h2><span class="section-number">3.3. </span>If you try other type of cameras<a class="headerlink" href="#if-you-try-other-type-of-cameras" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.3. </span>If you try other type of cameras<a class="headerlink" href="#if-you-try-other-type-of-cameras" title="Link to this heading"></a></h2>
 <p>If you tested another type of camera or provider and made it work, feel free to add it to this documentation by opening an issue.</p>
 <p>If it’s not working, you can check the camera folder in the core part of the Kivy repository to understand how it work.</p>
 </section>

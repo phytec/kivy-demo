@@ -4,18 +4,18 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. First steps with Yocto &mdash; kivydemo 0.1.0 documentation</title>
+  <title>3. First Steps with Yocto &mdash; kivydemo 0.1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -46,15 +46,15 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">1. Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="first-steps-kivy.html">2. First steps with Kivy</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">3. First steps with Yocto</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. First Steps with Yocto</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installing-the-bsp">3.1. Installing the BSP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#start-the-build">3.2. Start the Build</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installing-the-image-on-a-sd-card">3.3. Installing the image on a SD card</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-the-image-on-a-sd-card">3.3. Installing the Image on a SD card</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installing-kivy-layer.html">4. Installing the Kivy layer in Yocto</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creating-my-layer.html">5. Creating Your Own Layer with Yocto</a></li>
-<li class="toctree-l1"><a class="reference internal" href="yocto-pip.html">6. Install a Package in Yocto with Pip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yocto-pip.html">6. Install a Python Package in Yocto</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">💡 Info on kivydemo</span></p>
 <ul>
@@ -83,7 +83,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3. </span>First steps with Yocto</li>
+      <li class="breadcrumb-item active"><span class="section-number">3. </span>First Steps with Yocto</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/phytec/kivy-demo/blob/main/doc/tutorials/first-steps-yocto.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -94,46 +94,47 @@
            <div itemprop="articleBody">
              
   <section id="first-steps-with-yocto">
-<h1><span class="section-number">3. </span>First steps with Yocto<a class="headerlink" href="#first-steps-with-yocto" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3. </span>First Steps with Yocto<a class="headerlink" href="#first-steps-with-yocto" title="Link to this heading"></a></h1>
 <section id="installing-the-bsp">
-<h2><span class="section-number">3.1. </span>Installing the BSP<a class="headerlink" href="#installing-the-bsp" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.1. </span>Installing the BSP<a class="headerlink" href="#installing-the-bsp" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
-<li><p>Create a new folder for your project in your host machine :</p></li>
+<li><p>Start by creating a new project folder on your host machine:</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mkdir<span class="w"> </span>~/yocto
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
-<li><p>Install <code class="code docutils literal notranslate"><span class="pre">phyLinux</span></code> inside the new folder.</p>
-<ol class="arabic simple">
-<li><p>Download the file : <code class="code docutils literal notranslate"><span class="pre">wget</span> <span class="pre">https://download.phytec.de/Software/Linux/Yocto/Tools/phyLinux</span></code></p></li>
-<li><p>Change the access mode to be able to launch the program with <code class="code docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">u+x</span> <span class="pre">phyLinux</span></code></p></li>
-<li><p>Link python2 to python3 temporarily: <code class="code docutils literal notranslate"><span class="pre">ln</span> <span class="pre">-s</span> <span class="pre">which</span> <span class="pre">python2</span> <span class="pre">python</span> <span class="pre">&amp;&amp;</span> <span class="pre">export</span> <span class="pre">PATH=pwd:$PATH</span></code></p></li>
+<li><p>Install <code class="code docutils literal notranslate"><span class="pre">phyLinux</span></code> inside the new folder:</p></li>
 </ol>
-</li>
-<li><p>Run phyLinux from the new folder with <code class="code docutils literal notranslate"><span class="pre">./phyLinux</span> <span class="pre">init</span></code>. If you do not want to use the selector, phyLinux also supports command-line arguments for the several settings:</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>host$<span class="w"> </span><span class="nv">MACHINE</span><span class="o">=</span>phyboard-mira-imx6-3<span class="w"> </span>./phyLinux<span class="w"> </span>init<span class="w"> </span>-p<span class="w"> </span>imx6<span class="w"> </span>-r<span class="w"> </span>BSP-Yocto-Ampliphy-i.MX6-PD21.1.0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Download the file</span>
+$<span class="w"> </span>wget<span class="w"> </span>https://download.phytec.de/Software/Linux/Yocto/Tools/phyLinux<span class="sb">`</span>
+
+<span class="c1"># 2. Change the access mode to be able to launch the program</span>
+$<span class="w"> </span>chmod<span class="w"> </span>u+x<span class="w"> </span>phyLinux
+
+<span class="c1"># 3. Link python2 to python3 temporarily</span>
+$<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>which<span class="w"> </span>python2<span class="w"> </span>python<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span>pwd:<span class="nv">$PATH</span><span class="sb">`</span>
 </pre></div>
 </div>
-<p>You need to choose 3 parameters for the BSP you are going to work on:</p>
-<ul class="simple">
-<li><p>the machine</p></li>
-<li><p>the plateform</p></li>
-<li><p>the release</p></li>
-</ul>
-<p>After the execution of the init command, <code class="code docutils literal notranslate"><span class="pre">phyLinux</span></code> will print a few important notes as well as information for the next steps in the build process.</p>
-<p>For more information on the <code class="code docutils literal notranslate"><span class="pre">phyLinux</span></code> file, you can check the <a class="reference external" href="https://www.phytec.de/cdocuments/?doc=UIHsG">PHYTEC Yocto Reference Manual</a>.</p>
+<ol class="arabic simple" start="3">
+<li><p>Run phyLinux with <code class="code docutils literal notranslate"><span class="pre">./phyLinux</span> <span class="pre">init</span></code> and select the needed parameters for your device. Alternatively, use command-line arguments for settings. For example:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nv">MACHINE</span><span class="o">=</span>phyboard-mira-imx6-3<span class="w"> </span>./phyLinux<span class="w"> </span>init<span class="w"> </span>-p<span class="w"> </span>imx6<span class="w"> </span>-r<span class="w"> </span>BSP-Yocto-Ampliphy-i.MX6-PD21.1.0
+</pre></div>
+</div>
+<p>Choose parameters for the machine, platform, and release. After initialization, important notes and build process information will be displayed.</p>
+<p>After the execution of the init command, <code class="code docutils literal notranslate"><span class="pre">phyLinux</span></code> will print a few important notes as well as information for the next steps in the build process.
+For more information about <code class="code docutils literal notranslate"><span class="pre">phyLinux</span></code>, you can check the <a class="reference external" href="https://www.phytec.de/cdocuments/?doc=UIHsG">PHYTEC Yocto Reference Manual</a>.</p>
 </section>
 <section id="start-the-build">
-<h2><span class="section-number">3.2. </span>Start the Build<a class="headerlink" href="#start-the-build" title="Permalink to this heading"></a></h2>
-<p>After you download all the metadata with <code class="code docutils literal notranslate"><span class="pre">phyLinux</span> <span class="pre">init</span></code>, you have to set up the shell environment variables. This needs to be done every time you open a new shell for starting builds.
-We use the shell script provided by Poky in its default configuration.</p>
+<h2><span class="section-number">3.2. </span>Start the Build<a class="headerlink" href="#start-the-build" title="Link to this heading"></a></h2>
+<p>After you download all the metadata with <code class="code docutils literal notranslate"><span class="pre">phyLinux</span> <span class="pre">init</span></code>, you have to set up the shell environment variables.
+This needs to be done every time you open a new shell.</p>
 <p>From the root of your project directory type:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>sources/poky/oe-init-build-env
 </pre></div>
 </div>
-<p>The current working directory of the shell should change to <code class="code docutils literal notranslate"><span class="pre">build/</span></code>.</p>
+<p>The shell’s working directory should change to <code class="code docutils literal notranslate"><span class="pre">build/</span></code>.</p>
 <p>Before building for the first time, you should take a look at the main configuration file, your local modifications for the current build are stored here.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>nano<span class="w"> </span>conf/local.conf
 </pre></div>
@@ -148,20 +149,25 @@ We use the shell script provided by Poky in its default configuration.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>bitbake<span class="w"> </span>phytec-headless-image
 </pre></div>
 </div>
-<p>The first compile process takes about 40 minutes on a modern Intel Core i7. All subsequent builds will use the filled caches and should take about 3 minutes.</p>
+<p>The initial build might take around about 40 minutes on a modern Intel Core i7. All subsequent builds will use the filled caches and should take about 3 minutes.</p>
 </section>
 <section id="installing-the-image-on-a-sd-card">
-<h2><span class="section-number">3.3. </span>Installing the image on a SD card<a class="headerlink" href="#installing-the-image-on-a-sd-card" title="Permalink to this heading"></a></h2>
-<p>If everything worked previously, the images should be found under:</p>
+<h2><span class="section-number">3.3. </span>Installing the Image on a SD card<a class="headerlink" href="#installing-the-image-on-a-sd-card" title="Link to this heading"></a></h2>
+<p>If the build worked, find the images in:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>yocto/build/deploy/images/&lt;MACHINE&gt;
 </pre></div>
 </div>
-<p>You can copy on the SD card the files with the extension <code class="code docutils literal notranslate"><span class="pre">.sdcard</span></code> or <code class="code docutils literal notranslate"><span class="pre">.wic</span></code>. To find them, you can use the command <code class="code docutils literal notranslate"><span class="pre">find</span></code> like that:</p>
+<p>Copy the files with <code class="code docutils literal notranslate"><span class="pre">.sdcard</span></code> or <code class="code docutils literal notranslate"><span class="pre">.wic</span></code> extensions onto the SD card. To find them, you can use the command <code class="code docutils literal notranslate"><span class="pre">find</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.wic&quot;</span>
 </pre></div>
 </div>
-<p>Like in the <a class="reference internal" href="installation.html#downloading-a-bootable-image-on-the-sd-card"><span class="std std-ref">Downloading a bootable image on the SD card</span></a> documentation, you have to unmout the partitions and copy the image you found with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>phytec-headless-image-&lt;MACHINE&gt;.sdcard<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/&lt;your_device&gt;<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M<span class="w"> </span><span class="nv">conv</span><span class="o">=</span>fsync
+<p>Like in the <a class="reference internal" href="installation.html#downloading-a-bootable-image-on-the-sd-card"><span class="std std-ref">Downloading a Bootable Image on the SD Card</span></a> tutorial, you have to unmout the partitions and then copy the image on the SD Card. For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#unmount partitions of the SD Card</span>
+umount<span class="w"> </span>/dev/mmcblk0p1
+umount<span class="w"> </span>/dev/mmcblk0p2
+
+<span class="c1">#Copy the image on the SD Card called mmcblk0</span>
+sudo<span class="w"> </span>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>phytec-kivydemo-image-phyboard-pollux-imx8mp-3.wic<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/mmcblk0<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M<span class="w"> </span><span class="nv">conv</span><span class="o">=</span>fsync
 </pre></div>
 </div>
 </section>

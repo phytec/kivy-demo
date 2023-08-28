@@ -11,15 +11,15 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. Install a Package in Yocto with Pip" href="yocto-pip.html" />
+    <link rel="next" title="6. Install a Python Package in Yocto" href="yocto-pip.html" />
     <link rel="prev" title="4. Installing the Kivy layer in Yocto" href="installing-kivy-layer.html" /> 
 </head>
 
@@ -46,21 +46,25 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">1. Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="first-steps-kivy.html">2. First steps with Kivy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="first-steps-yocto.html">3. First steps with Yocto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first-steps-yocto.html">3. First Steps with Yocto</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installing-kivy-layer.html">4. Installing the Kivy layer in Yocto</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">5. Creating Your Own Layer with Yocto</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#creating-a-layer">5.1. Creating a Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-layer">5.1. Creating a Layer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#why-create-your-own-layer">5.1.1. Why Create Your Own Layer?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-create-your-layer">5.1.2. How to Create Your Layer</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#changing-an-existing-recipe">5.2. Changing an Existing Recipe</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-debug-on-yocto">5.3. How to Debug on Yocto?</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#how-to-find-files">5.3.1. How to Find Files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#don-t-forget-the-cache">5.3.2. Don’t forget the cache !</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#check-your-recipe-of-layer-in-the-image">5.3.3. Check your recipe of layer in the image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#don-t-forget-the-cache">5.3.2. Don’t Forget the Cache !</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check-your-recipe-in-the-image">5.3.3. Check Your Recipe in the Image</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#conclusion">5.4. Conclusion</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="yocto-pip.html">6. Install a Package in Yocto with Pip</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yocto-pip.html">6. Install a Python Package in Yocto</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">💡 Info on kivydemo</span></p>
 <ul>
@@ -100,37 +104,59 @@
            <div itemprop="articleBody">
              
   <section id="creating-your-own-layer-with-yocto">
-<h1><span class="section-number">5. </span>Creating Your Own Layer with Yocto<a class="headerlink" href="#creating-your-own-layer-with-yocto" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">5. </span>Creating Your Own Layer with Yocto<a class="headerlink" href="#creating-your-own-layer-with-yocto" title="Link to this heading"></a></h1>
 <p>You have successfully imported an existing layer in the previous tutorial <a class="reference internal" href="installing-kivy-layer.html"><span class="doc">Installing the Kivy layer in Yocto</span></a>.
 However, you might want to create your own layer now, add your own recipe, or modify an existing recipe using a <code class="code docutils literal notranslate"><span class="pre">bbappend</span></code> file.
 If that’s the case, you’re in the right place!</p>
 <section id="creating-a-layer">
-<h2><span class="section-number">5.1. </span>Creating a Layer<a class="headerlink" href="#creating-a-layer" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1. </span>Creating a Layer<a class="headerlink" href="#creating-a-layer" title="Link to this heading"></a></h2>
+<section id="why-create-your-own-layer">
+<h3><span class="section-number">5.1.1. </span>Why Create Your Own Layer?<a class="headerlink" href="#why-create-your-own-layer" title="Link to this heading"></a></h3>
+<p>Think of a Yocto layer as a collection of recipes and configurations that you can add to your Linux build.
+Creating your layer allows you to keep your customizations separate from the core Yocto setup.
+This separation helps you keep things organized, maintain compatibility with updates, and share your creations with others.</p>
+</section>
+<section id="how-to-create-your-layer">
+<h3><span class="section-number">5.1.2. </span>How to Create Your Layer<a class="headerlink" href="#how-to-create-your-layer" title="Link to this heading"></a></h3>
 <p>Creating a layer is a straightforward process. Follow these steps:</p>
 <ol class="arabic simple">
-<li><p>Navigate to your <code class="code docutils literal notranslate"><span class="pre">yocto</span></code> folder.</p></li>
-<li><p>Start bitbake: <code class="code docutils literal notranslate"><span class="pre">source</span> <span class="pre">sources/poky/oe-init-build-env</span></code>.</p></li>
-<li><p>Create a new layer: <code class="code docutils literal notranslate"><span class="pre">bitbake-layers</span> <span class="pre">create-layer</span> <span class="pre">meta-mylayer</span></code>.</p></li>
-<li><p>Move the repository to <code class="code docutils literal notranslate"><span class="pre">sources</span></code>: <code class="code docutils literal notranslate"><span class="pre">mv</span> <span class="pre">meta-sdltest</span> <span class="pre">../sources/</span></code>.</p></li>
-<li><p>Add the new layer to the configuration file: Open <code class="code docutils literal notranslate"><span class="pre">conf/bblayers.conf</span></code> and add the following line at the end: <code class="code docutils literal notranslate"><span class="pre">BBLAYERS</span> <span class="pre">+=</span> <span class="pre">&quot;${BSPDIR}/sources/meta-mylayer&quot;</span></code>.</p></li>
+<li><p>Navigate to your yocto folder and start bitbake with:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>sources/poky/oe-init-build-env<span class="sb">`</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Create and move your new layer inside the <code class="code docutils literal notranslate"><span class="pre">sources</span></code> folder:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>bitbake-layers<span class="w"> </span>create-layer<span class="w"> </span>&lt;meta-mylayer&gt;<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span>&lt;meta-mylayer&gt;<span class="w"> </span>../sources/
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Add the new layer to the configuration file: Open <code class="code docutils literal notranslate"><span class="pre">conf/bblayers.conf</span></code> and add the following line at the end:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">BBLAYERS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">BSPDIR</span><span class="si">}</span><span class="s2">/sources/meta-mylayer&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
 <li><p>Verify if the layer is added to your image using: <code class="code docutils literal notranslate"><span class="pre">bitbake-layers</span> <span class="pre">show-layers</span></code>.</p></li>
 </ol>
 </section>
+</section>
 <section id="changing-an-existing-recipe">
-<h2><span class="section-number">5.2. </span>Changing an Existing Recipe<a class="headerlink" href="#changing-an-existing-recipe" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.2. </span>Changing an Existing Recipe<a class="headerlink" href="#changing-an-existing-recipe" title="Link to this heading"></a></h2>
 <p>Imagine you want to install Kivy, and the recipe to install it already exists. Incredible, right? However, after trying the recipe, you find it’s not working, and you need to make some changes. If you directly modify a recipe in a layer you do not own (like openembedded), you’ll run into problems.</p>
 <p>That’s where the file with the extension <code class="code docutils literal notranslate"><span class="pre">bbappend</span></code> comes into play. It allows you to extend the behavior of an existing recipe without modifying it directly.</p>
-<p>To learn how to create and use bbappend, you can refer to the <a class="reference external" href="https://docs.yoctoproject.org/dev-manual/new-recipe.html">Yocto documentation on write a new recipe</a>.</p>
+<p>To learn how to create and use bbappend, you can refer to the <code class="code docutils literal notranslate"><span class="pre">bbappend</span></code> files in the sources folder.</p>
 </section>
 <section id="how-to-debug-on-yocto">
-<h2><span class="section-number">5.3. </span>How to Debug on Yocto?<a class="headerlink" href="#how-to-debug-on-yocto" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3. </span>How to Debug on Yocto?<a class="headerlink" href="#how-to-debug-on-yocto" title="Link to this heading"></a></h2>
 <p>You might encounter errors while creating your recipe. If that’s the case, you need to understand a little about how Yocto works and where to check for information.</p>
 <section id="how-to-find-files">
-<h3><span class="section-number">5.3.1. </span>How to Find Files<a class="headerlink" href="#how-to-find-files" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.3.1. </span>How to Find Files<a class="headerlink" href="#how-to-find-files" title="Link to this heading"></a></h3>
 <p>Yocto is a powerful parser that goes through update files and checks your cache. Many steps are done implicitly, which can sometimes lead to confusion. One of the best tools to use in Yocto are <code class="code docutils literal notranslate"><span class="pre">find</span></code>, <code class="code docutils literal notranslate"><span class="pre">grep</span></code>, and <code class="code docutils literal notranslate"><span class="pre">tree</span></code>. They can show you useful information about the structure in the <code class="code docutils literal notranslate"><span class="pre">sources</span></code> folder.</p>
 </section>
 <section id="don-t-forget-the-cache">
-<h3><span class="section-number">5.3.2. </span>Don’t forget the cache !<a class="headerlink" href="#don-t-forget-the-cache" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.3.2. </span>Don’t Forget the Cache !<a class="headerlink" href="#don-t-forget-the-cache" title="Link to this heading"></a></h3>
 <p>The cache is quite useful. The first time you build your image, it might take a while. But the following builds are going to be much faster. That’s because of the cache !</p>
 <p>However, the cache sometimes doesn’t reload something that has changed. That’s why a good practice is to clean the cache when a problem occurs.
 To do that, you can use the following command</p>
@@ -138,22 +164,21 @@ To do that, you can use the following command</p>
 </pre></div>
 </div>
 </section>
-<section id="check-your-recipe-of-layer-in-the-image">
-<h3><span class="section-number">5.3.3. </span>Check your recipe of layer in the image<a class="headerlink" href="#check-your-recipe-of-layer-in-the-image" title="Permalink to this heading"></a></h3>
-<p>You create your new recipe and no error message appears when creating your image. However, when you check your image, it’s as if your image did not take into account what you just added.</p>
-<p>Because Yocto only compile a part of what is present in the sources folder, you can have to check if what you added is really on the image.
+<section id="check-your-recipe-in-the-image">
+<h3><span class="section-number">5.3.3. </span>Check Your Recipe in the Image<a class="headerlink" href="#check-your-recipe-in-the-image" title="Link to this heading"></a></h3>
+<p>Because Yocto only compile a part of what is present in the sources folder, you sometimes have to check if what you added is really on the image.
 For that, you can use this tools:</p>
 <ul class="simple">
-<li><p><cite>bitbake -e</cite>: you have information</p></li>
-<li><p>Look into the <cite>*.manifest</cite> file in your image folder (where you obtain your final file you copy on the SD card).</p></li>
-<li><p>Look into the <cite>work/tmp</cite> folder in the <cite>build</cite> directory. You can find in this folder all the files fetched by Yocto and the final result in the <code class="code docutils literal notranslate"><span class="pre">image</span></code> directory.</p></li>
+<li><p>Look into the <code class="code docutils literal notranslate"><span class="pre">*.manifest</span></code> file in your image folder (where you obtain your final file you copy on the SD card).</p></li>
+<li><p>Look into the <code class="code docutils literal notranslate"><span class="pre">work/tmp</span></code> folder in the <code class="code docutils literal notranslate"><span class="pre">build</span></code> directory. You can find for each recipe a folder with all the files fetched by Yocto and the final result of the packaging inside the <code class="code docutils literal notranslate"><span class="pre">image</span></code> directory.</p></li>
+<li><p>Use the command <code class="code docutils literal notranslate"><span class="pre">bitbake</span> <span class="pre">-e</span></code>.</p></li>
 </ul>
 </section>
 </section>
 <section id="conclusion">
-<h2><span class="section-number">5.4. </span>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.4. </span>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading"></a></h2>
 <p>You now have a better understanding of how to create and use a layer in Yocto. You’re ready to customize your own version of Linux for your product.
-If you want to add a specific Python package to your board through Yocto to create a lightweight image, please check <a class="reference internal" href="yocto-pip.html"><span class="doc">Install a Package in Yocto with Pip</span></a>.</p>
+If you want to add a specific Python package to your board through Yocto, please check <a class="reference internal" href="yocto-pip.html"><span class="doc">Install a Python Package in Yocto</span></a>.</p>
 </section>
 </section>
 
@@ -162,7 +187,7 @@ If you want to add a specific Python package to your board through Yocto to crea
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="installing-kivy-layer.html" class="btn btn-neutral float-left" title="4. Installing the Kivy layer in Yocto" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="yocto-pip.html" class="btn btn-neutral float-right" title="6. Install a Package in Yocto with Pip" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="yocto-pip.html" class="btn btn-neutral float-right" title="6. Install a Python Package in Yocto" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
